@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bible Study</title>
+<meta name="study-title" content="Friday, Further Thought &amp; Discussion">
+<meta name="study-series" content="Colossians · Week 10, Day 7">
+
+<!-- Favicon, emerald cross -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+
+<!-- Open Graph, link preview -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Friday, Further Thought &amp; Discussion">
+<meta property="og:description" content="Colossians · Week 10, Day 7 · Daily Bible Study">
+<meta property="og:url" content="https://blessed-dooley.github.io/bible-study/2026-03-06.html">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'><rect width='1200' height='630' fill='%231a1a1a'/><rect width='1200' height='4' fill='%233d9970' y='0'/><text x='600' y='280' font-size='220' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' opacity='0.15'>&#9769;</text><text x='600' y='260' font-size='52' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff' font-family='serif'>Friday &#8212; Further Thought &amp; Discussion</text><text x='600' y='340' font-size='28' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' font-family='sans-serif'>Colossians &#183; Week 10, Day 7 &#183; Daily Bible Study</text></svg>">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #1a1a1a;
+    --bg-raise:     #222222;
+    --bg-high:      #2a2a2a;
+    --bg-card:      #1f1f1f;
+    --border:       rgba(255,255,255,0.07);
+    --border-mid:   rgba(255,255,255,0.12);
+    --emerald:      #3d9970;
+    --emerald-dim:  #2a6b4e;
+    --emerald-glow: rgba(61,153,112,0.15);
+    --emerald-pale: rgba(61,153,112,0.08);
+    --text:         #e8e8e8;
+    --text-soft:    #a8a8a8;
+    --text-muted:   #666666;
+    --text-verse:   #f0ede6;
+    --white:        #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(61,153,112,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(61,153,112,0.04) 0%, transparent 50%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 660px; margin: 0 auto; }
+
+  .header {
+    margin-bottom: 0; padding: 40px 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border); border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    position: relative; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  }
+  .header::after {
+    content: '☩'; position: absolute; bottom: -10px; right: 16px;
+    font-size: 100px; color: var(--emerald); opacity: 0.04;
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .header-eyebrow {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--emerald);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: ''; display: block; width: 20px; height: 1px;
+    background: var(--emerald); opacity: 0.6;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 42px); font-weight: 600;
+    color: var(--white); line-height: 1.2; margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  .header-subtitle {
+    font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 400;
+    color: var(--text-soft); letter-spacing: 0.02em; margin-bottom: 24px;
+  }
+  .date-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--emerald-pale); border: 1px solid var(--emerald-dim);
+    color: var(--emerald); font-family: 'Nunito', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 4px;
+  }
+  .date-badge::before { content: '☩'; font-size: 12px; opacity: 0.7; }
+
+  .celtic-divider {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+    padding: 0; height: 28px; position: relative; overflow: hidden;
+  }
+  .celtic-divider::before, .celtic-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--emerald-dim));
+  }
+  .celtic-divider::after { background: linear-gradient(90deg, var(--emerald-dim), transparent); }
+  .celtic-divider-symbol {
+    color: var(--emerald); font-size: 14px; opacity: 0.6;
+    padding: 0 14px; letter-spacing: 8px; user-select: none;
+  }
+
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-top: none; border-bottom: none; }
+
+  .section { padding: 28px 28px; border-bottom: 1px solid var(--border); position: relative; }
+  .section:last-child { border-bottom: none; }
+
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .section-emoji { font-size: 24px; line-height: 1; flex-shrink: 0; }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--emerald); white-space: nowrap;
+  }
+  .section-title-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-mid), transparent); }
+  .section-heading {
+    font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--white); margin-bottom: 14px; line-height: 1.3;
+  }
+  .section p { font-size: 17px; line-height: 1.8; color: var(--text); margin-bottom: 14px; font-weight: 300; }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── WEEK RECAP ── */
+  .tldr-hook {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic;
+    font-weight: 400; color: var(--text-verse); line-height: 1.6;
+    margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
+  }
+  .tldr-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .tldr-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 17px; line-height: 1.7; color: var(--text); font-weight: 300;
+  }
+  .bullet-icon { color: var(--emerald); font-size: 13px; margin-top: 3px; flex-shrink: 0; opacity: 0.7; }
+
+  /* ── EGW QUOTE BLOCK ── */
+  .egw-block {
+    background: var(--bg-high);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--emerald);
+    border-radius: 0 8px 8px 0;
+    padding: 24px 24px 20px;
+    margin: 4px 0 20px;
+  }
+  .egw-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic; font-weight: 400;
+    line-height: 1.85; color: var(--text-verse);
+    margin-bottom: 14px;
+  }
+  .egw-source {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* ── VERSE BLOCK ── */
+  .verse-block {
+    margin: 20px 0; background: var(--bg-high);
+    border: 1px solid var(--border); border-left: 3px solid var(--emerald);
+    border-radius: 0 8px 8px 0; padding: 18px 20px; position: relative;
+  }
+  .verse-header {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+  }
+  .verse-ref {
+    font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--emerald);
+  }
+  .bible-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--emerald-pale); border: 1px solid var(--emerald-dim);
+    color: var(--emerald); font-family: 'Nunito', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 6px 14px; text-decoration: none; border-radius: 4px;
+    transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .bible-btn:hover { background: var(--emerald-glow); border-color: var(--emerald); }
+  .verse-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic;
+    line-height: 1.8; color: var(--text-verse); margin-bottom: 8px; font-weight: 400;
+  }
+  .verse-translation {
+    font-family: 'Nunito', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 14px;
+  }
+  .verse-commentary {
+    font-size: 16px; line-height: 1.8; color: var(--text-soft);
+    padding-top: 14px; border-top: 1px solid var(--border); font-weight: 300;
+  }
+
+  /* ── DISCUSSION QUESTION BLOCKS ── */
+  .discussion-block {
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .discussion-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .discussion-number {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--emerald-pale); border: 1px solid var(--emerald-dim);
+    border-radius: 50%; color: var(--emerald);
+    font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800;
+    margin-bottom: 12px; flex-shrink: 0;
+  }
+  .discussion-q-text {
+    font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 700;
+    color: var(--white); line-height: 1.5; margin-bottom: 14px;
+    padding-left: 16px; border-left: 3px solid var(--emerald);
+  }
+  .discussion-response {
+    font-size: 17px; line-height: 1.8; color: var(--text); font-weight: 300;
+  }
+  .discussion-response p { margin-bottom: 12px; }
+  .discussion-response p:last-child { margin-bottom: 0; }
+
+  /* ── ACCENT SECTIONS ── */
+  .section-christ {
+    background: linear-gradient(135deg, rgba(61,153,112,0.12) 0%, rgba(61,153,112,0.05) 100%);
+    border-left: 4px solid var(--emerald); position: relative;
+  }
+  .section-christ::after {
+    content: '✝'; position: absolute; bottom: 16px; right: 24px;
+    font-size: 28px; color: var(--emerald); opacity: 0.12;
+  }
+  .section-christ .section p { color: var(--text); }
+
+  .section-prayer { background: var(--bg-card); border-top: 2px solid var(--emerald-dim) !important; }
+  .section-prayer p {
+    font-family: 'Nunito', sans-serif; font-size: 18px; font-style: italic;
+    font-weight: 300; line-height: 1.9; color: var(--text-verse);
+  }
+
+  /* ── INLINE VERSE LINK ── */
+  .vlink {
+    color: var(--emerald); text-decoration: none;
+    border-bottom: 1px solid var(--emerald-dim); transition: border-color 0.2s;
+  }
+  .vlink:hover { border-color: var(--emerald); }
+
+  /* ── BIBLE APP STRIP ── */
+  .bible-app-strip {
+    background: var(--bg-raise); border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid); border-bottom: 1px solid var(--border);
+    padding: 14px 28px; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .strip-label {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  }
+  .strip-apps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .app-link {
+    display: inline-flex; align-items: center; background: transparent;
+    border: 1px solid var(--border-mid); color: var(--text-soft);
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px;
+    text-decoration: none; border-radius: 4px; transition: border-color 0.2s, color 0.2s;
+  }
+  .app-link:hover { border-color: var(--emerald); color: var(--emerald); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 20px 28px; background: var(--bg-card);
+    border: 1px solid var(--border); border-top: 1px solid var(--border-mid);
+    border-radius: 0 0 12px 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .footer p {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  }
+  .footer-archive {
+    font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--emerald);
+    text-decoration: none; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .footer-archive:hover { opacity: 1; }
+
+  @media (max-width: 480px) {
+    body { padding: 0 0 60px; }
+    .header { padding: 28px 20px 24px; border-radius: 0; }
+    .card { border-radius: 0; }
+    .section { padding: 24px 20px; }
+    .bible-app-strip { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
+    .footer { padding: 16px 20px; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">Daily Bible Study</div>
+    <h1>Friday, Further Thought &amp; Discussion</h1>
+    <div class="header-subtitle">Colossians · Week 10, Day 7</div>
+    <div class="date-badge">March 6, 2026</div>
+  </div>
+
+  <div class="celtic-divider">
+    <span class="celtic-divider-symbol">✦ ☩ ✦</span>
+  </div>
+
+  <div class="card">
+
+    <!-- WEEK IN REVIEW -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📌</span>
+        <span class="section-title">Week in Review</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="tldr-hook">A week spent in Colossians 2 is a week spent learning to recognize counterfeits, and being reminded what the real thing actually looks like.</div>
+      <ul class="tldr-list">
+        <li><span class="bullet-icon">☩</span><span><strong style="color:var(--white);">Sunday:</strong> All the treasures of wisdom and knowledge are hidden in Christ. The Colossian heresy was a quiet demotion: making Christ the starting point rather than the whole.</span></li>
+        <li><span class="bullet-icon">☩</span><span><strong style="color:var(--white);">Monday:</strong> Walk in Christ the same way you received him. Being rooted in him is not the beginning of the journey; it is the entire journey. There is no supplement.</span></li>
+        <li><span class="bullet-icon">☩</span><span><strong style="color:var(--white);">Tuesday:</strong> The sin-debt was nailed to the Cross. What was cancelled was the record of our charges, not the law that defined them. The debt is gone; the moral law stands.</span></li>
+        <li><span class="bullet-icon">☩</span><span><strong style="color:var(--white);">Wednesday:</strong> The ceremonial calendar, feasts, new moons, annual sabbaths, were shadows pointing forward to Christ. The substance has arrived. No one has standing to judge you over shadows.</span></li>
+        <li><span class="bullet-icon">☩</span><span><strong style="color:var(--white);">Thursday:</strong> Human commandments layered on top of what Christ finished produce performance, not transformation. Religious rule-keeping has an appearance of wisdom and no actual power over the sinful nature.</span></li>
+      </ul>
+    </div>
+
+    <!-- FURTHER THOUGHT, EGW -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📖</span>
+        <span class="section-title">Further Thought</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">The Lamp Without Oil</div>
+
+      <div class="egw-block">
+        <div class="egw-text">"As in the days of the apostles men tried by tradition and philosophy to destroy faith in the Scriptures, so today, by the pleasing sentiments of higher criticism, evolution, spiritualism, theosophy, and pantheism, the enemy of righteousness is seeking to lead souls into forbidden paths. To many the Bible is as a lamp without oil, because they have turned their minds into channels of speculative belief that bring misunderstanding and confusion. The work of higher criticism, in dissecting, conjecturing, reconstructing, is destroying faith in the Bible as a divine revelation. It is robbing God's word of power to control, uplift, and inspire human lives. By spiritualism, multitudes are taught to believe that desire is the highest law, that license is liberty, and that man is accountable only to himself."</div>
+        <div class="egw-source">Ellen G. White · The Acts of the Apostles, pp. 474–475</div>
+      </div>
+
+      <p>Ellen White wrote these words in the early twentieth century, but she could have written them this morning. The specific vocabulary has updated, "higher criticism" now travels under names like deconstruction, progressive theology, and post-evangelical spirituality, but the mechanism she describes is identical: something that sounds like intellectual depth, even like humility and openness, but that quietly drains the lamp of its oil.</p>
+
+      <p>The lamp image is striking. A lamp without oil isn't broken. It looks exactly like a lamp with oil. You cannot tell the difference until you try to light it. The Bible read through the lens of pure human reason, treated as one ancient text among many, stripped of its claim to divine authority, produces exactly this: a beautiful object with no illuminating power. The words are there. The form is there. The light is gone.</p>
+
+      <p>Her description of the threat has three layers worth sitting with. First, higher criticism's method, "dissecting, conjecturing, reconstructing", treats Scripture as raw material for human analysis rather than as the voice of God. Second, spiritualism's appeal, "desire is the highest law, license is liberty", replaces the authority of Scripture with the authority of personal experience and preference. Third, and most dangerous of all: these approaches arrive wearing the clothing of wisdom. They feel sophisticated. They feel humble. They feel more intellectually honest than simply believing the text.</p>
+
+      <p>The remedy White prescribes is not anti-intellectual defensiveness. She does not say: stop asking hard questions. She says: keep your eyes fixed on Christ, move steadily forward in the path he has marked out, and regard the Bible as the voice of God speaking directly to you. The follower of Christ is to engage the hard questions, but from inside the relationship, not from outside it. The person who reads Scripture while remaining personally, relationally connected to the Christ it reveals will find that the hard places are navigated by the light of that relationship. The person who reads Scripture as a detached academic exercise, treating it as raw material to be evaluated rather than a living word to be encountered, has already turned down the lamp.</p>
+
+      <p>This week's passage in Colossians 2 is a perfect illustration. Paul's argument about the ceremonial law, the sin-debt, the stoicheia: these are theologically dense. They have been debated by scholars for centuries. But the person who reads them with their eyes on Christ as the head, the source, the substance of everything, finds that the fog lifts. The person who reads them primarily as ammunition for a doctrinal argument, or as a text to be dismantled by asking who really wrote Colossians and when, finds only more fog.</p>
+
+      <!-- KEY VERSES -->
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Colossians 2:9–10</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/COL.2.9" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"For the entire fullness of God's nature dwells bodily in Christ, and you have been filled by him, who is the head over every ruler and authority."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">This is the theological bedrock of everything in Colossians 2. <em>Pleroma</em>, fullness, means the complete totality, nothing held back, nothing withheld. The entire fullness of God's nature dwells <em>bodily</em> in Christ: the incarnation is not a partial expression of God, a representative or an ambassador. It is God fully present in human flesh. The word <em>somatikos</em> (bodily) is Paul's direct counter to Gnostic philosophy, which was suspicious of physical matter and tended toward a Christ who was spiritual but not genuinely embodied. Paul insists: the fullness is there, in the body. And because you are in him, you have been filled. Not partially. Not provisionally. Filled, by the one who is himself the head over every ruler and authority in the universe.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">John 1:1</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/JHN.1.1" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"In the beginning was the Word, and the Word was with God, and the Word was God."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">John's prologue grounds the claim of Colossians 2:9 in the eternal identity of Christ. The Word, <em>Logos</em> in Greek, a term deliberately chosen to engage both Jewish and Greek thought, was not created at the incarnation. He was present at creation, was with God, and was God. This is the one who became flesh (<a class="vlink" href="https://www.bible.com/bible/1713/JHN.1.14" target="_blank">John 1:14</a>). When Paul says the fullness of God dwells in Christ, he is not speaking of a man elevated to divine status. He is speaking of the eternal Word who took on human nature. The two natures: fully divine, fully human, are present in the one Person. This is why Christ is the head over every ruler and authority: not because of what happened to him, but because of who he has always been.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Hebrews 1:3</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/HEB.1.3" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"The Son is the radiance of God's glory and the exact expression of his nature, sustaining all things by his powerful word. After making purification for sins, he sat down at the right hand of the Majesty on high."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">The writer of Hebrews uses two remarkable phrases. <em>Apaugasma</em> (radiance) describes Christ as the outshining of God's glory, not a reflection of it from outside, but the actual light that emanates from the source itself. <em>Charakter</em> (exact expression) is a word from the world of seal-making: the impression that is identical to the seal that made it. Christ is not like God. He is the precise imprint of God's nature. And having made purification for sins, accomplished the atonement, he sat down. The sitting is significant: the Old Testament priests never sat in the tabernacle, because their work was never finished. Christ sat down because his work was complete. This is the finished Cross that Colossians 2:14 describes.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">1 Peter 3:22</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/1PE.3.22" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"...who has gone into heaven and is at the right hand of God with angels, authorities, and powers subject to him."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Peter's compressed statement of Christ's cosmic authority confirms what Paul establishes in Colossians: every ruler, authority, and power in the spiritual universe is subject to Christ. This is the one in whom all the fullness dwells. This is the head from whom the whole body grows. This is why the Colossian heresy was so dangerous: it treated this Person as one voice among many in a spiritual hierarchy, rather than as the one to whom every hierarchy is subject. And it is why White's warning still lands: anything that reduces Christ from this position, whether higher criticism questioning his resurrection, or spiritualism bypassing his authority, or legalism supplementing his finished work, is not a minor theological adjustment. It is a demotion of the Lord of the universe.</div>
+      </div>
+    </div>
+
+    <!-- DISCUSSION QUESTIONS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">💬</span>
+        <span class="section-title">Discussion Questions</span>
+        <div class="section-title-line"></div>
+      </div>
+
+      <div class="discussion-block">
+        <div class="discussion-number">1</div>
+        <div class="discussion-q-text">What does it mean that in Christ "dwells all the fullness of the Godhead bodily," and that he "is the head of all principality and power" (Col. 2:9–10 NKJV)? See also John 1:1, Hebrews 1:3, and 1 Peter 3:22.</div>
+        <div class="discussion-response">
+          <p>It means that Jesus is not a representative of God, a messenger from God, or the best human approximation of God. He is God: fully, bodily, without reservation. The word <em>pleroma</em> (fullness) was a technical term in the Colossian false teaching; the opponents believed divine fullness was distributed across a hierarchy of spiritual beings. Paul's counter is total: the entire fullness is in one place, in one Person, in a body. You cannot get closer to God by going around Christ to the beings above him, because there are no beings above him. He is the head over all of them.</p>
+          <p>Practically, this means there is no spiritual upgrade available beyond knowing Christ. No higher plane, no deeper initiation, no elite access through angel intermediaries or ascetic achievement. The fullness is there. You are in him. You are filled. The question is not how to get more of God, it is whether you actually believe you already have him.</p>
+        </div>
+      </div>
+
+      <div class="discussion-block">
+        <div class="discussion-number">2</div>
+        <div class="discussion-q-text">We've all probably heard Colossians 2:14–16 used as an argument against the seventh-day Sabbath. What other problems come with using these texts to argue that we no longer need to keep the fourth commandment?</div>
+        <div class="discussion-response">
+          <p>Beyond the specific arguments this week established, that the ceremonial sabbaths were annual, that the seventh-day Sabbath predates the ceremonial system, that it was instituted at Creation before sin, there are several broader problems with the argument.</p>
+          <p>First, it requires Paul to contradict himself. In <a class="vlink" href="https://www.bible.com/bible/1713/ROM.7.7" target="_blank">Romans 7:7</a>, Paul defines sin as the transgression of the moral law, quoting the tenth commandment. If the moral law was abolished at the Cross, sin has no definition. You cannot coherently abolish the law that defines the very thing the Cross was meant to deal with.</p>
+          <p>Second, it requires Jesus to contradict himself. In <a class="vlink" href="https://www.bible.com/bible/1713/MAT.5.17" target="_blank">Matthew 5:17–18</a>, Jesus says he came not to abolish the law but to fulfill it, and that not one stroke of a letter will pass from the law. His instructions about fleeing on the Sabbath in <a class="vlink" href="https://www.bible.com/bible/1713/MAT.24.20" target="_blank">Matthew 24:20</a> assume Sabbath observance well into the future.</p>
+          <p>Third, it collapses the distinction the Bible itself makes between the moral law written by God's finger in stone and kept inside the ark, and the ceremonial law written by Moses in a book and kept beside the ark. These are two different things, treated differently throughout Scripture. Flattening that distinction requires reading past it deliberately.</p>
+          <p>Fourth, if Colossians 2:16 abolishes the fourth commandment, consistency demands it abolishes all ten, including the prohibitions on murder and theft. No one argues that. The selective application reveals that the argument is driven by a conclusion, not by the text.</p>
+        </div>
+      </div>
+
+      <div class="discussion-block">
+        <div class="discussion-number">3</div>
+        <div class="discussion-q-text">How do you deal with those who insist that we must keep the ceremonial laws as well? What problems arise from insisting that they must be kept?</div>
+        <div class="discussion-response">
+          <p>The most honest starting point is probably curiosity rather than argument. People who have arrived at this position: the Hebrew Roots movement, Messianic Judaism, and others, are often coming from a genuine hunger for depth, historical rootedness, and a sense that mainstream Christianity has lost something real. That hunger deserves respect before it deserves correction.</p>
+          <p>The theological problem with insisting the ceremonial laws must still be kept is precisely what this week has established: it implies the Cross was insufficient. If the Passover still needs to be observed as a requirement, then Christ our Passover (<a class="vlink" href="https://www.bible.com/bible/1713/1CO.5.7" target="_blank">1 Corinthians 5:7</a>) was not the fulfillment Paul claims he was. If the annual sabbaths still need to be kept as obligations, the shadows have not given way to the substance. In each case, the ceremonial requirement is being treated as if it still has binding force after its fulfillment has arrived.</p>
+          <p>There is also a practical problem Paul names in <a class="vlink" href="https://www.bible.com/bible/1713/GAL.5.3" target="_blank">Galatians 5:3</a>: if you accept circumcision as a requirement, you are obligated to keep the entire law. You cannot pick the ceremonies you prefer and leave the rest. The system was a unified whole. Adopting parts of it as requirements creates an impossible inconsistency, and historically, such communities tend to generate exactly the judgment culture Paul warns against, where spiritual standing is measured by ceremonial compliance.</p>
+        </div>
+      </div>
+
+      <div class="discussion-block">
+        <div class="discussion-number">4</div>
+        <div class="discussion-q-text">Ellen White wrote that we should regard the Bible "as the voice of God speaking directly" to us. Why must we guard ourselves diligently against anyone or anything that would weaken our faith in the authority and inspiration of all Scripture, even the parts that might make us uncomfortable?</div>
+        <div class="discussion-response">
+          <p>Because the uncomfortable parts are usually the parts that are doing the most work. A Bible that only says what you already agree with, that has been filtered through a hermeneutic of suspicion until its hard edges are smoothed down, is not a lamp anymore: it is a mirror. It reflects you back to yourself. It has no power to challenge, convict, or redirect because it has been pre-approved.</p>
+          <p>White's warning about higher criticism is not a warning against asking hard questions. It is a warning against a posture: the posture of the evaluator who stands above the text in judgment, rather than the disciple who stands before the text in submission. The difference is not intellectual; it is relational. When you read Scripture as the voice of God speaking directly to you, you bring your questions to it differently. You expect to be surprised. You expect the text to know things you don't. You expect the uncomfortable passages to be there for a reason.</p>
+          <p>And the stakes are high because the erosion is gradual. No one decides overnight to stop believing the Bible. The drift happens in small steps: first, the parts that conflict with modern sensibility are reinterpreted; then, the parts that are archaeologically difficult are bracketed; then, the miraculous is demythologized; then, the authoritative claims of Christ are softened. By the end, the lamp is still there. The oil is gone. The person holding it often cannot tell when the light went out.</p>
+          <p>The guard against this is not intellectual defensiveness but relational engagement: reading Scripture in the presence of the Christ it reveals, with eyes open to being changed by what you find, holding the uncomfortable parts long enough to let them do their work.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WEEK-CLOSE CHRIST CONNECTION -->
+    <div class="section section-christ">
+      <div class="section-label">
+        <span class="section-emoji">✝️</span>
+        <span class="section-title">Christ at the Center of the Week</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Every danger Colossians 2 warns against: the philosophical system, the ceremonial supplement, the ascetic performance, the angel hierarchy, the human commandments: shares a single root cause: Christ has been moved from the center. Not necessarily denied. Not necessarily attacked. Just quietly moved. Elevated to first among many rather than Lord over all. Supplemented rather than trusted. Pointed to rather than inhabited.</p>
+      <p>White's description of the lamp without oil is the same image in different words. The lamp is still there. The form of religion is still there. The vocabulary is still there. But the Person at the center has been gradually replaced by something else: a system, a philosophy, a set of rules, a community's interpretive tradition, a scholar's framework, a personal spirituality assembled from preferred sources. Any of these can produce the appearance of light. None of them can produce the thing itself.</p>
+      <p>The thing itself is Christ: the radiance of God's glory, the exact imprint of his nature, the one in whom all the fullness of God dwells bodily, the head over every ruler and authority in the universe, seated now at the right hand of the Majesty on high, having made purification for sins, having sat down, having finished the work. He is the substance the shadows pointed to. He is the head the body grows from. He is the foundation the debt was cancelled on. He is the source the lamp draws its oil from. Keep your eyes on him.</p>
+    </div>
+
+    <!-- CLOSING PRAYER -->
+    <div class="section section-prayer">
+      <div class="section-label">
+        <span class="section-emoji">🙏</span>
+        <span class="section-title">Closing Prayer</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Lord, thank you for a week spent in Colossians 2: for the reminder that the treasury of all wisdom and knowledge is hidden in Christ, and that nothing needs to be added to what he has done. As we head into the Sabbath, help us carry that clarity with us. Guard us from the drift White describes: the slow, plausible, sophisticated drift away from your Word as the voice of God speaking directly to us. Keep our lamps full. Keep our eyes on Christ. And let the rest: the questions, the hard places, the uncomfortable texts, find their answers in the light of that relationship. In Jesus' name, Amen.</p>
+    </div>
+
+  </div>
+
+  <div class="bible-app-strip">
+    <div class="strip-label">☩ Read this week's anchor passage</div>
+    <div class="strip-apps">
+      <a class="app-link" href="https://www.bible.com/bible/1713/COL.2.1" target="_blank">Colossians 2</a>
+      <a class="app-link" href="https://www.biblegateway.com" target="_blank">Bible Gateway</a>
+      <a class="app-link" href="https://www.esv.org" target="_blank">ESV Bible</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>☩ Daily Bible Study · Shared with Love</p>
+    <a class="footer-archive" href="index.html">← Archive</a>
+  </div>
+
+</div>
+</body>
+</html>
