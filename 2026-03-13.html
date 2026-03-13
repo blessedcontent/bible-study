@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bible Study</title>
+<meta name="study-title" content="Friday, Further Thought &amp; Discussion">
+<meta name="study-series" content="Colossians · Week 11, Day 7">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%25' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%25' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Friday, Further Thought &amp; Discussion">
+<meta property="og:description" content="Colossians · Week 11, Day 7 · Daily Bible Study">
+<meta property="og:url" content="https://blessed-dooley.github.io/bible-study/2026-03-13.html">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'><rect width='1200' height='630' fill='%231a1a1a'/><rect width='1200' height='4' fill='%233d9970' y='0'/><text x='600' y='280' font-size='220' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' opacity='0.15'>☩</text><text x='600' y='260' font-size='48' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff' font-family='serif'>Friday, Further Thought and Discussion</text><text x='600' y='340' font-size='28' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' font-family='sans-serif'>Colossians · Week 11, Day 7 · Daily Bible Study</text></svg>">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #1a1a1a;
+    --bg-raise:     #222222;
+    --bg-high:      #2a2a2a;
+    --bg-card:      #1f1f1f;
+    --border:       rgba(255,255,255,0.07);
+    --border-mid:   rgba(255,255,255,0.12);
+    --emerald:      #3d9970;
+    --emerald-dim:  #2a6b4e;
+    --emerald-glow: rgba(61,153,112,0.15);
+    --emerald-pale: rgba(61,153,112,0.08);
+    --text:         #e8e8e8;
+    --text-soft:    #a8a8a8;
+    --text-muted:   #666666;
+    --text-verse:   #f0ede6;
+    --white:        #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(61,153,112,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(61,153,112,0.04) 0%, transparent 50%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 660px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .header {
+    margin-bottom: 0;
+    padding: 40px 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  }
+  .header::after {
+    content: '☩';
+    position: absolute;
+    bottom: -10px;
+    right: 16px;
+    font-size: 100px;
+    color: var(--emerald);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .header-eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--emerald);
+    opacity: 0.6;
+  }
+
+  .header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .header-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+  .date-badge::before {
+    content: '☩';
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  /* ── CELTIC DIVIDER ── */
+  .celtic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 0;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .celtic-divider::before,
+  .celtic-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--emerald-dim));
+  }
+  .celtic-divider::after {
+    background: linear-gradient(90deg, var(--emerald-dim), transparent);
+  }
+  .celtic-divider-symbol {
+    color: var(--emerald);
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 0 14px;
+    letter-spacing: 8px;
+    user-select: none;
+  }
+
+  /* ── CARD WRAPPER ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 28px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-emoji {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    white-space: nowrap;
+  }
+  .section-title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-mid), transparent);
+  }
+
+  .section-heading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── TL;DR ── */
+  .tldr-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tldr-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .bullet-icon {
+    color: var(--emerald);
+    font-size: 13px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* ── TL;DR HOOK ── */
+  .tldr-hook {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-verse);
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  /* ── VERSE BLOCK ── */
+  .verse-block {
+    margin: 20px 0;
+    background: var(--bg-high);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--emerald);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    position: relative;
+  }
+  .verse-block:first-child { margin-top: 8px; }
+
+  .verse-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .verse-ref {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald);
+  }
+  .bible-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .bible-btn:hover {
+    background: var(--emerald-glow);
+    border-color: var(--emerald);
+  }
+
+  .verse-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .verse-translation {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .verse-commentary {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-weight: 300;
+  }
+
+  /* ── ACCENT SECTIONS ── */
+  .section-context {
+    background: var(--bg-card);
+  }
+
+  .section-christ {
+    background: linear-gradient(135deg, rgba(61,153,112,0.12) 0%, rgba(61,153,112,0.05) 100%);
+    border-left: 4px solid var(--emerald);
+    position: relative;
+  }
+  .section-christ::after {
+    content: '✝';
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 28px;
+    color: var(--emerald);
+    opacity: 0.12;
+  }
+  .section-christ .section p {
+    color: var(--text);
+  }
+
+  .section-prayer {
+    background: var(--bg-card);
+    border-top: 2px solid var(--emerald-dim) !important;
+  }
+  .section-prayer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-verse);
+  }
+
+  .section-application {
+    background: var(--bg-card);
+  }
+
+  .action-box {
+    background: var(--emerald-glow);
+    border: 1px solid var(--emerald);
+    border-radius: 8px;
+    padding: 22px 24px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--white);
+    font-weight: 400;
+    position: relative;
+    box-shadow: 0 0 24px rgba(61,153,112,0.1), inset 0 1px 0 rgba(61,153,112,0.2);
+  }
+  .action-box::before {
+    content: 'DO THIS TODAY';
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--emerald);
+    margin-bottom: 10px;
+  }
+
+  .section-discussion {
+    background: var(--bg-card);
+  }
+  .discussion-q {
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--white);
+    padding-left: 20px;
+    border-left: 3px solid var(--emerald);
+  }
+
+  /* ── BIBLE APP STRIP ── */
+  .bible-app-strip {
+    background: var(--bg-raise);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .strip-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .strip-apps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .app-link {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--border-mid);
+    color: var(--text-soft);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .app-link:hover {
+    border-color: var(--emerald);
+    color: var(--emerald);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 20px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-archive {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer-archive:hover { opacity: 1; }
+
+  @media (max-width: 480px) {
+    body { padding: 0 0 60px; }
+    .header { padding: 28px 20px 24px; border-radius: 0; }
+    .card { border-radius: 0; }
+    .section { padding: 24px 20px; }
+    .bible-app-strip { padding: 14px 20px; align-items: center; }
+    .footer { padding: 16px 20px; border-radius: 0; }
+  }
+  /* ── TL;DR HOOK ── */
+  .tldr-hook {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-verse);
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  /* ── INLINE VERSE LINK ── */
+  .vlink {
+    color: var(--emerald);
+    text-decoration: none;
+    border-bottom: 1px solid var(--emerald-dim);
+    transition: border-color 0.2s;
+  }
+  .vlink:hover {
+    border-color: var(--emerald);
+  }
+
+  /* ── ALT TRANSLATION (dual-translation verse blocks) ── */
+  .verse-text-alt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    opacity: 0.85;
+  }
+  .verse-translation-alt {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+
+
+  /* ── WEEK IN REVIEW ── */
+  .week-review-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .week-review-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .week-review-list .day-label {
+    color: var(--emerald);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ── DISCUSSION Q+A BLOCK ── */
+  .dq-block {
+    margin: 20px 0;
+    padding: 0;
+  }
+  .dq-question {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--white);
+    padding-left: 20px;
+    border-left: 3px solid var(--emerald);
+    margin-bottom: 16px;
+  }
+  .dq-number {
+    color: var(--emerald);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .dq-response {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text);
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+  .dq-response:last-child { margin-bottom: 0; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Daily Bible Study</div>
+    <h1>Friday, Further Thought &amp; Discussion</h1>
+    <div class="header-subtitle">Colossians · Week 11, Day 7</div>
+    <div class="date-badge">March 13, 2026</div>
+  </div>
+
+  <div class="celtic-divider">
+    <span class="celtic-divider-symbol">✦ ☩ ✦</span>
+  </div>
+
+  <div class="card">
+
+    <!-- WEEK IN REVIEW -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📌</span>
+        <span class="section-title">Week in Review</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p class="tldr-hook">This week Paul walked us through the complete blueprint for the new life in Christ: what to aim for, what to kill, what to strip off, what to put on, and how to sustain it all day by day.</p>
+      <ul class="week-review-list">
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Sabbath:</span> Living With Christ. Paul's thesis: if you have been raised with Christ, everything about how you live should reflect that reality. The memory text (Colossians 3:14, NKJV) set the capstone: love is the bond of perfection.</span></li>
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Sunday:</span> Heavenly-Mindedness. Seek what is above. Set your mind on things above. Your life is hidden with Christ in God, and when he appears, you will appear with him in glory.</span></li>
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Monday:</span> End Earthliness. Put to death what belongs to your earthly nature: sexual immorality, impurity, lust, evil desire, and greed. These are not minor habits; they are idolatry, and God's wrath is coming because of them.</span></li>
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Tuesday:</span> Renewed in Knowledge. Strip off the old self and put on the new, being renewed according to the image of your Creator. In Christ, every ethnic, cultural, and social boundary dissolves.</span></li>
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Wednesday:</span> Character of the New Life. Put on compassion, kindness, humility, gentleness, patience, forgiveness, and above all, love, the perfect bond of unity.</span></li>
+        <li><span class="bullet-icon">☩</span><span><span class="day-label">Thursday:</span> Living the New Life. Let the peace of Christ rule your hearts, let the word of Christ dwell richly among you through psalms, hymns, and spiritual songs, and do everything in the name of the Lord Jesus.</span></li>
+      </ul>
+    </div>
+
+    <!-- HISTORICAL & CULTURAL CONTEXT -->
+    <div class="section section-context">
+      <div class="section-label">
+        <span class="section-emoji">🗺️</span>
+        <span class="section-title">Historical &amp; Cultural Context</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">Why Colossians 3 Was Not Obvious</div>
+      <p>To a modern reader, Colossians 3 can sound like standard Christian ethics: be kind, forgive, love each other, sing hymns. But to the first-century Colossians, almost nothing in this chapter was obvious. They lived in a world where identity was fixed at birth by ethnicity, social class, and citizenship. The idea that a Jewish convert, a Greek merchant, a Scythian laborer, and a Roman slave could share one identity, one wardrobe of virtues, and one internal umpire was genuinely radical. There was no cultural precedent for it.</p>
+      <p>The false teachers in Colossae had offered their own version of transformation: ascetic discipline, angel worship, mystical visions, and rigid rule-keeping. Paul's alternative is shockingly different. He grounds character change not in willpower or esoteric knowledge but in union with a Person. You died with Christ, so kill the old. You were raised with Christ, so live the new. You are chosen by God, so wear his character. The entire ethical program of Colossians 3 hangs on a single hinge: identity in Christ precedes behavior change. The Colossians did not need another program. They needed to understand who they already were.</p>
+    </div>
+
+    <!-- DISCUSSION QUESTIONS WITH INTEGRATED VERSES -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📖</span>
+        <span class="section-title">Discussion &amp; Reflection</span>
+        <div class="section-title-line"></div>
+      </div>
+
+      <div class="dq-block">
+        <div class="dq-question"><span class="dq-number">1.</span> What has been your own experience with the promise that you have been "justified by faith"? How has that promise changed your life? How is it connected to the idea that you have also "been raised with Christ"?</div>
+        <div class="verse-block">
+          <div class="verse-header">
+            <div class="verse-ref">Romans 5:1</div>
+            <a class="bible-btn" href="https://www.bible.com/bible/1713/ROM.5.1" target="_blank">☩ Open in Bible App</a>
+          </div>
+          <div class="verse-text">"Therefore, since we have been justified by faith, we have peace with God through our Lord Jesus Christ."</div>
+          <div class="verse-translation">Christian Standard Bible · CSB</div>
+          <div class="verse-commentary">Paul's letter to Rome establishes justification by faith as the foundation of everything. This is the verse the converted soul "breaks forth into a new song" over: the transgression has been forgiven, the sin covered, peace with God secured. But Colossians 3 reveals that justification is not the finish line; it is the starting blocks. Having been justified (Romans 5:1), we have been raised with Christ (<a class="vlink" href="https://www.bible.com/bible/1713/COL.3.1" target="_blank">Colossians 3:1</a>). Justification declares your status; resurrection with Christ activates your new life. One is legal; the other is experiential. Both are real, and neither works without the other.</div>
+        </div>
+        <p class="dq-response">The connection is vital: justification gives you peace with God (your standing changes), and being raised with Christ gives you a new orientation (your direction changes). A person who is justified but never lives as one raised with Christ has a passport to a country they never visit. A person who tries to live the raised life without resting in justification will burn out trying to earn what was already given.</p>
+      </div>
+
+      <div class="dq-block">
+        <div class="dq-question"><span class="dq-number">2.</span> What does it mean to be heavenly-minded? Is it more important than doing earthly good? Where is the balance?</div>
+        <p class="dq-response">Paul answers this question by his own structure. He opens Colossians 3 in heaven ("seek the things above") and immediately lands on earth ("put to death what belongs to your earthly nature"). The heavenly-minded person, in Paul's vision, is not someone gazing at the sky with folded hands. It is someone whose awareness of their hidden life in Christ produces the most practical, ground-level ethical living imaginable: forgiveness, kindness, patience, love, peace, gratitude. Heavenly-mindedness is the root system. Earthly good is the visible fruit.</p>
+        <p class="dq-response">The famous saying "so heavenly-minded they're no earthly good" actually reverses Paul's logic. In Colossians 3, the people most likely to do earthly good are precisely those who have set their minds on things above, because their identity is secure, their sins are dealt with, and their character is being shaped by a Person rather than a program. The balance is not 50/50; it is root and fruit. Get the root right and the fruit follows.</p>
+      </div>
+
+      <div class="dq-block">
+        <div class="dq-question"><span class="dq-number">3.</span> Think about the kind of influence your life has on others. And though we tend to think of this in the context of individual influence, what about our influence as a church? How does your local church impact your local community?</div>
+        <p class="dq-response">This question lands differently in 2025 than it would have a decade ago. According to data from Pushpay's network of over 14,000 churches, volunteering within church communities surged 19% year-over-year in 2025, and group participation jumped 22%. A separate report from the Do Good Institute found that the single strongest predictor of both volunteering and charitable giving in America is belonging to a religious congregation. People who are active in a faith community are 14.3 percentage points more likely to volunteer and 8.6 percentage points more likely to donate to causes beyond their own church.</p>
+        <p class="dq-response">But Paul's vision in Colossians 3 goes deeper than volunteer hours. The "whatever you do" filter of verse 17 applies to how the church treats the single mother who walks in off the street, how it responds to the homeless man at the door, whether its internal relationships display the compassion, kindness, and forgiveness Paul prescribes or devolve into the anger, slander, and malice he forbids. The most powerful community influence a church has is not its programs; it is whether people encounter the character of Christ when they encounter its members.</p>
+      </div>
+
+      <div class="dq-block">
+        <div class="dq-question"><span class="dq-number">4.</span> Read <a class="vlink" href="https://www.bible.com/bible/1713/COL.3.11" target="_blank">Colossians 3:11</a>. What should this tell us about the unity we should have in Christ?</div>
+        <div class="verse-block">
+          <div class="verse-header">
+            <div class="verse-ref">Colossians 3:11</div>
+            <a class="bible-btn" href="https://www.bible.com/bible/1713/COL.3.11" target="_blank">☩ Open in Bible App</a>
+          </div>
+          <div class="verse-text">"In Christ there is not Greek and Jew, circumcision and uncircumcision, barbarian, Scythian, slave and free; but Christ is all and in all."</div>
+          <div class="verse-translation">Christian Standard Bible · CSB</div>
+          <div class="verse-commentary">Paul's list is deliberately comprehensive. "Greek and Jew" covers the fundamental ethnic divide of his world. "Circumcision and uncircumcision" covers the religious boundary. "Barbarian, Scythian" covers the cultural spectrum from the foreign to the despised (Scythians were considered the most uncivilized people in the ancient world). "Slave and free" covers the social hierarchy. Paul is systematically dismantling every category the ancient world used to sort people into groups that matter and groups that do not. In Christ, every one of those categories is overridden by a single, all-encompassing identity: Christ is all and in all.</div>
+        </div>
+        <p class="dq-response">The challenge for the modern church is that we have created our own versions of these categories. Political affiliation, educational background, worship style preference, economic status, race, nationality. Paul does not say these differences disappear; he says they are no longer the basis for how we see or treat each other. The unity Paul describes is not uniformity. It is a community where the deepest thing about every person in the room is the same: Christ lives in them. When that identity is primary, the other categories lose their power to divide.</p>
+      </div>
+
+    </div>
+
+    <!-- STILL SPEAKING -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🌍</span>
+        <span class="section-title">Still Speaking</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">The Daily Battle Paul Warned About Is Still Daily</div>
+      <p>One of the most honest observations about the Christian life is that conversion is not the end of the fight; it is the beginning. The justified believer does not fold their hands. Old habits, inherited tendencies toward wrong, and the constant pressure of an unregenerate culture will strive for mastery every single day. Each day requires a renewed consecration. Each day involves a genuine battle with evil.</p>
+      <p>This is not pessimism. It is the most freeing thing a new believer can hear, because it normalizes the struggle. If you expected conversion to eliminate temptation and you still face it daily, the temptation itself can feel like evidence that your faith is failing. Paul's entire argument in Colossians 3 says the opposite: the fight is proof you are alive. Dead people do not struggle. Only the raised struggle, because they have something worth fighting for and a power source that never runs dry. The promise is not that the battle ends but that the supply of Christ's strength for that battle is inexhaustible. At every step, you touch his living power.</p>
+    </div>
+
+    <!-- CHRIST AT THE CENTER -->
+    <div class="section section-christ">
+      <div class="section-label">
+        <span class="section-emoji">✝️</span>
+        <span class="section-title">Christ at the Center of the Week</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Every day this week pointed to the same Person. Sunday: your life is hidden with <em>Christ</em> in God. Monday: you have died with <em>Christ</em>, so put to death what belongs to the old life. Tuesday: the new self is being renewed according to the image of its <em>Creator</em>. Wednesday: forgive as the <em>Lord</em> has forgiven you, and put on love. Thursday: let the peace of <em>Christ</em> rule, let the word of <em>Christ</em> dwell, and do everything in the name of the Lord <em>Jesus</em>.</p>
+      <p>The new life is not a self-improvement project with a spiritual veneer. It is Christ living in you, Christ shaping you, Christ sustaining you, Christ fighting through you, and Christ waiting at the end to appear with you in glory. The week began with your life hidden in him. It ends with the recognition that at every step you touch his living power. He is not the background to the new life. He is the new life.</p>
+    </div>
+
+    <!-- WEEKEND PRACTICE -->
+    <div class="section section-application">
+      <div class="section-label">
+        <span class="section-emoji">✅</span>
+        <span class="section-title">Weekend Practice</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="action-box">
+        Before Sabbath begins, read Colossians 3:1-17 in one sitting. As you read, mentally walk through the week: the heavenly mindset, the things to kill, the things to strip off, the things to put on, the peace that rules, the word that dwells, the name that covers everything. Then choose one quality from Paul's "put on" list that you struggled with most this week. Carry it into the Sabbath as your one focus. Ask Christ to dress you in it by his power, not yours.
+      </div>
+    </div>
+
+    <!-- PRAYER -->
+    <div class="section section-prayer">
+      <div class="section-label">
+        <span class="section-emoji">🙏</span>
+        <span class="section-title">Closing Prayer for the Week</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Father, this week you showed us what the new life looks like from the inside out. You told us to seek what is above, to put to death what belongs below, to strip off the old self and put on the character of your Son. You gave us the wardrobe: compassion, kindness, humility, gentleness, patience, forgiveness, and love. And you gave us the rhythm: your peace as the umpire, your word as the atmosphere, music as the means of teaching, and thanksgiving as the heartbeat of everything we do. We confess that we have not worn these garments well every day. But we thank you that the supply of your grace never runs out. At every step, we touch your living power. Renew us again tomorrow. Dress us again in Christ. And let the watching world see something real. In Jesus' name, Amen.</p>
+    </div>
+
+  </div>
+
+  <!-- BIBLE APP STRIP -->
+  <div class="bible-app-strip">
+    <div class="strip-label">☩ Read this week's passage in full</div>
+    <div class="strip-apps">
+      <a class="app-link" href="https://www.bible.com/bible/1713/COL.3.1-17" target="_blank">YouVersion</a>
+      <a class="app-link" href="https://www.biblegateway.com/passage/?search=Colossians+3%3A1-17&version=CSB" target="_blank">Bible Gateway</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>☩ Daily Bible Study · Shared with Love</p>
+    <a class="footer-archive" href="index.html">← Archive</a>
+  </div>
+
+</div>
+</body>
+</html>
