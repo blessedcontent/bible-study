@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bible Study</title>
+<meta name="study-title" content="Thursday, Walking in Wisdom">
+<meta name="study-series" content="Colossians · Week 12, Day 6">
+
+<!-- Favicon, emerald cross -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%25' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text y='.9em' font-size='80' x='50%25' dominant-baseline='middle' text-anchor='middle' fill='%233d9970'>☩</text></svg>">
+
+<!-- Open Graph, link preview -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thursday, Walking in Wisdom">
+<meta property="og:description" content="Colossians · Week 12, Day 6 · Daily Bible Study">
+<meta property="og:url" content="https://blessed-dooley.github.io/bible-study/2026-03-19.html">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'><rect width='1200' height='630' fill='%231a1a1a'/><rect width='1200' height='4' fill='%233d9970' y='0'/><text x='600' y='280' font-size='220' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' opacity='0.15'>☩</text><text x='600' y='260' font-size='52' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff' font-family='serif'>Thursday, Walking in Wisdom</text><text x='600' y='340' font-size='28' text-anchor='middle' dominant-baseline='middle' fill='%233d9970' font-family='sans-serif'>Colossians · Week 12, Day 6 · Daily Bible Study</text></svg>">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #1a1a1a;
+    --bg-raise:     #222222;
+    --bg-high:      #2a2a2a;
+    --bg-card:      #1f1f1f;
+    --border:       rgba(255,255,255,0.07);
+    --border-mid:   rgba(255,255,255,0.12);
+    --emerald:      #3d9970;
+    --emerald-dim:  #2a6b4e;
+    --emerald-glow: rgba(61,153,112,0.15);
+    --emerald-pale: rgba(61,153,112,0.08);
+    --text:         #e8e8e8;
+    --text-soft:    #a8a8a8;
+    --text-muted:   #666666;
+    --text-verse:   #f0ede6;
+    --white:        #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(61,153,112,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(61,153,112,0.04) 0%, transparent 50%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 660px; margin: 0 auto; }
+
+  .header {
+    margin-bottom: 0;
+    padding: 40px 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  }
+  .header::after {
+    content: '☩';
+    position: absolute;
+    bottom: -10px;
+    right: 16px;
+    font-size: 100px;
+    color: var(--emerald);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .header-eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--emerald);
+    opacity: 0.6;
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .header-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+  .date-badge::before {
+    content: '☩';
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .celtic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 0;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .celtic-divider::before,
+  .celtic-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--emerald-dim));
+  }
+  .celtic-divider::after {
+    background: linear-gradient(90deg, var(--emerald-dim), transparent);
+  }
+  .celtic-divider-symbol {
+    color: var(--emerald);
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 0 14px;
+    letter-spacing: 8px;
+    user-select: none;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .section {
+    padding: 28px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-emoji {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    white-space: nowrap;
+  }
+  .section-title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-mid), transparent);
+  }
+  .section-heading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  .tldr-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tldr-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .bullet-icon {
+    color: var(--emerald);
+    font-size: 13px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .tldr-hook {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-verse);
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  .verse-block {
+    margin: 20px 0;
+    background: var(--bg-high);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--emerald);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    position: relative;
+  }
+  .verse-block:first-child { margin-top: 8px; }
+  .verse-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .verse-ref {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald);
+  }
+  .bible-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .bible-btn:hover {
+    background: var(--emerald-glow);
+    border-color: var(--emerald);
+  }
+  .verse-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .verse-translation {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .verse-commentary {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-weight: 300;
+  }
+
+  .section-context { background: var(--bg-card); }
+  .section-christ {
+    background: linear-gradient(135deg, rgba(61,153,112,0.12) 0%, rgba(61,153,112,0.05) 100%);
+    border-left: 4px solid var(--emerald);
+    position: relative;
+  }
+  .section-christ::after {
+    content: '✝';
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 28px;
+    color: var(--emerald);
+    opacity: 0.12;
+  }
+  .section-christ .section p { color: var(--text); }
+  .section-prayer {
+    background: var(--bg-card);
+    border-top: 2px solid var(--emerald-dim) !important;
+  }
+  .section-prayer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-verse);
+  }
+  .section-application { background: var(--bg-card); }
+  .action-box {
+    background: var(--emerald-glow);
+    border: 1px solid var(--emerald);
+    border-radius: 8px;
+    padding: 22px 24px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--white);
+    font-weight: 400;
+    position: relative;
+    box-shadow: 0 0 24px rgba(61,153,112,0.1), inset 0 1px 0 rgba(61,153,112,0.2);
+  }
+  .action-box::before {
+    content: 'DO THIS TODAY';
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--emerald);
+    margin-bottom: 10px;
+  }
+  .section-discussion { background: var(--bg-card); }
+  .discussion-q {
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--white);
+    padding-left: 20px;
+    border-left: 3px solid var(--emerald);
+  }
+
+
+  .bible-app-strip {
+    background: var(--bg-raise);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .strip-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .strip-apps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .app-link {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .app-link:hover {
+    border-color: var(--emerald);
+    color: var(--emerald);
+  }
+
+  .footer {
+    padding: 20px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-archive {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer-archive:hover { opacity: 1; }
+
+  @media (max-width: 480px) {
+    body { padding: 0 0 60px; }
+    .header { padding: 28px 20px 24px; border-radius: 0; }
+    .card { border-radius: 0; }
+    .section { padding: 24px 20px; }
+    .bible-app-strip { padding: 14px 20px; align-items: center; }
+    .footer { padding: 16px 20px; border-radius: 0; }
+  }
+
+  .vlink {
+    color: var(--emerald);
+    text-decoration: none;
+    border-bottom: 1px solid var(--emerald-dim);
+    transition: border-color 0.2s;
+  }
+  .vlink:hover { border-color: var(--emerald); }
+
+  .verse-text-alt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    opacity: 0.85;
+  }
+  .verse-translation-alt {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Daily Bible Study</div>
+    <h1>Thursday, Walking in Wisdom</h1>
+    <div class="header-subtitle">Colossians · Week 12, Day 6</div>
+    <div class="date-badge">March 19, 2026</div>
+  </div>
+
+  <div class="celtic-divider">
+    <span class="celtic-divider-symbol">✦ ☩ ✦</span>
+  </div>
+
+  <div class="card">
+
+    <!-- TL;DR -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📌</span>
+        <span class="section-title">TL;DR</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p class="tldr-hook">Paul closes his practical instructions with two commands aimed at the world beyond the household: walk wisely toward outsiders, and let every word you speak be seasoned with grace and salt.</p>
+      <ul class="tldr-list">
+        <li><span class="bullet-icon">☩</span> "Walk in wisdom toward outsiders" means your daily conduct is your most visible sermon. People who will never read the Bible are reading your life.</li>
+        <li><span class="bullet-icon">☩</span> "Making the most of the time" carries urgency. The Greek implies buying up every fleeting opportunity the way a merchant snaps up a bargain before it disappears.</li>
+        <li><span class="bullet-icon">☩</span> Gracious speech "seasoned with salt" is not bland niceness. Salt preserves, purifies, and adds flavor. Paul wants words that are both kind and substantial.</li>
+        <li><span class="bullet-icon">☩</span> The goal is readiness: "so that you may know how you should answer each person." Every conversation is a custom job, not a one-size-fits-all script.</li>
+      </ul>
+    </div>
+
+    <!-- CONNECTION TO YESTERDAY -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🔁</span>
+        <span class="section-title">Connection to Yesterday</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Yesterday Paul told the Colossians to devote themselves to prayer: persistent, alert, thankful, and focused on the gospel mission. Today he closes the practical section of the letter with two commands that turn the believer's attention outward. Prayer (yesterday) fuels the mission. Wisdom and speech (today) execute it. If prayer is the conversation with God, today's passage is about the conversation with everyone else. Paul has moved from the inner life (chapter 3:1-17), to the household (3:18-4:1), to prayer (4:2-4), and now to the public square (4:5-6). The gospel starts in the heart and ends in the street.</p>
+    </div>
+
+    <!-- CONTEXT -->
+    <div class="section section-context">
+      <div class="section-label">
+        <span class="section-emoji">🗺️</span>
+        <span class="section-title">Historical &amp; Cultural Context</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">Christians Were Being Watched in Colossae</div>
+      <p>The early church did not have the luxury of invisibility. In a city like Colossae, where pagan temples, trade guilds, and social obligations were all woven together, a decision to follow Christ was a public act with public consequences. Refusing to participate in guild feasts honoring pagan gods could cost a Christian their livelihood. Declining to offer incense to the emperor marked them as politically suspect. Their neighbors were watching closely, looking for reasons to be suspicious or impressed.</p>
+      <p>Paul's instruction to "walk in wisdom toward outsiders" recognizes this reality. The Colossian Christians were a tiny minority in a culture that did not share their values. Their survival and their witness depended on how they conducted themselves in public. "Outsiders" in Paul's vocabulary does not carry contempt; it is a simple designation for people outside the faith community. But it carries a burden: these outsiders are forming opinions about Christ based on what they see in you. Paul is not telling believers to perform for the crowd. He is telling them that their ordinary conduct, their words, their timing, their tone, is already a sermon being preached whether they intend it or not.</p>
+    </div>
+
+    <!-- INTO THE WORD -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📖</span>
+        <span class="section-title">Into the Word</span>
+        <div class="section-title-line"></div>
+      </div>
+
+      <p>Today's anchor passage is Colossians 4:5-6, the final two verses of Paul's practical instruction section. These verses are the memory text for the week and serve as the capstone for everything Paul has said since chapter 3. The supporting passages from Romans, Titus, 2 Peter, and Isaiah show that Paul's concern about Christian reputation is consistent across the New Testament: how believers live either draws people toward the gospel or pushes them away.</p>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Colossians 4:5</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/COL.4.5" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"Act wisely toward outsiders, making the most of the time."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">The verb "act" translates <em>peripateo</em> (&#960;&#949;&#961;&#953;&#960;&#945;&#964;&#941;&#969;), literally "to walk around." Paul is not talking about a single decision but a way of life: walk your daily rounds with wisdom. The word for "outsiders" (<em>tous exo</em>, &#964;&#959;&#8058;&#962; &#7956;&#958;&#969;) simply means "those outside" the community of faith. Paul's concern is evangelistic without being manipulative: live so wisely that the people around you become curious. "Making the most of the time" translates <em>exagorazo ton kairon</em> (&#7952;&#958;&#945;&#947;&#959;&#961;&#940;&#950;&#969; &#964;&#8056;&#957; &#954;&#945;&#953;&#961;&#972;&#957;), literally "buying up the opportune moment." This is marketplace language: a shrewd merchant who sees a bargain and seizes it before someone else does. Paul sees every encounter with an outsider as a window that opens briefly and then closes. The wise Christian recognizes those windows and steps through them. The parallel in <a class="vlink" href="https://www.bible.com/bible/1713/EPH.5.15" target="_blank">Ephesians 5:15-16</a> adds the reason: "because the days are evil." Time is not neutral; it is contested territory, and how you spend it matters.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Colossians 4:6</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/COL.4.6" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"Let your speech always be gracious, seasoned with salt, so that you may know how you should answer each person."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">This is the week's memory text, and Paul places it at the very end of his practical instructions for a reason: it is the summary of everything. The word "gracious" translates <em>en chariti</em> (&#7952;&#957; &#967;&#940;&#961;&#953;&#964;&#953;), meaning "in grace" or "with grace." Grace is not just a theological concept; it is a communication style. Gracious speech treats the listener as someone made in God's image, even when you disagree. "Seasoned with salt" (<em>halati ertumenos</em>) uses the metaphor of a cook preparing food. Salt in the ancient world served three purposes: preservation, purification, and flavoring. Speech seasoned with salt is truth that does not spoil (it preserves), that does not tolerate corruption (it purifies), and that makes people want to hear more (it flavors). Bland niceness is not what Paul is after. He wants speech that has substance. The final phrase is critical: "so that you may know how you should answer each person." Paul does not envision one rehearsed answer for every question. He envisions wisdom that reads the person, understands the moment, and tailors the response. Every conversation is unique. Every person deserves a custom answer.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Romans 2:24</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/ROM.2.24" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"For, as it is written: The name of God is blasphemed among the Gentiles because of you."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Paul quotes <a class="vlink" href="https://www.bible.com/bible/1713/ISA.52.5" target="_blank">Isaiah 52:5</a> to make a devastating point: when God's people behave badly, it is not just their reputation that suffers. God's name takes the hit. The outsiders do not say "those people are hypocrites." They say "their God must not be real." The stakes of Christian conduct are not merely personal; they are theological. Every time a believer acts with cruelty, dishonesty, or contempt, the watching world draws conclusions about the God that believer claims to represent.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Titus 2:5</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/TIT.2.5" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"to be self-controlled, pure, workers at home, kind, and in submission to their husbands, so that God's word will not be slandered."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Paul gives the same reasoning to Titus that he gives to the Colossians: the purpose of godly conduct is not just personal holiness but public witness. "So that God's word will not be slandered" reveals the missionary motive behind Christian ethics. Every act of kindness, every moment of self-control, every display of integrity either commends the gospel or discredits it. The watching world is always taking notes.</div>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">2 Peter 2:2</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/2PE.2.2" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"Many will follow their depraved ways, and the way of truth will be maligned because of them."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Peter confirms the same principle from a different angle: false teachers and morally compromised believers cause "the way of truth" to be spoken of with contempt. The damage is not just to the individual but to the entire movement. One person's failure to walk in wisdom can discredit the message for everyone. This is why Paul tells the Colossians to walk wisely "toward outsiders." The outsiders are forming their opinion of the gospel based on the believers they can see.</div>
+      </div>
+
+    </div>
+
+    <!-- STREET LEVEL -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🎯</span>
+        <span class="section-title">Street Level</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">The Restaurant Review You Did Not Write</div>
+      <p>Imagine you own a restaurant but you never get to write your own reviews. Your customers do. They walk in, eat the food, interact with the staff, and then tell the world what they experienced. If the food is cold and the server is rude, no amount of advertising will fix what the reviews say. That is how the gospel works in the public square. You do not get to write the review. The people who watch your life do. Paul is telling the Colossians: your daily conduct, your words, your timing, your tone, is the review that outsiders are posting about the God you claim to serve. You cannot control what they write. But you can control what you serve.</p>
+    </div>
+
+    <!-- TODAY'S WORLD -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🌍</span>
+        <span class="section-title">Today's World, Ancient Truth</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">The Perception Problem Christianity Has Not Solved</div>
+      <p>Barna Group's longitudinal research, spanning from 2000 to 2025, has tracked a steady erosion in how Christianity is perceived by those outside the faith. Among young non-Christians, 87% describe Christianity as "judgmental," 85% call it "hypocritical," and 75% say it is "too involved in politics." Perhaps the most striking finding: these perceptions are not based on misinformation or vague impressions. Researchers found that they are frequently rooted in specific personal interactions with Christians and specific experiences in churches.</p>
+      <p>Meanwhile, Barna's 2025 data shows that only 54% of self-identified Christians say their faith is very important to their daily lives, down from 74% in 2000. The gap between claimed identity and lived practice is exactly what creates the perception problem. When outsiders see Christians whose daily lives do not reflect what they profess, the conclusion is not "that person is inconsistent." The conclusion is "their God is irrelevant."</p>
+      <p>Paul told the Colossians to walk in wisdom toward outsiders because he knew what was at stake: not just their reputation, but God's. Two thousand years later, the research confirms that the stakes have not changed. The most powerful evangelism tool Christians have is still a life that makes the watching world want to know more.</p>
+    </div>
+
+    <!-- CHRIST CONNECTION -->
+    <div class="section section-christ">
+      <div class="section-label">
+        <span class="section-emoji">✝️</span>
+        <span class="section-title">The Christ Connection</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Jesus was the master of the custom answer. When the Pharisees tried to trap Him with a question about taxes, He asked for a coin and said, "Give to Caesar what is Caesar's" (<a class="vlink" href="https://www.bible.com/bible/1713/MRK.12.17" target="_blank">Mark 12:17</a>). When a woman caught in adultery was thrown at His feet, He wrote in the dirt and said, "The one without sin among you should be the first to throw a stone" (<a class="vlink" href="https://www.bible.com/bible/1713/JHN.8.7" target="_blank">John 8:7</a>). When Nicodemus came at night with questions, Jesus did not lecture him; He met him where he was. Every answer Jesus gave was perfectly calibrated to the person in front of Him. That is what Paul means by "know how you should answer each person." It is not about having the right apologetics manual. It is about having the same Spirit who gave Jesus His words.</p>
+    </div>
+
+    <!-- APPLICATION -->
+    <div class="section section-application">
+      <div class="section-label">
+        <span class="section-emoji">✅</span>
+        <span class="section-title">Personal Application Challenge</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="action-box">
+        Think of one "outsider" in your life: a coworker, a neighbor, a friend who does not share your faith. What review are they writing about the gospel based on what they observe in you? If you could change one thing about how you interact with them, what would it be? Do that thing today.
+      </div>
+    </div>
+
+    <!-- PRAYER -->
+    <div class="section section-prayer">
+      <div class="section-label">
+        <span class="section-emoji">🙏</span>
+        <span class="section-title">Closing Prayer</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Lord, you have trusted us with your reputation. That is a terrifying honor. Forgive us for the times our conduct has written a bad review of who you are. Forgive us for the conversations where our words carried more heat than light, more opinion than grace, more volume than salt. Give us the wisdom to see the windows when they open, the courage to step through them, and the humility to know that every person deserves a custom answer crafted with care. Let our lives be the kind of sermon that makes people want to meet the Author. In Jesus' name, Amen.</p>
+    </div>
+
+    <!-- DISCUSSION -->
+    <div class="section section-discussion">
+      <div class="section-label">
+        <span class="section-emoji">💬</span>
+        <span class="section-title">Discussion Question</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="discussion-q">If someone who does not share your faith were asked to describe Christianity based solely on their interactions with you, what would they say, and would their description match what you actually believe?</div>
+    </div>
+
+  </div>
+
+  <!-- BIBLE APP STRIP -->
+  <div class="bible-app-strip">
+    <div class="strip-label">☩ Read today's passages in full</div>
+    <div class="strip-apps">
+      <a class="app-link" href="https://www.bible.com/bible/1713/COL.4.5-6" target="_blank">YouVersion</a>
+      <a class="app-link" href="https://www.biblegateway.com/passage/?search=Colossians+4%3A5-6&version=CSB" target="_blank">Bible Gateway</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>☩ Daily Bible Study · Shared with Love</p>
+    <a class="footer-archive" href="index.html">&#8592; Archive</a>
+  </div>
+
+</div>
+</body>
+</html>
