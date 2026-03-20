@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bible Study · Archive</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text x='50' y='50' font-size='72' text-anchor='middle' dominant-baseline='central' font-family='serif' fill='%233d9970'>☩</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a' rx='12'/><text x='50' y='50' font-size='72' text-anchor='middle' dominant-baseline='central' font-family='serif' fill='%233d9970'>☩</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #1a1a1a;
+    --bg-raise:     #222222;
+    --bg-high:      #2a2a2a;
+    --bg-card:      #1f1f1f;
+    --border:       rgba(255,255,255,0.07);
+    --border-mid:   rgba(255,255,255,0.12);
+    --emerald:      #3d9970;
+    --emerald-dim:  #2a6b4e;
+    --emerald-glow: rgba(61,153,112,0.15);
+    --emerald-pale: rgba(61,153,112,0.08);
+    --text:         #e8e8e8;
+    --text-soft:    #a8a8a8;
+    --text-muted:   #666666;
+    --white:        #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(61,153,112,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(61,153,112,0.04) 0%, transparent 50%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 660px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 40px 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  }
+  .header::after {
+    content: '☩';
+    position: absolute;
+    bottom: -10px;
+    right: 16px;
+    font-size: 100px;
+    color: var(--emerald);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .header-eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--emerald);
+    opacity: 0.6;
+  }
+
+  .header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .header-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── CELTIC DIVIDER ── */
+  .celtic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .celtic-divider::before,
+  .celtic-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--emerald-dim));
+  }
+  .celtic-divider::after {
+    background: linear-gradient(90deg, var(--emerald-dim), transparent);
+  }
+  .celtic-divider-symbol {
+    color: var(--emerald);
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 0 14px;
+    letter-spacing: 8px;
+    user-select: none;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: none;
+    padding: 20px 28px;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    text-align: center;
+  }
+  .stat-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  /* ── QUARTER HEADER ── */
+  .studies-list { list-style: none; }
+  .quarter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    background: var(--bg-raise);
+    border-bottom: 1px solid var(--border);
+  }
+  .quarter-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    white-space: nowrap;
+  }
+  .quarter-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-mid), transparent);
+  }
+  .quarter-count {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ── STUDY ITEMS ── */
+  .study-item { border-bottom: 1px solid var(--border); }
+  .study-item:last-child { border-bottom: none; }
+
+  .study-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .study-link:hover { background: var(--bg-raise); }
+  .study-link:hover .study-arrow { opacity: 1; transform: translateX(3px); }
+
+  .study-date-badge {
+    flex-shrink: 0;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    padding: 8px 10px;
+    min-width: 52px;
+    border-radius: 4px;
+  }
+  .badge-month {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .badge-day {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 2px;
+    color: var(--white);
+  }
+
+  .study-info { flex: 1; min-width: 0; }
+  .study-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .study-meta {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .study-arrow {
+    color: var(--emerald);
+    font-size: 20px;
+    opacity: 0.3;
+    flex-shrink: 0;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state { text-align: center; padding: 56px 28px; }
+  .empty-icon { font-size: 40px; margin-bottom: 16px; }
+  .empty-state h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .empty-state p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 20px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    body { padding: 0 0 60px; }
+    .header { padding: 28px 20px 24px; border-radius: 0; }
+    .card { border-radius: 0; }
+    .study-link { padding: 16px 20px; }
+    .quarter-header { padding: 10px 20px; }
+    .stats-bar { padding: 16px 20px; }
+    .footer { padding: 16px 20px; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Daily Bible Study</div>
+    <h1>Study Archive</h1>
+    <div class="header-subtitle">Every study, in one place</div>
+  </div>
+
+  <!-- CELTIC DIVIDER -->
+  <div class="celtic-divider">
+    <span class="celtic-divider-symbol">✦ ☩ ✦</span>
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat">
+        <div class="stat-num" id="stat-quarter">—</div>
+        <div class="stat-label">Current Quarter</div>
+      </div>
+    </div>
+    <div id="studies-container">
+      <div class="empty-state">
+        <div class="empty-icon">📖</div>
+        <h3>No studies yet</h3>
+        <p>Upload your first daily HTML file to see it appear here automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>☩ Daily Bible Study · Shared with Love</p>
+  </div>
+
+</div>
+<script>
+const GITHUB_USER = 'blessed-dooley';
+const GITHUB_REPO = 'bible-study';
+const EXCLUDED = ['index.html', 'substack-mockup.html', 'substack-real.html', '_config.yml', 'README.md', 'staging'];
+
+function parseDate(fn) {
+  const m = fn.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
+}
+function formatMonth(d) { return d.toLocaleString('en-US',{month:'short'}).toUpperCase(); }
+function formatDay(d) { return d.getDate(); }
+function getTitleFromFilename(fn) {
+  return fn.replace(/\.html$/,'').replace(/^\d{4}-\d{2}-\d{2}-?/,'').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) || fn;
+}
+function getGroupLabel(d) {
+  if (!d) return 'Archive';
+  return `Q${Math.floor(d.getMonth()/3)+1} ${d.getFullYear()}`;
+}
+function showLoading() {
+  document.getElementById('studies-container').innerHTML = `<div class="empty-state"><div class="empty-icon">⏳</div><h3>Loading…</h3><p>Fetching your archive.</p></div>`;
+}
+function showEmpty() {
+  document.getElementById('studies-container').innerHTML = `<div class="empty-state"><div class="empty-icon">📖</div><h3>No studies yet</h3><p>Upload your first daily HTML file — it will appear here automatically.</p></div>`;
+}
+async function fetchStudyMeta(file) {
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${file}`);
+    if (!res.ok) return null;
+    const text = await res.text();
+    const t = text.match(/<meta\s+name="study-title"\s+content="([^"]+)"/i);
+    const s = text.match(/<meta\s+name="study-series"\s+content="([^"]+)"/i);
+    return { title: t?.[1]||null, series: s?.[1]||null };
+  } catch(e) { return null; }
+}
+function render(files, metas) {
+  const container = document.getElementById('studies-container');
+  const statsBar = document.getElementById('stats-bar');
+  const studies = files
+    .filter(f => f.type==='file' && f.name.endsWith('.html') && !EXCLUDED.includes(f.name))
+    .map((f,i) => ({ file:f.name, date:parseDate(f.name), title:metas[i]?.title||getTitleFromFilename(f.name), series:metas[i]?.series||null }))
+    .sort((a,b) => { if (a.date&&b.date) return b.date-a.date; if (a.date) return -1; if (b.date) return 1; return a.file.localeCompare(b.file); });
+  if (!studies.length) { showEmpty(); return; }
+  statsBar.style.display = 'flex';
+  const dates = studies.map(s=>s.date).filter(Boolean);
+  const ld = dates[0];
+  document.getElementById('stat-quarter').textContent = ld ? `Q${Math.floor(ld.getMonth()/3)+1} ${ld.getFullYear()}` : '—';
+  const groups = {};
+  studies.forEach(s => { const k=getGroupLabel(s.date); if(!groups[k]) groups[k]=[]; groups[k].push(s); });
+  let html = '<ul class="studies-list">';
+  Object.entries(groups).forEach(([group,items]) => {
+    html += `<li><div class="quarter-header"><span class="quarter-label">☩ ${group}</span><span class="quarter-line"></span><span class="quarter-count">${items.length} ${items.length===1?'study':'studies'}</span></div><ul class="studies-list">`;
+    items.forEach(s => {
+      const month = s.date ? formatMonth(s.date) : '☩';
+      const day = s.date ? formatDay(s.date) : '';
+      const meta = s.series || (s.date ? s.date.toLocaleString('en-US',{month:'long',day:'numeric',year:'numeric'}) : 'Daily Verse');
+      html += `<li class="study-item"><a class="study-link" href="${s.file}"><div class="study-date-badge"><span class="badge-month">${month}</span><span class="badge-day">${day}</span></div><div class="study-info"><div class="study-title">${s.title}</div><div class="study-meta">${meta}</div></div><div class="study-arrow">›</div></a></li>`;
+    });
+    html += '</ul></li>';
+  });
+  html += '</ul>';
+  container.innerHTML = html;
+}
+async function loadStudies() {
+  showLoading();
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
+    if (!res.ok) throw new Error();
+    const files = await res.json();
+    const studyFiles = files.filter(f=>f.type==='file'&&f.name.endsWith('.html')&&!EXCLUDED.includes(f.name));
+    const metas = await Promise.all(studyFiles.map(f=>fetchStudyMeta(f.name)));
+    render(studyFiles, metas);
+  } catch(e) { showEmpty(); }
+}
+loadStudies();
+</script>
+</body>
+</html>
