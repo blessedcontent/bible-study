@@ -26,14 +26,41 @@ jobs:
             echo "Publishing ${TOMORROW}.html"
             cp "$FILE" "${TOMORROW}.html"
             rm "$FILE"
-
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add "${TOMORROW}.html"
-            git add "staging/"
-            git commit -m "Publish ${TOMORROW} daily study"
-            git push
           else
             echo "No file found for ${TOMORROW} in staging/"
             exit 0
           fi
+
+      - name: Regenerate sitemap.xml
+        run: |
+          python3 - << 'SITEMAP_EOF'
+          import os, datetime
+
+          base = 'https://blessedcontent.github.io/bible-study'
+          files = sorted([f for f in os.listdir('.') if f.endswith('.html')])
+
+          xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+          xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+          for f in files:
+              url = f'{base}/{f}'
+              lastmod = datetime.date.today().isoformat()
+              xml += f'  <url>\n    <loc>{url}</loc>\n    <lastmod>{lastmod}</lastmod>\n  </url>\n'
+
+          xml += '</urlset>\n'
+
+          with open('sitemap.xml', 'w') as fh:
+              fh.write(xml)
+
+          print(f'Sitemap updated with {len(files)} entries')
+          SITEMAP_EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "Nothing to commit" && exit 0
+          TOMORROW=$(date -u -d "+1 day" +%Y-%m-%d)
+          git commit -m "Publish ${TOMORROW} daily study"
+          git push
