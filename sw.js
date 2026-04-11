@@ -126,7 +126,7 @@ self.addEventListener('push', event => {
   const options = {
     body: body,
     icon: 'https://blessedcontent.github.io/bible-study/icons/icon-192x192.png',
-    badge: 'https://blessedcontent.github.io/bible-study/icons/icon-72x72.png',
+    badge: 'https://blessedcontent.github.io/bible-study/icons/badge-96x96.png',
     tag: 'daily-study',
     renotify: true,
     data: { url: url }
