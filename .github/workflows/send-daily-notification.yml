@@ -1,0 +1,32 @@
+name: Send Daily Study Notification
+
+on:
+  schedule:
+    # 8 AM Central = 1 PM UTC (CDT) or 2 PM UTC (CST)
+    # Using 1 PM UTC for CDT (March-November)
+    # TODO: Bump to 14:00 in November for CST
+    - cron: '0 13 * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+permissions:
+  contents: read
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install firebase-admin@12 google-auth-library@9
+
+      - name: Send push notification
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node scripts/send-notification.js

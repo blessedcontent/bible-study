@@ -566,9 +566,75 @@
     margin-bottom: 14px;
   }
 
+
+  /* Notification opt-in banner */
+  .notif-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #222;
+    border-bottom: 1px solid rgba(61,153,112,0.3);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #e8e8e8;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .notif-banner.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .notif-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .notif-btn-yes {
+    background: #3d9970;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .notif-btn-yes:hover { background: #2a6b4e; }
+  .notif-btn-no {
+    background: transparent;
+    color: #a8a8a8;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .notif-btn-no:hover { color: #e8e8e8; border-color: rgba(255,255,255,0.25); }
 </style>
 </head>
 <body>
+  <!-- Notification opt-in banner -->
+  <div id="notifBanner" class="notif-banner hidden">
+    <div class="notif-banner-text">
+      <span>Get notified when new studies are posted?</span>
+    </div>
+    <button class="notif-btn-yes" onclick="dbsNotifOptIn()">Yes, notify me</button>
+    <button class="notif-btn-no" onclick="dbsNotifDismiss()">No thanks</button>
+  </div>
+
 <div class="page">
 
   <!-- HEADER -->
@@ -791,6 +857,98 @@ if ('serviceWorker' in navigator) {
     .then(reg => console.log('SW registered:', reg.scope))
     .catch(err => console.log('SW registration failed:', err));
 }
+</script>
+
+<!-- Firebase SDK for push notifications -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+// Push notification opt-in
+(function() {
+  var firebaseConfig = {
+    apiKey: "AIzaSyCkxvPgrgtVOVFhE3iprkZsM9iQT_xf-do",
+    authDomain: "blessed-content-bible-study.firebaseapp.com",
+    projectId: "blessed-content-bible-study",
+    storageBucket: "blessed-content-bible-study.firebasestorage.app",
+    messagingSenderId: "707607010200",
+    appId: "1:707607010200:web:7f15b6b0fd3d662ab469ed",
+    measurementId: "G-BY2BM5HTX4"
+  };
+
+  var VAPID_KEY = "BNBrwPnK6OvDZ-QdVztthcprC77oHv2NY3tD1NKa2Fu4ls1yWbtQ_SC9DL1WhMkj0DC_YfFzHAgRJiidhiN96HI";
+
+  // Check if notifications are supported
+  if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) return;
+
+  // Check if user already made a choice
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+  function setCookie(name, value) {
+    document.cookie = name + '=' + value + ';path=/bible-study/;max-age=31536000;SameSite=Lax';
+  }
+
+  // If already opted in, silently ensure token is current
+  if (getCookie('dbs_notif') === 'yes' && Notification.permission === 'granted') {
+    initFirebaseAndRegister();
+    return;
+  }
+
+  // If denied at browser level or user said no, do nothing
+  if (Notification.permission === 'denied' || getCookie('dbs_notif') === 'no') return;
+
+  // Show the banner after a short delay
+  setTimeout(function() {
+    var banner = document.getElementById('notifBanner');
+    if (banner) banner.classList.remove('hidden');
+  }, 2000);
+
+  // Opt-in handler
+  window.dbsNotifOptIn = function() {
+    var banner = document.getElementById('notifBanner');
+    if (banner) banner.classList.add('hidden');
+    setCookie('dbs_notif', 'yes');
+    initFirebaseAndRegister();
+  };
+
+  // Dismiss handler
+  window.dbsNotifDismiss = function() {
+    var banner = document.getElementById('notifBanner');
+    if (banner) banner.classList.add('hidden');
+    setCookie('dbs_notif', 'no');
+  };
+
+  function initFirebaseAndRegister() {
+    try {
+      if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      var messaging = firebase.messaging();
+      var db = firebase.firestore();
+
+      navigator.serviceWorker.ready.then(function(swReg) {
+        return messaging.getToken({
+          vapidKey: VAPID_KEY,
+          serviceWorkerRegistration: swReg
+        });
+      }).then(function(token) {
+        if (token) {
+          // Save token to Firestore using a hash of the token as document ID
+          var docId = token.substring(0, 32);
+          db.collection('fcm_tokens').doc(docId).set({
+            token: token,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            userAgent: navigator.userAgent.substring(0, 100)
+          }, { merge: true });
+        }
+      }).catch(function(err) {
+        console.log('Notification setup error:', err);
+      });
+    } catch(e) {
+      console.log('Firebase init error:', e);
+    }
+  }
+})();
 </script>
 </body>
 </html>
