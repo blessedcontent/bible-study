@@ -49,7 +49,13 @@ async function main() {
       const html = fs.readFileSync(filePath, 'utf8');
       const titleMatch = html.match(/<meta\s+name="study-title"\s+content="([^"]+)"/);
       if (titleMatch) {
-        studyTitle = titleMatch[1];
+        // Decode HTML entities (e.g., &amp; -> &, &#39; -> ')
+        studyTitle = titleMatch[1]
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&#39;/g, "'")
+          .replace(/&quot;/g, '"');
       }
       break;
     }
