@@ -85,17 +85,22 @@ async function main() {
   // Build the notification message
   const studyUrl = `https://blessedcontent.github.io/bible-study/${dateStr}.html`;
 
+  // No top-level 'notification' key - this prevents FCM from trying
+  // to auto-display, and forces the service worker's push event to
+  // handle everything. More reliable on Android installed PWAs.
   const message = {
-    notification: {
-      title: "Today's Study Is Ready",
-      body: studyTitle
-    },
     webpush: {
+      headers: {
+        Urgency: 'high',
+        TTL: '86400'
+      },
       notification: {
+        title: "Today's Study Is Ready",
+        body: studyTitle,
         icon: 'https://blessedcontent.github.io/bible-study/icons/icon-192x192.png',
         badge: 'https://blessedcontent.github.io/bible-study/icons/icon-72x72.png',
         tag: 'daily-study',
-        renotify: true
+        renotify: 'true'
       },
       fcmOptions: {
         link: studyUrl
@@ -103,7 +108,9 @@ async function main() {
     },
     data: {
       url: studyUrl,
-      date: dateStr
+      date: dateStr,
+      title: "Today's Study Is Ready",
+      body: studyTitle
     }
   };
 

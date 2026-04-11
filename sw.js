@@ -111,20 +111,25 @@ self.addEventListener('push', event => {
   try {
     data = event.data ? event.data.json() : {};
   } catch (e) {
-    data = { notification: { title: 'Daily Bible Study', body: event.data ? event.data.text() : 'A new study is ready!' } };
+    data = {};
   }
 
+  // Support multiple payload formats:
+  // 1. { notification: { title, body }, data: { url } }  (FCM with notification key)
+  // 2. { title, body, url }  (flat data-only from webpush.data)
+  // 3. Plain text fallback
   const notification = data.notification || {};
-  const title = notification.title || 'Daily Bible Study';
+  const title = notification.title || data.title || 'Daily Bible Study';
+  const body = notification.body || data.body || (event.data ? event.data.text() : 'A new study is ready\!');
+  const url = (data.data && data.data.url) || data.url || '/bible-study/';
+
   const options = {
-    body: notification.body || 'A new study is ready!',
+    body: body,
     icon: '/bible-study/icons/icon-192x192.png',
     badge: '/bible-study/icons/icon-72x72.png',
     tag: 'daily-study',
     renotify: true,
-    data: {
-      url: (data.data && data.data.url) ? data.data.url : '/bible-study/'
-    }
+    data: { url: url }
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
