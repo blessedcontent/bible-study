@@ -29,11 +29,15 @@
   .header-eyebrow,
   .header h1,
   .header-subtitle { position: relative; z-index: 1; }
+  .header-subtitle span {
+    display: block;
+  }
+
 
   .header-eyebrow{font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--emerald);margin-bottom:16px;display:flex;align-items:center;gap:10px}
   .header-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--emerald);opacity:.6}
-  .header h1{font-family:'Nunito',sans-serif;font-size:clamp(28px,6vw,42px);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:10px;letter-spacing:-.02em}
-  .header-subtitle{font-family:'Nunito',sans-serif;font-size:15px;font-weight:400;color:var(--text-soft);letter-spacing:.02em;margin-bottom:24px}
+  .header h1{font-family:'Nunito',sans-serif;font-size:clamp(28px,6vw,42px);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:10px;letter-spacing:-.02em;padding-right:100px}
+  .header-subtitle{font-family:'Nunito',sans-serif;font-size:15px;font-weight:400;color:var(--text-soft);letter-spacing:.02em;margin-bottom:24px;line-height:1.6;padding-right:100px}
   .date-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--emerald-dim);color:var(--emerald);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:4px}
   .date-badge::before{content:'☩';font-size:12px;opacity:.7}
   .celtic-divider{display:flex;align-items:center;justify-content:center;gap:0;background:var(--bg-card);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0;height:28px;position:relative;overflow:hidden}
@@ -154,7 +158,11 @@
   <div class="header">
     <div class="header-eyebrow">Daily Bible Study</div>
     <h1>Everlasting Love</h1>
-    <div class="header-subtitle">Growing in a Relationship with God · Lesson 1, Reality Check · Part 4 of 7</div>
+    <div class="header-subtitle">
+      <span>Growing in a Relationship with God</span>
+      <span>Lesson 1, Reality Check</span>
+      <span>Part 4 of 7</span>
+    </div>
     <div class="date-badge">March 31, 2026</div>
   </div>
   <div class="celtic-divider"><span class="celtic-divider-symbol">✦ ☩ ✦</span></div>
