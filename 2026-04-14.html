@@ -42,11 +42,15 @@
     --emerald-dim:  #2a6b4e;
     --emerald-glow: rgba(61,153,112,0.15);
     --emerald-pale: rgba(61,153,112,0.08);
-    --text:         #e8e8e8;
-    --text-soft:    #a8a8a8;
-    --text-muted:   #666666;
+    --silver:       #c8cdd4;
+    --silver-soft:  #9ea4ad;
+    --silver-dim:   rgba(200,205,212,0.22);
+    --silver-glow:  rgba(200,205,212,0.12);
+    --text:         #ebe6dc;
+    --text-soft:    #a8a49c;
+    --text-muted:   #6a6660;
     --text-verse:   #f0ede6;
-    --white:        #ffffff;
+    --white:        #f5f1e8;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -147,7 +151,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--emerald-pale);
+    background: var(--bg);
     border: 1px solid var(--emerald-dim);
     color: var(--emerald);
     font-family: 'Nunito', sans-serif;
@@ -600,7 +604,7 @@
   }
   .notif-btn-yes {
     background: #3d9970;
-    color: #fff;
+    color: var(--white);
     border: none;
     padding: 6px 16px;
     border-radius: 6px;

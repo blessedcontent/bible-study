@@ -23,7 +23,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#1a1a1a;--bg-raise:#222;--bg-high:#2a2a2a;--bg-card:#1f1f1f;--border:rgba(255,255,255,.07);--border-mid:rgba(255,255,255,.12);--emerald:#3d9970;--emerald-dim:#2a6b4e;--emerald-glow:rgba(61,153,112,.15);--emerald-pale:rgba(61,153,112,.08);--text:#e8e8e8;--text-soft:#a8a8a8;--text-muted:#666;--text-verse:#f0ede6;--white:#fff}
+  :root{--bg:#1a1a1a;--bg-raise:#222;--bg-high:#2a2a2a;--bg-card:#1f1f1f;--border:rgba(255,255,255,.07);--border-mid:rgba(255,255,255,.12);--emerald:#3d9970;--emerald-dim:#2a6b4e;--emerald-glow:rgba(61,153,112,.15);--emerald-pale:rgba(61,153,112,.08);--silver:#c8cdd4;--silver-soft:#9ea4ad;--silver-dim:rgba(200,205,212,.22);--silver-glow:rgba(200,205,212,.12);--text:#ebe6dc;--text-soft:#a8a49c;--text-muted:#6a6660;--text-verse:#f0ede6;--white:#f5f1e8}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
   body{background:var(--bg);font-family:'Nunito',sans-serif;color:var(--text);min-height:100vh;padding:24px 16px 80px;-webkit-font-smoothing:antialiased}
   .page{max-width:660px;margin:0 auto}
@@ -34,7 +34,7 @@
   .header-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--emerald);opacity:.6}
   .header h1{font-family:'Nunito',sans-serif;font-size:clamp(28px,6vw,42px);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:10px;letter-spacing:-.02em}
   .header-subtitle{font-family:'Nunito',sans-serif;font-size:15px;font-weight:400;color:var(--text-soft);letter-spacing:.02em;margin-bottom:24px}
-  .date-badge{display:inline-flex;align-items:center;gap:8px;background:var(--emerald-pale);border:1px solid var(--emerald-dim);color:var(--emerald);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:4px}
+  .date-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--emerald-dim);color:var(--emerald);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:4px}
   .date-badge::before{content:'☩';font-size:12px;opacity:.7}
   .celtic-divider{display:flex;align-items:center;justify-content:center;gap:0;background:var(--bg-card);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0;height:28px;position:relative;overflow:hidden}
   .celtic-divider::before,.celtic-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--emerald-dim))}
@@ -116,7 +116,7 @@
   }
   .notif-btn-yes {
     background: #3d9970;
-    color: #fff;
+    color: var(--white);
     border: none;
     padding: 6px 16px;
     border-radius: 6px;
