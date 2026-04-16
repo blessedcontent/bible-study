@@ -81,6 +81,10 @@
   .header-eyebrow,
   .header h1,
   .header-subtitle { position: relative; z-index: 1; }
+  .header-subtitle span {
+    display: block;
+  }
+
 
   .header-eyebrow {
     font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700;
@@ -95,10 +99,13 @@
     font-family: 'Nunito', sans-serif; font-size: clamp(28px, 6vw, 42px);
     font-weight: 600; color: var(--white); line-height: 1.2;
     margin-bottom: 10px; letter-spacing: -0.02em;
+    padding-right: 100px;
   }
   .header-subtitle {
     font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 400;
     color: var(--text-soft); letter-spacing: 0.02em; margin-bottom: 24px;
+    line-height: 1.6;
+    padding-right: 100px;
   }
   .date-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -352,7 +359,11 @@
   <div class="header">
     <div class="header-eyebrow">Daily Bible Study</div>
     <h1>Rebuke, Repent, and Reward</h1>
-    <div class="header-subtitle">Growing in a Relationship with God · Lesson 1, Reality Check · Part 3 of 7</div>
+    <div class="header-subtitle">
+      <span>Growing in a Relationship with God</span>
+      <span>Lesson 1, Reality Check</span>
+      <span>Part 3 of 7</span>
+    </div>
     <div class="date-badge">March 30, 2026</div>
   </div>
 
