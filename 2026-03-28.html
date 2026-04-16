@@ -98,6 +98,10 @@
   .header-eyebrow,
   .header h1,
   .header-subtitle { position: relative; z-index: 1; }
+  .header-subtitle span {
+    display: block;
+  }
+
 
   .header-eyebrow {
     font-family: 'Nunito', sans-serif;
@@ -128,6 +132,7 @@
     line-height: 1.2;
     margin-bottom: 10px;
     letter-spacing: -0.02em;
+    padding-right: 100px;
   }
 
   .header-subtitle {
@@ -137,6 +142,8 @@
     color: var(--text-soft);
     letter-spacing: 0.02em;
     margin-bottom: 24px;
+    line-height: 1.6;
+    padding-right: 100px;
   }
 
   .date-badge {
@@ -645,7 +652,11 @@
   <div class="header">
     <div class="header-eyebrow">Daily Bible Study</div>
     <h1>Reality Check</h1>
-    <div class="header-subtitle">Growing in a Relationship with God · Lesson 1, Reality Check · Part 1 of 7</div>
+    <div class="header-subtitle">
+      <span>Growing in a Relationship with God</span>
+      <span>Lesson 1, Reality Check</span>
+      <span>Part 1 of 7</span>
+    </div>
     <div class="date-badge">March 28, 2026</div>
   </div>
 
