@@ -249,9 +249,11 @@
     background: linear-gradient(120deg, transparent 40%, rgba(200,205,212,0.08) 50%, transparent 60%);
     pointer-events: none;
   }
-  .featured-card:hover {
-    transform: translateY(-1px);
-    border-color: var(--emerald);
+  @media (hover: hover) {
+    .featured-card:hover {
+      transform: translateY(-1px);
+      border-color: var(--emerald);
+    }
   }
   .featured-link {
     display: flex;
@@ -341,10 +343,24 @@
     white-space: nowrap;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
-  .featured-card:hover .featured-cta {
-    background: var(--emerald);
-    color: var(--white);
-    border-color: var(--emerald);
+  @media (hover: hover) {
+    .featured-card:hover .featured-cta {
+      background: var(--emerald);
+      color: var(--white);
+      border-color: var(--emerald);
+    }
+  }
+  /* Touch devices can't hover — show the highlighted state by default */
+  @media (hover: none) {
+    .featured-card {
+      transform: translateY(-1px);
+      border-color: var(--emerald);
+    }
+    .featured-cta {
+      background: var(--emerald);
+      color: var(--white);
+      border-color: var(--emerald);
+    }
   }
   @media (max-width: 520px) {
     .featured-link { flex-wrap: wrap; gap: 14px; }
