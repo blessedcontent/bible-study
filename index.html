@@ -580,6 +580,16 @@ function showLoading() {
 function showEmpty() {
   document.getElementById('studies-container').innerHTML = `<div class="empty-state"><div class="empty-icon">📖</div><h3>No studies yet</h3><p>Upload your first daily HTML file — it will appear here automatically.</p></div>`;
 }
+function decodeEntities(s) {
+  if (s == null) return s;
+  const t = document.createElement('textarea');
+  t.innerHTML = s;
+  return t.value;
+}
+function escapeHtml(s) {
+  if (s == null) return s;
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 async function fetchStudyMeta(file) {
   try {
     const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${file}`);
@@ -587,7 +597,7 @@ async function fetchStudyMeta(file) {
     const text = await res.text();
     const t = text.match(/<meta\s+name="study-title"\s+content="([^"]+)"/i);
     const s = text.match(/<meta\s+name="study-series"\s+content="([^"]+)"/i);
-    return { title: t?.[1]||null, series: s?.[1]||null };
+    return { title: decodeEntities(t?.[1]||null), series: decodeEntities(s?.[1]||null) };
   } catch(e) { return null; }
 }
 function render(files, metas) {
@@ -620,12 +630,12 @@ function render(files, metas) {
   studies.forEach(s => { const k=getGroupLabel(s.series); if(!groups[k]) groups[k]=[]; groups[k].push(s); });
   let html = '<ul class="studies-list">';
   Object.entries(groups).forEach(([group,items]) => {
-    html += `<li><div class="quarter-header"><span class="quarter-label">☩ ${group}</span><span class="quarter-line"></span><span class="quarter-count">${items.length} ${items.length===1?'study':'studies'}</span></div><ul class="studies-list">`;
+    html += `<li><div class="quarter-header"><span class="quarter-label">☩ ${escapeHtml(group)}</span><span class="quarter-line"></span><span class="quarter-count">${items.length} ${items.length===1?'study':'studies'}</span></div><ul class="studies-list">`;
     items.forEach(s => {
       const month = s.date ? formatMonth(s.date) : '☩';
       const day = s.date ? formatDay(s.date) : '';
       const meta = s.series || (s.date ? s.date.toLocaleString('en-US',{month:'long',day:'numeric',year:'numeric'}) : 'Daily Verse');
-      html += `<li class="study-item"><a class="study-link" href="${s.file}"><div class="study-date-badge"><span class="badge-month">${month}</span><span class="badge-day">${day}</span></div><div class="study-info"><div class="study-title">${s.title}</div><div class="study-meta">${meta}</div></div><div class="study-arrow">›</div></a></li>`;
+      html += `<li class="study-item"><a class="study-link" href="${s.file}"><div class="study-date-badge"><span class="badge-month">${month}</span><span class="badge-day">${day}</span></div><div class="study-info"><div class="study-title">${escapeHtml(s.title)}</div><div class="study-meta">${escapeHtml(meta)}</div></div><div class="study-arrow">›</div></a></li>`;
     });
     html += '</ul></li>';
   });
