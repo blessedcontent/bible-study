@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bible Study</title>
+<meta name="study-title" content="Deep Bible Study">
+<meta name="study-series" content="Growing in a Relationship with God · Lesson 5, How to Study the Bible · Part 4 of 7">
+
+<!-- Open Graph — link preview -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daily Bible Study">
+<meta property="og:title" content="Deep Bible Study">
+<meta property="og:description" content="Growing in a Relationship with God · Lesson 5, How to Study the Bible · Part 4 of 7 · Daily Bible Study">
+<meta property="og:url" content="https://blessedcontent.github.io/bible-study/2026-04-28.html">
+<meta property="og:image" content="https://blessedcontent.github.io/bible-study/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Growing in a Relationship with God · Lesson 5, How to Study the Bible · Part 4 of 7 · Daily Bible Study">
+
+<!-- Favicon — emerald cross -->
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #1a1a1a;
+    --bg-raise:     #222222;
+    --bg-high:      #2a2a2a;
+    --bg-card:      #1f1f1f;
+    --border:       rgba(255,255,255,0.07);
+    --border-mid:   rgba(255,255,255,0.12);
+    --emerald:      #3d9970;
+    --emerald-dim:  #2a6b4e;
+    --emerald-glow: rgba(61,153,112,0.15);
+    --emerald-pale: rgba(61,153,112,0.08);
+    --silver:       #c8cdd4;
+    --silver-soft:  #9ea4ad;
+    --silver-dim:   rgba(200,205,212,0.22);
+    --silver-glow:  rgba(200,205,212,0.12);
+    --text:         #ebe6dc;
+    --text-soft:    #a8a49c;
+    --text-muted:   #6a6660;
+    --text-verse:   #f0ede6;
+    --white:        #f5f1e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 660px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .header {
+    margin-bottom: 0;
+    padding: 40px 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 28px;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 122px;
+    background-image: url('data:image/png;base64,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');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+    /* keep header text above hero cross */
+  .header-eyebrow,
+  .header h1,
+  .header-subtitle { position: relative; z-index: 1; }
+
+  .header-eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--emerald);
+    opacity: 0.6;
+  }
+
+  .header h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    padding-right: 100px;
+  }
+
+  .header-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    padding-right: 100px;
+    margin-bottom: 24px;
+  }
+  .header-subtitle span {
+    display: block;
+  }
+
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+  .date-badge::before {
+    content: '☩';
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  /* ── CELTIC DIVIDER ── */
+  .celtic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 0;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .celtic-divider::before,
+  .celtic-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--emerald-dim));
+  }
+  .celtic-divider::after {
+    background: linear-gradient(90deg, var(--emerald-dim), transparent);
+  }
+  .celtic-divider-symbol {
+    color: var(--emerald);
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 0 14px;
+    letter-spacing: 8px;
+    user-select: none;
+  }
+
+  /* ── CARD WRAPPER ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 28px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-emoji {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    white-space: nowrap;
+  }
+  .section-title-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-mid), transparent);
+  }
+
+  .section-heading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── TL;DR ── */
+  .tldr-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tldr-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .bullet-icon {
+    color: var(--emerald);
+    font-size: 13px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* ── TL;DR HOOK ── */
+  .tldr-hook {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-verse);
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  /* ── VERSE BLOCK ── */
+  .verse-block {
+    margin: 20px 0;
+    background: var(--bg-high);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--emerald);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    position: relative;
+  }
+  .verse-block:first-child { margin-top: 8px; }
+
+  .verse-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .verse-ref {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald);
+  }
+  .bible-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--emerald-pale);
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .bible-btn:hover {
+    background: var(--emerald-glow);
+    border-color: var(--emerald);
+  }
+
+  .verse-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .verse-translation {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .verse-commentary {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-weight: 300;
+  }
+  .verse-commentary p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    font-weight: 300;
+    margin: 0 0 14px 0;
+  }
+  .verse-commentary p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── ACCENT SECTIONS ── */
+  .section-context {
+    background: var(--bg-card);
+  }
+
+  .section-christ {
+    background: linear-gradient(135deg, rgba(245,241,232,0.05) 0%, rgba(245,241,232,0.02) 100%);
+    border-left: 4px solid var(--emerald);
+    position: relative;
+  }
+  .section-christ::after {
+    content: '✝';
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 28px;
+    color: var(--emerald);
+    opacity: 0.12;
+  }
+  .section-christ .section p {
+    color: var(--text);
+  }
+
+  .section-prayer {
+    background: var(--bg-card);
+    border-top: 2px solid var(--emerald-dim) !important;
+  }
+  .section-prayer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-verse);
+  }
+
+  .section-application {
+    background: var(--bg-card);
+  }
+
+  .action-box {
+    background: linear-gradient(135deg, rgba(245,241,232,0.05) 0%, rgba(245,241,232,0.02) 100%);
+    border: 1px solid var(--silver-dim);
+    border-radius: 8px;
+    padding: 22px 24px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--white);
+    font-weight: 400;
+    position: relative;
+    box-shadow: 0 0 24px rgba(245,241,232,0.04), inset 0 1px 0 rgba(245,241,232,0.06);
+  }
+  .action-box::before {
+    content: 'DO THIS TODAY';
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--emerald);
+    margin-bottom: 10px;
+  }
+
+  .section-discussion {
+    background: var(--bg-card);
+  }
+  .discussion-q {
+    font-family: 'Nunito', sans-serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--white);
+    padding-left: 20px;
+    border-left: 3px solid var(--emerald);
+  }
+
+  /* ── BIBLE APP STRIP ── */
+  .bible-app-strip {
+    background: var(--bg-raise);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .strip-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .strip-apps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .app-link {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--emerald-dim);
+    color: var(--emerald);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .app-link:hover {
+    border-color: var(--emerald);
+    color: var(--emerald);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 20px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-mid);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .footer-archive {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer-archive:hover { opacity: 1; }
+
+  @media (max-width: 480px) {
+    body { padding: 0 0 60px; }
+    .header { padding: 28px 20px 24px; border-radius: 0; }
+    .card { border-radius: 0; }
+    .section { padding: 24px 20px; }
+    .bible-app-strip { padding: 14px 20px; align-items: center; }
+    .footer { padding: 16px 20px; border-radius: 0; }
+  }
+
+  /* ── INLINE VERSE LINK ── */
+  .vlink {
+    color: var(--emerald);
+    text-decoration: none;
+    border-bottom: 1px solid var(--emerald-dim);
+    transition: border-color 0.2s;
+  }
+  .vlink:hover {
+    border-color: var(--emerald);
+  }
+
+  /* ── ALT TRANSLATION (dual-translation verse blocks) ── */
+  .verse-text-alt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-verse);
+    margin-bottom: 8px;
+    font-weight: 400;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    opacity: 0.85;
+  }
+  .verse-translation-alt {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+
+
+  /* Notification opt-in banner */
+  .notif-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--bg-card);
+    border-bottom: 1px solid rgba(61,153,112,0.3);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .notif-banner.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .notif-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .notif-btn-yes {
+    background: #3d9970;
+    color: var(--white);
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .notif-btn-yes:hover { background: #2a6b4e; }
+  .notif-btn-no {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .notif-btn-no:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Daily Bible Study</div>
+    <h1>Deep Bible Study</h1>
+    <div class="header-subtitle">
+      <span>Growing in a Relationship with God</span>
+      <span>Lesson 5, How to Study the Bible</span>
+      <span>Part 4 of 7</span>
+    </div>
+    <div class="date-badge">April 28, 2026</div>
+  </div>
+
+  <div class="celtic-divider">
+    <span class="celtic-divider-symbol">✦ ☩ ✦</span>
+  </div>
+
+  <div class="card">
+
+    <!-- 1. TL;DR -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📌</span>
+        <span class="section-title">TL;DR</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p class="tldr-hook">A monk in sixth-century Italy looked at his brothers skimming the Scriptures and told them to slow down, read aloud, write it out, pray it back, and then sit still until the words had done their work.</p>
+      <ul class="tldr-list">
+        <li><span class="bullet-icon">☩</span> Depth is the difference between reading the Bible and being read by it.</li>
+        <li><span class="bullet-icon">☩</span> Joshua was commanded to keep the Book on his lips day and night, and the Hebrew word for meditate means to mutter it low enough that only God hears.</li>
+        <li><span class="bullet-icon">☩</span> Writing the passage out by hand is the oldest trick for getting a verse from the page to the bloodstream.</li>
+        <li><span class="bullet-icon">☩</span> The Holy Spirit is the Teacher who came with the Book, and the quiet prayer for opened eyes is the first real step of deep study.</li>
+      </ul>
+    </div>
+
+    <!-- 2. CONNECTION TO YESTERDAY -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🔁</span>
+        <span class="section-title">Connection to Yesterday</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Yesterday you walked to a specific spot, put the Bible there, and committed to letting the chair become an altar by being sat in morning after morning. The place is set. Now the question is what happens inside it. You can sit in the same corner for a year and still skim, still tick off a chapter, still close the Book wondering why nothing stuck. Place is the vessel. Method is the substance poured inside it. Today the week teaches the pouring: pray, read, write, share. Four movements that turn a quiet corner into the place where the Word actually gets under the skin.</p>
+    </div>
+
+    <!-- 3. HISTORICAL & CULTURAL CONTEXT -->
+    <div class="section section-context">
+      <div class="section-label">
+        <span class="section-emoji">🗺️</span>
+        <span class="section-title">Historical &amp; Cultural Context</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">Four Movements at a Desk</div>
+      <p>In the sixth century, an Italian monk named Benedict gave his monasteries a rule that shaped Western Christian devotion for the next fifteen hundred years. Every day, every monk, was to set aside time for what he called <em>lectio divina</em>, divine reading. The practice had four unhurried movements. Read the passage slowly, aloud if possible. Meditate on it, turning every word over in the mind like a coin. Pray the text back to God in the monk's own voice. And then rest in the presence of the Author long enough to be affected by what the reading had uncovered. The point was never information. Benedict's monks were trying to be reshaped by Scripture over a lifetime, and they knew that skimming would never do it.</p>
+      <p>They were drawing on something even older. The Hebrew Scriptures had already told Joshua to keep the Book on his mouth, muttering the words low and constant, so that what his tongue said his hands would do. Rabbis trained students in pairs, each taking a verse and defending it back to the other. Scribes copying the Torah counted every letter and marked the middle one of the whole scroll, a discipline of care that is hard to imagine today. Across every century, the faithful have discovered the same uncomfortable truth: the Bible does not open itself to hurry. It opens to attention, to the pen, to the whispered word, and to the prayer that asks the Spirit to show what the eye alone cannot see. Deep study is not a new method. It is what faithful people have been doing since God first handed down a book.</p>
+    </div>
+
+    <!-- 4. INTO THE WORD -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">📖</span>
+        <span class="section-title">Into the Word</span>
+        <div class="section-title-line"></div>
+      </div>
+
+      <p>Joshua stood on the east bank of the Jordan with Moses freshly buried, Jericho watching from the far side of the water, and a generation of Israelites waiting to see whether the silence after Moses meant God had stopped speaking. God's first words to the new leader were not military. They were literary. Keep the Book on your mouth. Do not let it depart. The man who would lead Israel into the land was handed a scroll before he was handed a sword, and told to mutter it day and night until the words came out of him without thinking. The <a class="vlink" href="https://www.bible.com/bible/1713/PSA.119.105" target="_blank">Word that lights the next step</a> is not theoretical. It walks a leader into the next foot of ground.</p>
+
+      <!-- ANCHOR: Joshua 1:8 -->
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Joshua 1:8</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/JOS.1.8" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"This book of instruction must not depart from your mouth; you are to meditate on it day and night so that you may carefully observe everything written in it. For then you will prosper and succeed in whatever you do."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Joshua had just taken over from Moses. The older leader was dead, the river was high, the city of Jericho was watching from across the water, and an entire generation of Israelites was looking at Joshua to see whether the silence after Moses meant God had stopped speaking. God's first words to him are not military. They are literary. Keep the Book on your mouth. Do not let it depart.<br><br>The Hebrew word for "meditate" here is <em>hagah</em>, and it is not a quiet mental exercise. <em>Hagah</em> is the word used for a lion growling over a kill, for a dove cooing, for a person muttering under the breath. It is noise you make with your own mouth, not thought you hold in the head. God is telling Joshua to keep the words of the Torah on his lips all day, murmuring them while he walks, whispering them while he waits, rehearsing them under his breath while the armies muster. The body is a better memorizer than the mind, and the mouth is the shortcut that gets the page into the bones.<br><br>Notice the logic: "meditate on it day and night so that you may carefully observe everything written in it." <em>Hagah</em> is not the destination. Obedience is the destination. The muttering is how the obedience becomes possible, because the tongue rehearses the word until the hand is ready to act on it. This is why writing, saying, and hearing the Bible change what mere silent reading cannot. A passage read three times is a visitor. A passage muttered under the breath for a week is a roommate. One will leave with the day. The other will still be there when the pressure of noon arrives and a choice has to be made. Deep Bible study is not a technique for retaining information. It is the lifelong slow conversion of the mouth into the language of the book, so that by the time the moment comes to obey, the right words are already there.</div>
+      </div>
+
+      <!-- SUPPORTING: Psalm 119:18 -->
+      <div class="verse-block">
+        <div class="verse-header">
+          <div class="verse-ref">Psalm 119:18</div>
+          <a class="bible-btn" href="https://www.bible.com/bible/1713/PSA.119.18" target="_blank">☩ Open in Bible App</a>
+        </div>
+        <div class="verse-text">"Open my eyes so that I may contemplate wondrous things from your instruction."</div>
+        <div class="verse-translation">Christian Standard Bible · CSB</div>
+        <div class="verse-commentary">Deep study does not begin with the Bible. It begins with the prayer in front of the Bible. The psalmist assumes he could stare at the open page for a year and miss everything unless God first did something to his vision. The Hebrew verb for "open" is <em>galah</em>, to uncover, to reveal what was already there but veiled.<br><br>That word lands on a specific quiet truth: the wonder is not waiting to be added to the text. It is already in the text and waiting for a reader whose eyes can catch it. Scripture is not a field you crop; it is a seam you discover. So the first move of every deep reading is to stop and ask. "Lord, open my eyes." It is a two-second prayer, but it changes the entire temperature of the page. The Spirit who authored the book is the only Teacher who can show a reader what the book actually says. Nobody opens their own eyes; they ask.</div>
+      </div>
+    </div>
+
+    <!-- 5. STREET LEVEL -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🎯</span>
+        <span class="section-title">Street Level</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">The Budget You Had to Write by Hand</div>
+      <p>Any adult who has sat across from a financial counselor knows the exercise. The counselor slides a notebook across the table and asks you to write down, by hand, every dollar you spend for thirty days. No app, no screenshot, no bank statement at the end of the week. Ink on paper, in the moment. Most people laugh at how low-tech it sounds. Most people stop laughing by the end of week two. The numbers that come out of that notebook are not the numbers you would have quoted. You were not lying when you said, "I mostly just spend on groceries and gas." But knowing, as your hand discovers, is a different word than seeing.</p>
+      <p>The Hebrew <em>hagah</em> means to mutter and murmur a text under the breath, to chew it aloud, to slow it down until the mouth has to catch up with the eye. Modern readers assume reading happens in the head. It mostly does not. The page slides past too fast, and the skim leaves a reassuring sense that something happened. The pen, or the pencil, or the whispered voice, is the hinge. It is what turns a passage you glanced at into a passage that got through. Writing a verse by hand is the same kind of honest as handwriting a month of spending. You thought you knew what was there. The pen tells you what is actually there.</p>
+    </div>
+
+    <!-- 6. TODAY'S WORLD, ANCIENT TRUTH -->
+    <div class="section">
+      <div class="section-label">
+        <span class="section-emoji">🌍</span>
+        <span class="section-title">Today's World, Ancient Truth</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="section-heading">Lean Back, Lean In</div>
+      <p>The streaming era has a name for what most of us now do with music. Industry researchers at Bridge Ratings and a line of 2025 analysis call it "lean-back listening." It is mindless, frictionless, and by design non-disruptive. Algorithms reward songs with short runtimes and immediate hooks because the revenue depends on not interrupting the scroll. We do not play the music anymore; we let the music play us. The piano in the living room has been quiet for a generation. The voice raised in harmony on a porch has followed it out the door.</p>
+      <p>Neuroscience has quietly been tracking the cost. A 2025 study in <em>Frontiers in Neuroscience</em> on music and resilience found that active music making (playing an instrument, singing, dancing) was significantly correlated with psychological resilience, while passive listening after a stressful event showed no statistically meaningful correlation at all. A 2025 meta-analysis of music interventions for older adults reported that active programs (piano, drumming, structured singing) produced measurable gains in global cognition, while passive programs did not. Active engagement accounted for more than three-quarters of the trials where the brain actually changed. The difference is not aesthetic. It is neurological, and it is measurable.</p>
+      <p>Joshua 1:8 has a verb for this, and it is not silence. <em>Hagah</em> is the sound the worshiper makes, a mutter or a growl, a phrase said under the breath until the body has it. Hebrew does not treat the mouth as a loudspeaker for the mind; it treats the mouth as a shortcut that moves a page into the bones. James called it a mirror you stoop into, <em>parakupto</em>. The streaming platform has trained a whole generation to consume music without ever making any, and the same default now runs a silent, rapid scan over the Bible each morning and calls it a devotion. The cure is old. Open the mouth. Pick up the pen. Play the instrument.</p>
+    </div>
+
+    <!-- 7. CHRIST CONNECTION -->
+    <div class="section section-christ">
+      <div class="section-label">
+        <span class="section-emoji">✝️</span>
+        <span class="section-title">The Christ Connection</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Jesus studied. Luke 2:46 finds Him at twelve years old in the temple, "sitting among the teachers, listening to them and asking them questions," with the scholars of Jerusalem astonished at His understanding. He did not arrive at His public ministry improvising Scripture; He arrived having <em>hagah</em>-ed the Hebrew Bible for three decades until the words lived in His mouth without effort. When the tempter offered Him a shortcut in the wilderness, Deuteronomy came out three times without hesitation, because Deuteronomy had been rehearsed in solitude long before it was ever needed in public. And when two men walked the road to Emmaus with grief so thick it made them blind to the risen Christ standing beside them, He did not open their eyes with a miracle. He opened their eyes with a Bible study, "beginning with Moses and all the Prophets, he interpreted for them the things concerning himself in all the Scriptures." The Master of deep reading spent a seven-mile walk doing the exact practice the week is asking us to pick up. He is not asking from us what He did not live.</p>
+    </div>
+
+    <!-- 8. APPLICATION -->
+    <div class="section section-application">
+      <div class="section-label">
+        <span class="section-emoji">✅</span>
+        <span class="section-title">Personal Application Challenge</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="action-box">
+        Tonight or tomorrow morning, take one verse from the chapter you picked on Sabbath and write it out longhand in a notebook, a margin, or the back of an envelope. Not typed. Handwritten. Then read it aloud three times, slowly. Then write one sentence describing what you noticed. That is the whole practice: pray, read, write, notice. Before the day ends, send the verse and your one sentence to one person who will take it seriously.
+      </div>
+    </div>
+
+    <!-- 9. PRAYER -->
+    <div class="section section-prayer">
+      <div class="section-label">
+        <span class="section-emoji">🙏</span>
+        <span class="section-title">Closing Prayer</span>
+        <div class="section-title-line"></div>
+      </div>
+      <p>Father, we confess that we have often read Your Word the way we read the news, eyes skimming for the familiar, minds already halfway to the next thing. Forgive us for treating a living book like a feed. Teach us <em>hagah</em> again. Put the murmured verse back on our lips while we drive and cook and wait in line. Open our eyes, the way the psalmist prayed, to the wonders that have been in the text all along and that we have walked past for years. Put a pen in our hands. Put a friend across our table. And when the mirror of Your Word shows us something we would rather not see about ourselves, give us the courage to stoop closer instead of turning away. Make us doers, not forgetful hearers. Deepen our reading until the words of Your Book begin to come out of us before we have a chance to plan them. In Jesus' name, Amen.</p>
+    </div>
+
+    <!-- 10. DISCUSSION -->
+    <div class="section section-discussion">
+      <div class="section-label">
+        <span class="section-emoji">💬</span>
+        <span class="section-title">Discussion Question</span>
+        <div class="section-title-line"></div>
+      </div>
+      <div class="discussion-q">"Which of the four deep-study moves (praying for opened eyes, reading slowly out loud, writing the passage by hand, or sharing it with someone) do you currently skip the most (phone instead of prayer, screen instead of voice, no pen, no conversation), and what one paragraph of Scripture will you actually walk through all four moves with before the week ends?"</div>
+    </div>
+
+  </div>
+
+    <!-- BIBLE APP STRIP -->
+  <div class="bible-app-strip">
+    <div class="strip-label">☩ Read today's passages in full</div>
+    <div class="strip-apps">
+      <a class="app-link" href="https://www.bible.com/bible/1713/JOS.1.8" target="_blank">YouVersion</a>
+      <a class="app-link" href="https://www.biblegateway.com/passage/?search=Joshua+1:8&version=CSB" target="_blank">Bible Gateway</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>☩ Daily Bible Study · Shared with Love</p>
+    <a class="footer-archive" href="index.html">← Archive</a>
+  </div>
+
+</div>
+<script data-goatcounter="https://blessedcontent.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
