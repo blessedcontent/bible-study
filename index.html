@@ -511,6 +511,63 @@
     .stats-bar { padding: 16px 20px; }
     .footer { padding: 16px 20px; border-radius: 0; }
   }
+
+  /* Notification opt-in banner */
+  .notif-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--bg-card);
+    border-bottom: 1px solid rgba(61,153,112,0.3);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .notif-banner.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .notif-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .notif-btn-yes {
+    background: #3d9970;
+    color: var(--white);
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .notif-btn-yes:hover { background: #2a6b4e; }
+  .notif-btn-no {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .notif-btn-no:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
