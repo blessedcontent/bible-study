@@ -2,10 +2,11 @@ name: Send Daily Study Notification
 
 on:
   schedule:
-    # 8 AM Central = 1 PM UTC (CDT) or 2 PM UTC (CST)
-    # Using 1 PM UTC for CDT (March-November)
-    # TODO: Bump to 14:00 in November for CST
-    - cron: '0 13 * * *'
+    # 6:53 AM Central = 11:53 UTC (CDT) or 12:53 UTC (CST)
+    # Odd minute (53) dodges top-of-hour GitHub Actions runner congestion.
+    # Cron is set ~75 min earlier than target delivery to compensate for runner-allocation lag.
+    # TODO: Bump to '53 12 * * *' in November for CST
+    - cron: '53 11 * * *'
   workflow_dispatch: # Allow manual trigger for testing
 
 permissions:
