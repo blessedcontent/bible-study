@@ -343,6 +343,20 @@
   }
   .notif-btn-no:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 </style>
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bible Study">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/bible-study/sw.js')
+      .catch(function(err) { console.log('SW registration failed:', err); });
+  });
+}
+</script>
 </head>
 <body>
   <!-- Notification opt-in banner -->

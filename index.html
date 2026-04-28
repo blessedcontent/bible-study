@@ -512,6 +512,19 @@
     .footer { padding: 16px 20px; border-radius: 0; }
   }
 </style>
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bible Study">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/bible-study/sw.js')
+      .catch(function(err) { console.log('SW registration failed:', err); });
+  });
+}
+</script>
 </head>
 <body>
 <div class="page">
