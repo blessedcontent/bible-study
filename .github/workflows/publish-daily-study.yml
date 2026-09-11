@@ -4,8 +4,10 @@ on:
   push:
     branches: [main]
   schedule:
-    # 8 PM UTC = 3 PM CDT (Central Daylight) / In Nov bump to '0 21' for 3 PM CST year-round
-    - cron: '0 20 * * *'
+    # Frequent checks recover from delayed starts. The promotion step computes
+    # Central time and becomes a no-op once the target date exists.
+    - cron: '7,37 * * * *'
+      timezone: 'America/Chicago'
   workflow_dispatch:
 
 permissions:
@@ -29,30 +31,49 @@ jobs:
 
       - name: Validate reader JavaScript
         run: |
-          node --check assets/notifications.js
-          node --check assets/reader-controls.js
-          node --check assets/verse-popover.js
-          node --check assets/archive-search.js
-          node --check assets/full-text-search.js
+          node --check assets/notifications-ea704e45.js
+          node --check assets/reader-controls-c8d1b1b6.js
+          node --check assets/verse-popover-a4ca0f9c.js
+          node --check assets/archive-search-6fcac06e.js
+          node --check assets/full-text-search-8eef895a.js
+          node --check assets/privacy-controls-248e6144.js
+          node --check sw.js
+          node --check firebase-messaging-sw.js
+          node --check scripts/send-notification.js
+          node --test scripts/decode-html-entities.test.js
+          node tools/test_full_text_search_v5_1_0.js
+          node tools/test_notification_banner_v5_1_0.js
+          node tools/test_privacy_notification_states_v5_1_0.js
 
-      - name: Publish tomorrow's study from staging
+      - name: Validate v5.1.0 release package
+        run: python3 tools/validate_release_v5_1_0.py
+
+      - name: Promote the due study from staging
+        id: promotion
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          # Compute tomorrow in Central Time. GitHub-hosted runners can start hours late and cross UTC midnight.
-          TOMORROW=$(TZ=America/Chicago date -d "+1 day" +%Y-%m-%d)
-          FILE="staging/${TOMORROW}.html"
-
-          if [ -f "$FILE" ]; then
-            echo "Publishing ${TOMORROW}.html"
-            cp "$FILE" "${TOMORROW}.html"
-            rm "$FILE"
+          CENTRAL_HOUR=$(TZ=America/Chicago date +%H)
+          if [ "$CENTRAL_HOUR" -ge 15 ]; then
+            TARGET=$(TZ=America/Chicago date -d "+1 day" +%Y-%m-%d)
           else
-            echo "No file found for ${TOMORROW} in staging/"
-            exit 0
+            TARGET=$(TZ=America/Chicago date +%Y-%m-%d)
+          fi
+          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
+          if [ -f "${TARGET}.html" ]; then
+            echo "promoted=false" >> "$GITHUB_OUTPUT"
+            echo "${TARGET}.html already published"
+          elif [ -f "staging/${TARGET}.html" ]; then
+            cp "staging/${TARGET}.html" "${TARGET}.html"
+            rm "staging/${TARGET}.html"
+            echo "promoted=true" >> "$GITHUB_OUTPUT"
+            echo "Publishing ${TARGET}.html"
+          else
+            echo "::error::Due study staging/${TARGET}.html is missing"
+            exit 1
           fi
 
       - name: Refresh navigation and search data
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: steps.promotion.outputs.promoted == 'true'
         run: |
           python3 tools/refresh-site-data.py --root .
           python3 tools/generate_studies_json.py --root . --out studies.json
@@ -61,32 +82,43 @@ jobs:
           python3 tools/generate_search_index.py --root . --out search-index.json --check
 
       - name: Regenerate sitemap.xml
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: steps.promotion.outputs.promoted == 'true'
         run: |
           python3 tools/generate_sitemap.py --root . --out sitemap.xml
           python3 tools/generate_sitemap.py --root . --out sitemap.xml --check
 
       - name: Commit and push
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: steps.promotion.outputs.promoted == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet && echo "Nothing to commit" && exit 0
-          TOMORROW=$(TZ=America/Chicago date -d "+1 day" +%Y-%m-%d)
-          git commit -m "Publish ${TOMORROW} daily study"
+          git commit -m "Publish ${{ steps.promotion.outputs.target }} daily study"
           git push
 
+      - name: Check staging runway
+        if: github.event_name != 'push'
+        run: |
+          COUNT=$(find staging -maxdepth 1 -type f -name '20??-??-??.html' | wc -l)
+          echo "Staging runway: ${COUNT} day(s)"
+          if [ "$COUNT" -lt 3 ]; then
+            echo "::warning::Staging runway is below three completed days (${COUNT})."
+          fi
+
       - name: Configure Pages
+        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
           name: github-pages-${{ github.run_attempt }}
 
       - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
         with:

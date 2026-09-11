@@ -2,7 +2,7 @@
 // Cache strategy: Cache-first for studies, network-first for navigation
 // Push notifications via Firebase Cloud Messaging
 
-const CACHE_VERSION = 'dbs-v13-reader-controls';
+const CACHE_VERSION = 'dbs-v5-1-0';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const STUDY_CACHE = `${CACHE_VERSION}-studies`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
@@ -16,19 +16,19 @@ const STATIC_ASSETS = [
   '/bible-study/scripture-sources.html',
   '/bible-study/privacy.html',
   '/bible-study/corrections.html',
-  '/bible-study/assets/study-v5_0.css',
-  '/bible-study/assets/reader-controls.js',
-  '/bible-study/assets/archive-search.js',
-  '/bible-study/assets/full-text-search.js',
-  '/bible-study/assets/verse-popover.js?v=74b31b80',
-  '/bible-study/assets/privacy-controls.js',
-  '/bible-study/assets/notifications.js',
+  '/bible-study/assets/study-v5_1_0.css',
+  '/bible-study/assets/reader-controls-c8d1b1b6.js',
+  '/bible-study/assets/archive-search-6fcac06e.js',
+  '/bible-study/assets/full-text-search-8eef895a.js',
+  '/bible-study/assets/verse-popover-a4ca0f9c.js',
+  '/bible-study/assets/privacy-controls-248e6144.js',
+  '/bible-study/assets/notifications-ea704e45.js',
   '/bible-study/assets/cross-v8-dark-97a6d5a5.svg',
   '/bible-study/assets/cross-v8-light-65779cc7.svg',
-  '/bible-study/assets/cross-light-soft.svg',
-  // Retained so rolling back a page to the Phase 1 release stays offline-safe.
-  '/bible-study/assets/favicon-729135cb.png',
-  '/bible-study/assets/apple-touch-icon-729135cb.png',
+  '/bible-study/assets/cross-v8-light-soft-7eca7c13.svg',
+  '/bible-study/assets/favicon-7591f3a3.png',
+  '/bible-study/assets/apple-touch-icon-8ef286cd.png',
+  '/bible-study/assets/og-card-2ff253a6.png',
   '/bible-study/icons/icon-192x192.png',
   '/bible-study/icons/icon-512x512.png'
 ];

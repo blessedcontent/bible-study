@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy &amp; reader controls — Daily Bible Study</title>
+<title>Privacy &amp; reader controls | Daily Bible Study</title>
 <meta name="description" content="Exactly what this site collects, what it stores on your device, and how to change it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,19 +21,14 @@
   } catch (error) {}
   document.documentElement.setAttribute('data-theme', theme);
   document.documentElement.setAttribute('data-red', red);
-})();</script><link rel="icon" type="image/png" href="./assets/favicon-729135cb.png">
+})();</script><link rel="icon" type="image/png" href="./assets/favicon-7591f3a3.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="./assets/apple-touch-icon-729135cb.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon-8ef286cd.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap">
-<link rel="stylesheet" href="./assets/study-v5_0.css">
+<link rel="stylesheet" href="./assets/study-v5_1_0.css">
 <script>
-/* Service-worker registration. v5.0 shipped this on index.html and every
-   study page but NOT on the four trust pages, so a reader landing on About
-   got no offline caching and no install prompt. Present on all eight now.
-   In this review sandbox the script 404s and the .catch logs a benign
-   message; no worker is installed, because the /bible-study/ scope does not
-   match the preview path. */
+/* Register the stable worker path for offline support and installability. */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/bible-study/sw.js')
@@ -61,7 +56,7 @@ if ('serviceWorker' in navigator) {
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <button type="button" class="menu-row" data-toggle="notify" role="switch" aria-checked="false">
-      <span>Morning notification</span>
+      <span>Daily reminder</span>
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <div class="menu-row" role="group" aria-label="Theme">
@@ -94,7 +89,7 @@ if ('serviceWorker' in navigator) {
 <main class="prose-body" id="main">
   <section class="section" id="short" aria-labelledby="short-label">
     <h2 class="section-label" id="short-label">The short version</h2>
-    <p>There is no account, no login, no email list, and no way for anyone here to know what you have read. Three things are worth knowing in more detail: a cookieless page counter, an optional daily notification, and two preferences kept on your device.</p>
+    <p>There is no account, no login, no email list, and no way for anyone here to know what you have read. Three things are worth knowing in more detail: a cookieless page counter, an optional daily notification, and local display and reminder preferences kept in your browser.</p>
     <ul>
       <li>
 <strong>Nothing you read is tied to you.</strong> No account exists, so no reading history exists.</li>
@@ -119,14 +114,14 @@ if ('serviceWorker' in navigator) {
 <td>GoatCounter. No cookies, no cross-site tracking, no advertising identifiers, no profile</td>
 </tr>
         <tr>
-<th scope="row">Notification token</th>
-<td>Only if you opt in — the address your device is reachable at</td>
-<td>Firebase Cloud Messaging; the token is stored in Firestore alongside a truncated browser description</td>
+<th scope="row">Notification registration</th>
+<td>Only if you opt in. It is the address your device uses to receive notifications.</td>
+<td>Firebase Cloud Messaging; the token is stored in Firestore with timestamps, a truncated browser description, your selected reminder time, and your browser’s time zone</td>
 </tr>
         <tr>
 <th scope="row">Notification choice</th>
 <td>So you are not asked twice</td>
-<td>A cookie on this site, holding only “yes” or “no”</td>
+<td>Three small cookies on this site: the yes-or-no choice, whether registration succeeded, and whether setup encountered an error</td>
 </tr>
         <tr>
 <th scope="row">Theme &amp; red letter</th>
@@ -147,12 +142,12 @@ if ('serviceWorker' in navigator) {
     </table>
     <div class="notice notice--info">
       <span class="notice-mark" aria-hidden="true">i</span>
-      <span><strong>Notification records do not have a fixed expiration date.</strong> Turning notifications off here attempts to remove the device token from Firestore and Firebase. The morning sender also removes registrations that Firebase reports as invalid. GoatCounter and Google Fonts handle requests under their own privacy policies.</span>
+      <span><strong>Notification records do not have a fixed expiration date.</strong> Turning notifications off here attempts to remove the device token from Firestore and Firebase. The notification sender also removes registrations that Firebase reports as invalid. GoatCounter and Google Fonts handle requests under their own privacy policies.</span>
     </div>
   </section>
   <section class="section" id="controls" aria-labelledby="controls-label">
     <h2 class="section-label" id="controls-label">Reader controls</h2>
-    <p>Everything you can change, in one place. Each of these is also in the menu at the top of any page.</p>
+    <p>Theme, red letter, and the daily reminder are also in the menu at the top of any page. The reminder time is under Notifications, just below.</p>
 
     <div class="control-row">
       <div class="control-copy">
@@ -182,8 +177,8 @@ if ('serviceWorker' in navigator) {
 
     <div class="control-row">
       <div class="control-copy">
-        <div class="control-name">Morning notification</div>
-        <p class="control-help">A morning reminder for that day’s study, if you choose to receive it.</p>
+        <div class="control-name">Daily reminder</div>
+        <p class="control-help">A daily reminder near the time you choose, if you turn it on.</p>
       </div>
       <div class="control-action">
         <a class="btn btn-quiet" href="#notifications">Manage</a>
@@ -192,41 +187,106 @@ if ('serviceWorker' in navigator) {
 
     <div class="control-row">
       <div class="control-copy">
-        <div class="control-name">Clear what this site stored</div>
-        <p class="control-help">Removes your theme, red-letter and notification choices from this device. Your browser’s notification permission is separate — see below.</p>
+        <div class="control-name">Clear local preferences</div>
+        <p class="control-help">Removes theme, red-letter, and notification-choice preferences from this browser. It does not stop an active notification registration. To do that, use “Turn notifications off” below.</p>
       </div>
       <div class="control-action">
-        <button type="button" class="btn btn-quiet" data-clear-local>Clear</button>
+        <button type="button" class="btn btn-quiet" data-clear-local>Clear local preferences</button>
       </div>
     </div>
   </section>
   <section class="section" id="notifications" aria-labelledby="notifications-label">
     <h2 class="section-label" id="notifications-label">Notifications</h2>
-    <p>Notifications are off unless you turn them on.</p>
-
-    <div class="notif-card">
-      <p class="notif-card-kicker">Optional</p>
-      <h3>Get a morning reminder for today’s study</h3>
-      <p>The automated sender runs once each morning and includes the study title and a link to read it.</p>
-      <ul class="notif-facts">
-        <li>Off unless you turn it on.</li>
+    <div class="notif-card" data-notification-state="off">
+      <p class="notif-state notif-state--neutral" id="notification-status" role="status" aria-live="polite">
+        <span class="notif-state-mark" aria-hidden="true">•</span>
+        <span data-notif-status-text>Reminders are off for this browser.</span>
+      </p>
+      <p class="notif-card-kicker" data-notif-kicker>Optional</p>
+      <h3 data-notif-heading>Get a daily reminder for today’s study</h3>
+      <p data-notif-body>The automated sender checks throughout the day and sends near your selected time. The reminder includes the study title and a link to read it.</p>
+      <ul class="notif-facts" data-notif-facts>
         <li>Turning it on asks your browser for permission, and you can refuse.</li>
         <li>You can turn it off again here, or in your browser, at any time.</li>
-</ul>
-      <div class="notif-actions">
-        <button type="button" class="btn btn-primary" data-notif="enable">Turn on notifications</button>
-        <button type="button" class="btn btn-quiet" data-notif="dismiss">Not now</button>
+      </ul>
+
+    <div class="control-row notif-time-row is-muted" data-notif-time-row>
+      <div class="control-copy">
+        <label class="control-name" for="notif-time">Reminder time</label>
+        <p class="control-help" id="notif-time-help" data-notif-time-help>You can choose a time once reminders are on. The default is 7:30 a.m.</p>
+        <p class="form-note" data-notif-time-status role="status" aria-live="polite" hidden></p>
       </div>
-      <p class="form-note">Permission belongs to your browser, not to this site — so if you ever block notifications there, this page cannot ask again.</p>
+      <div class="control-action">
+        <select id="notif-time" class="input-compact" data-notif-time aria-describedby="notif-time-help" disabled>
+          <option value="00:00">12:00 a.m.</option>
+          <option value="00:30">12:30 a.m.</option>
+          <option value="01:00">1:00 a.m.</option>
+          <option value="01:30">1:30 a.m.</option>
+          <option value="02:00">2:00 a.m.</option>
+          <option value="02:30">2:30 a.m.</option>
+          <option value="03:00">3:00 a.m.</option>
+          <option value="03:30">3:30 a.m.</option>
+          <option value="04:00">4:00 a.m.</option>
+          <option value="04:30">4:30 a.m.</option>
+          <option value="05:00">5:00 a.m.</option>
+          <option value="05:30">5:30 a.m.</option>
+          <option value="06:00">6:00 a.m.</option>
+          <option value="06:30">6:30 a.m.</option>
+          <option value="07:00">7:00 a.m.</option>
+          <option value="07:30" selected>7:30 a.m.</option>
+          <option value="08:00">8:00 a.m.</option>
+          <option value="08:30">8:30 a.m.</option>
+          <option value="09:00">9:00 a.m.</option>
+          <option value="09:30">9:30 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="10:30">10:30 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="11:30">11:30 a.m.</option>
+          <option value="12:00">12:00 p.m.</option>
+          <option value="12:30">12:30 p.m.</option>
+          <option value="13:00">1:00 p.m.</option>
+          <option value="13:30">1:30 p.m.</option>
+          <option value="14:00">2:00 p.m.</option>
+          <option value="14:30">2:30 p.m.</option>
+          <option value="15:00">3:00 p.m.</option>
+          <option value="15:30">3:30 p.m.</option>
+          <option value="16:00">4:00 p.m.</option>
+          <option value="16:30">4:30 p.m.</option>
+          <option value="17:00">5:00 p.m.</option>
+          <option value="17:30">5:30 p.m.</option>
+          <option value="18:00">6:00 p.m.</option>
+          <option value="18:30">6:30 p.m.</option>
+          <option value="19:00">7:00 p.m.</option>
+          <option value="19:30">7:30 p.m.</option>
+          <option value="20:00">8:00 p.m.</option>
+          <option value="20:30">8:30 p.m.</option>
+          <option value="21:00">9:00 p.m.</option>
+          <option value="21:30">9:30 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+          <option value="22:30">10:30 p.m.</option>
+          <option value="23:00">11:00 p.m.</option>
+          <option value="23:30">11:30 p.m.</option>
+        </select>
+        <button type="button" class="btn btn-quiet" data-save-notif-time hidden>Save time</button>
+      </div>
     </div>
 
-    <div class="notif-actions" style="margin-top:var(--sp-6)">
-      <button type="button" class="btn btn-quiet" data-notif="disable">Turn notifications off</button>
+      <ol class="notif-steps" data-notif-steps hidden>
+        <li>Open the site permissions beside the address bar.</li>
+        <li>Allow Notifications.</li>
+        <li>Reload this page.</li>
+      </ol>
+      <div class="notif-actions" data-notif-actions>
+        <button type="button" class="btn btn-primary" data-notif="enable">Turn on notifications</button>
+        <button type="button" class="btn btn-quiet" data-notif="dismiss">Not now</button>
+        <button type="button" class="btn btn-quiet" data-notif="disable" hidden>Turn notifications off</button>
+      </div>
+      <p class="form-note" data-notif-note>Permission belongs to your browser, not to this site.</p>
     </div>
   </section>
   <section class="section" id="corrections-link" aria-labelledby="corrections-link-label">
     <h2 class="section-label" id="corrections-link-label">Mistakes</h2>
-    <p>If something here is wrong—a misquoted verse, a wrong date, or a factual claim that does not hold up—it should be fixed rather than defended. Online reports are not yet available; the <a href="corrections.html">Corrections page</a> explains the policy.</p>
+    <p>If something here is wrong, such as a misquoted verse, a wrong date, or a factual claim that does not hold up, it should be fixed rather than defended. Online reports are not yet available. The <a href="corrections.html">Corrections page</a> explains the policy.</p>
   </section>
 
 </main>
@@ -244,7 +304,7 @@ if ('serviceWorker' in navigator) {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="./assets/notifications.js" defer></script>
-<script src="./assets/reader-controls.js" defer></script><script src="./assets/privacy-controls.js" defer></script>
+<script src="./assets/notifications-ea704e45.js" defer></script>
+<script src="./assets/reader-controls-c8d1b1b6.js" defer></script><script src="./assets/privacy-controls-248e6144.js" defer></script>
 </body>
 </html>

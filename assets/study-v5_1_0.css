@@ -1,0 +1,2374 @@
+/* ============================================================================
+   Daily Bible Study — Universal Stylesheet  study-v5_1_0.css
+   Coordinated v5.1.0 review candidate, 2026-09-09.
+
+   Composes Claude Design's approved Package A tokens, Package A study/archive
+   components, and Package B trust components into the site's one versioned
+   reader-facing stylesheet. Released stylesheet files are immutable and
+   retained for rollback.
+   ==========================================================================*/
+
+/* ============================================================================
+   Daily Bible Study — Design Tokens  v5.1.0
+   Package A · authoritative source of every value in the universal stylesheet.
+   Consumed by: study-v5_1_0.css
+   Themes: Dark (default) · Paper · Light — set via data-theme on <html>.
+   ==========================================================================*/
+
+:root {
+  /* ---- Typography families -------------------------------------------- */
+  --font-ui:     'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-serif:  'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+
+  /* ---- Type scale (px; no fluid clamps — deliberate, see handoff) ------ */
+  --fs-eyebrow:   11px;  /* uppercase section labels, meta, footer          */
+  --fs-label:     12px;  /* verse-box captions, chips                       */
+  --fs-meta:      14px;  /* card meta, stat captions, small prose           */
+  --fs-ui:        15px;  /* menu rows, buttons                             */
+  --fs-aside:     16px;  /* verse commentary (one step below body)          */
+  --fs-body:      17px;  /* body prose — the page's baseline                */
+  --fs-h3:        22px;  /* in-section headings                             */
+  --fs-quote:     22px;  /* discussion question (serif)                     */
+  --fs-verse:     23px;  /* scripture + prayer (serif)                      */
+  --fs-verse-pop: 21px;  /* scripture inside the inline popover (serif)     */
+  --fs-display:   30px;  /* stat figures (serif)                            */
+  --fs-h1:        34px;  /* page title                                     */
+  --fs-h1-lg:     40px;  /* page title, >=880px                            */
+
+  /* ---- Weights — exactly three for Nunito ----------------------------- */
+  --fw-body:   400;
+  --fw-strong: 700;   /* headings, menu rows, buttons                      */
+  --fw-label:  800;   /* uppercase eyebrows and captions                   */
+  --fw-woj:    500;   /* Words of Jesus (serif, red-letter on)             */
+
+  /* ---- Line heights ---------------------------------------------------- */
+  --lh-h1:     1.14;
+  --lh-h3:     1.25;
+  --lh-tight:  1.3;
+  --lh-ui:     1.5;
+  --lh-verse:  1.6;   /* serif scripture and prayer                        */
+  --lh-body:   1.7;   /* body prose                                        */
+  --lh-aside:  1.75;  /* verse commentary                                  */
+
+  /* ---- Letter spacing -------------------------------------------------- */
+  --ls-eyebrow:  1.6px;  /* every uppercase label — one value              */
+  --ls-wordmark: 2.4px;  /* wordmark only                                  */
+  --ls-h1:      -0.025em;
+  --ls-h3:      -0.015em;
+
+  /* ---- Spacing scale --------------------------------------------------- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 28px;
+  --sp-8: 32px;
+  --sp-9: 40px;
+  --sp-10: 56px;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --col-read:     660px;  /* reading measure, all pages, all breakpoints   */
+  --gutter:        20px;  /* phone side padding                            */
+  --gutter-lg:     32px;
+  --rail:         232px;  /* desktop section-jump rail (>=1080px)          */
+  --rail-gap:      40px;
+  --appbar-h:      52px;
+  --jumpbar-h:     48px;
+  --scroll-offset:104px;  /* appbar + jumpbar; scroll-margin-top on sections */
+  --tap-min:       44px;  /* minimum touch target, every interactive el    */
+
+  /* ---- Radii ----------------------------------------------------------- */
+  --r-sm:    8px;
+  --r-md:   10px;
+  --r-lg:   12px;
+  --r-pill: 999px;
+
+  /* ---- Borders --------------------------------------------------------- */
+  --bw-hair:  1px;
+  --bw-mark:  3px;   /* section-label tick, quote rule                     */
+  --bw-focus: 2px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --dur-fast: 120ms;
+  --dur:      220ms;
+  --ease:     cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  /* =========================== THEME: DARK ============================= */
+  --bg:           #1a1a1a;
+  --card:         #1f1f1f;
+  --raise:        #252525;
+  --panel:        #242424;
+  --line:         rgba(255,255,255,0.07);
+  --line2:        rgba(255,255,255,0.12);
+  --ink:          #ebe6dc;
+  --ink-strong:   #f5f1e8;
+  --ink-soft:     #c4bfb5;
+  --ink-mute:     #9a938a;
+  --accent:       #3d9970;  /* structural marks, rules, bar fills — the
+                               original live-site green (4.7:1, non-text only) */
+  --accent-bright:#5fc79b;  /* text, links, focus — the higher-contrast one (7.9:1) */
+  --accent-soft:  rgba(61,153,112,0.15);
+  --bar:          rgba(26,26,26,0.94);
+  --woj:          #ff8674;
+  --shadow-pop:   0 12px 28px -10px rgba(0,0,0,0.65);
+  --cross-src:    url('cross-v8-dark-97a6d5a5.svg');
+}
+
+/* =========================== THEME: PAPER ============================== */
+[data-theme="paper"] {
+  --bg:           #e9e0cc;
+  --card:         #f4efe3;
+  --raise:        #faf6ec;
+  --panel:        #faf6ec;
+  --line:         #ddd4bf;
+  --line2:        #c8bda3;
+  --ink:          #26221a;
+  --ink-strong:   #14110b;
+  --ink-soft:     #4e483b;
+  --ink-mute:     #635c4d;
+  --accent:       #00794e;
+  --accent-bright:#005c39;
+  --accent-soft:  #e0eee4;
+  --bar:          rgba(244,239,227,0.95);
+  --woj:          #b81f0c;
+  --shadow-pop:   0 12px 28px -12px rgba(60,45,20,0.30);
+  --cross-src:    url('cross-v8-light-65779cc7.svg');
+}
+
+/* =========================== THEME: LIGHT ============================== */
+[data-theme="light"] {
+  --bg:           #efece5;
+  --card:         #f9f8f5;
+  --raise:        #fffdf8;
+  --panel:        #fffdf8;
+  --line:         #e2ded4;
+  --line2:        #cdc8bb;
+  --ink:          #26231d;
+  --ink-strong:   #14120e;
+  --ink-soft:     #4f4a40;
+  --ink-mute:     #6d6759;
+  --accent:       #14805c;
+  --accent-bright:#0b5c42;
+  --accent-soft:  #e8f1eb;
+  --bar:          rgba(249,248,245,0.95);
+  --woj:          #a8291f;
+  --shadow-pop:   0 12px 28px -12px rgba(40,35,25,0.28);
+  --cross-src:    url('cross-v8-light-65779cc7.svg');
+}
+
+/* Red-letter OFF — Words of Jesus fall back to body ink at body weight.
+   Quotation marks remain, so the distinction is never colour-only.       */
+[data-red="off"] {
+  --woj:      var(--ink-strong);
+  --fw-woj:   var(--fw-body);
+}
+
+/* ============================================================================
+   Daily Bible Study — Universal Stylesheet  study-v5_1_0.css
+   Supersedes study-v5_0.css; both released files remain immutable.
+
+   Serves every reader-facing page: daily, Sabbath, Friday (current /
+   historical / staged), and archive/home.  Class-based, no framework.
+   ==========================================================================*/
+
+/* ---------------------------------------------------------------- reset --- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;               /* phone overflow protection            */
+}
+img, svg { max-width: 100%; }
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+button { font: inherit; color: inherit; }
+
+a { color: var(--accent-bright); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* ---- focus: visible on every interactive element, never removed -------- */
+:focus-visible {
+  outline: var(--bw-focus) solid var(--accent-bright);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* ---- skip link ---------------------------------------------------------- */
+.skip-link {
+  position: absolute; left: var(--sp-4); top: -100px; z-index: 100;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--raise); color: var(--ink-strong);
+  border: var(--bw-hair) solid var(--accent);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-ui); font-weight: var(--fw-strong);
+  text-decoration: none;
+  transition: top var(--dur-fast) var(--ease);
+}
+.skip-link:focus { top: var(--sp-4); }
+
+/* ---- shared measure ---------------------------------------------------- */
+.wrap {
+  max-width: var(--col-read);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* =============================================================== app bar == */
+.appbar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+.progress-track { height: 2px; background: var(--line); }
+.progress-fill  { height: 2px; width: 0; background: var(--accent); }
+
+.appbar-row {
+  max-width: var(--col-read); margin-inline: auto;
+  height: var(--appbar-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-3) 0 var(--gutter);
+}
+.wordmark {
+  display: inline-flex; align-items: center; gap: 9px;
+  height: var(--tap-min); margin-left: calc(var(--sp-2) * -1); padding: 0 var(--sp-2);
+  border-radius: var(--r-sm); text-decoration: none;
+}
+.wordmark:hover { background: var(--accent-soft); }
+.wordmark-mark { color: var(--accent-bright); font-size: var(--fs-meta); }
+.wordmark-text {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-strong);
+  letter-spacing: var(--ls-wordmark); text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.icon-btn {
+  width: var(--tap-min); height: var(--tap-min);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-1);
+  background: none; border: none; border-radius: var(--r-sm); cursor: pointer;
+}
+.icon-btn:hover { background: var(--accent-soft); }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn-line {
+  display: block; width: 18px; height: 2px;
+  background: var(--ink-soft); border-radius: 2px;
+}
+
+/* ---- reader-controls menu ---------------------------------------------- */
+.menu {
+  position: absolute; top: var(--appbar-h); left: 0; right: 0;
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-2) var(--sp-3) var(--sp-4);
+  max-height: calc(100vh - var(--appbar-h)); overflow-y: auto; overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: var(--panel);
+  border-top: var(--bw-hair) solid var(--line);
+  border-bottom: var(--bw-hair) solid var(--line2);
+  box-shadow: var(--shadow-pop);
+}
+.menu[hidden] { display: none; }
+.menu-row {
+  width: 100%; min-height: var(--tap-min);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-2);
+  background: none; border: none; border-radius: var(--r-sm);
+  font-size: var(--fs-ui); font-weight: var(--fw-strong);
+  color: var(--ink-strong); text-align: left; text-decoration: none;
+  cursor: pointer;
+}
+.menu-row:hover { background: var(--accent-soft); }
+.menu-sep { height: 1px; margin: var(--sp-2) var(--sp-3); background: var(--line); }
+
+/* P7 — Share is an action, not a destination, so it carries a glyph. */
+.menu-row-icon {
+  flex-shrink: 0; width: 22px; height: 22px; margin-right: -2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--accent-bright);
+}
+.menu-row-label { display: inline-flex; align-items: center; gap: var(--sp-3); }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.switch {
+  flex-shrink: 0; width: 46px; height: 26px; padding: 0 3px;
+  display: flex; align-items: center; justify-content: flex-start;
+  background: var(--line2); border-radius: var(--r-pill);
+  transition: justify-content var(--dur) var(--ease);
+}
+.switch-knob {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--ink-mute);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+[aria-checked="true"] .switch { justify-content: flex-end; }
+[aria-checked="true"] .switch-knob { background: var(--accent); }
+[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+
+.seg { display: flex; gap: 2px; padding: 3px; background: var(--panel); border-radius: var(--r-pill); }
+.seg-btn {
+  padding: var(--sp-1) var(--sp-3); min-height: 32px;
+  background: none; border: none; border-radius: var(--r-pill);
+  font-size: var(--fs-label); font-weight: var(--fw-strong);
+  color: var(--ink-mute); cursor: pointer;
+}
+.seg-btn:hover { color: var(--ink-soft); }
+.seg-btn[aria-pressed="true"] { background: var(--card); color: var(--ink-strong); }
+
+/* ---- staged-artifact banner (review builds only; removed at promotion) --- */
+.staged-banner {
+  max-width: var(--col-read); margin-inline: auto;
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--gutter);
+  background: var(--accent-soft);
+  border-bottom: var(--bw-hair) solid var(--accent);
+  font-size: var(--fs-meta); font-weight: var(--fw-strong);
+  color: var(--accent-bright);
+}
+.staged-banner-tag {
+  flex-shrink: 0; padding: 2px var(--sp-2);
+  background: var(--accent); color: var(--card);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+}
+.staged-banner code { font-size: 0.9em; }
+
+/* ---- Week in Review list (Friday) -------------------------------------- */
+.week-list { list-style: none; margin: var(--sp-4) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.week-list li { position: relative; padding-left: var(--sp-5); text-wrap: pretty; }
+.week-list li::before {
+  content: '\2629'; position: absolute; left: 0; top: 0;
+  color: var(--accent); font-size: 0.9em;
+}
+.week-day { font-weight: var(--fw-strong); color: var(--ink-strong); }
+
+/* ========================================================= study header == */
+.study-header {
+  position: relative;
+  background: var(--card);
+  border-bottom: var(--bw-hair) solid var(--line);
+  overflow: hidden;
+}
+.study-header-inner {
+  position: relative;
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-7) var(--gutter) var(--sp-6);
+}
+.study-cross {
+  position: absolute; top: 50%; right: var(--sp-4);
+  transform: translateY(-50%);
+  width: 85px; height: 130px;
+  background: var(--cross-src) center / contain no-repeat;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.study-meta-row {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding-right: 96px;                 /* clears the cross                  */
+}
+.eyebrow {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-strong);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.meta-rule { flex: 1; height: 1px; background: var(--line); }
+
+.study-title {
+  position: relative; z-index: 1;
+  margin-bottom: var(--sp-3);
+  padding-right: 96px;
+  font-size: var(--fs-h1); font-weight: var(--fw-strong);
+  line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
+  color: var(--ink-strong);
+  text-wrap: balance;                  /* long headings break sensibly      */
+}
+.study-sub {
+  position: relative; z-index: 1;
+  padding-right: 96px;
+  font-size: var(--fs-ui); line-height: var(--lh-ui); color: var(--ink-soft);
+}
+
+/* ====================================================== section-jump bar == */
+.jumpbar {
+  position: sticky; top: var(--appbar-h); z-index: 30;
+  background: var(--bar); backdrop-filter: blur(10px);
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+.jumpbar-row {
+  max-width: var(--col-read); margin-inline: auto;
+  height: var(--jumpbar-h);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  padding: 0 var(--gutter);
+}
+.jumpbar-current {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.jumpbar-toggle {
+  flex-shrink: 0; height: var(--tap-min); padding: 0 var(--sp-3);
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: none; border: none; border-radius: var(--r-sm); cursor: pointer;
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.jumpbar-toggle:hover { background: var(--accent-soft); }
+.jumplist {
+  max-width: var(--col-read); margin-inline: auto;
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  padding: 2px var(--gutter) var(--sp-4);
+}
+.jumplist[hidden] { display: none; }
+.chip {
+  flex-shrink: 0; min-height: 36px; padding: var(--sp-2) var(--sp-3);
+  background: none;
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-pill);
+  font-size: var(--fs-label); font-weight: var(--fw-strong);
+  color: var(--ink-soft); white-space: nowrap; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.chip:hover { border-color: var(--accent); color: var(--ink-strong); }
+.chip:active { transform: scale(0.97); }
+.chip[aria-current="true"] {
+  background: var(--accent-soft); border-color: var(--accent);
+  color: var(--accent-bright); font-weight: var(--fw-label);
+}
+
+/* ============================================================== sections == */
+.study-body {
+  max-width: var(--col-read); margin-inline: auto;
+  background: var(--card);
+  border-inline: var(--bw-hair) solid var(--line);
+}
+
+.section {
+  padding: var(--sp-7) var(--gutter);
+  border-bottom: var(--bw-hair) solid var(--line);
+  scroll-margin-top: var(--scroll-offset);
+}
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  display: flex; align-items: center; gap: 9px;
+  margin-bottom: var(--sp-4);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.section-label::before {
+  content: ''; flex-shrink: 0;
+  width: var(--bw-mark); height: 13px;
+  background: var(--accent); border-radius: 2px;
+}
+.section h3 {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-h3); font-weight: var(--fw-strong);
+  line-height: var(--lh-h3); letter-spacing: var(--ls-h3);
+  color: var(--ink-strong);
+  text-wrap: balance;
+}
+.section p { text-wrap: pretty; }
+.section p + p { margin-top: var(--sp-4); }
+
+/* ---- In brief pull line ---------------------------------------------------- */
+.tldr-line {
+  margin-top: var(--sp-4);
+  padding: var(--sp-4);
+  background: var(--accent-soft);
+  border-left: var(--bw-mark) solid var(--accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-weight: var(--fw-strong); line-height: var(--lh-verse);
+  color: var(--ink-strong);
+}
+
+/* ---- Christ Connection ------------------------------------------------- */
+.section-christ {
+  position: relative;
+  background: var(--panel);
+  border-top: var(--bw-hair) solid var(--accent);
+}
+.section-christ::after {
+  content: '\271D';                    /* ☩ — decorative, aria-hidden       */
+  position: absolute; bottom: var(--sp-4); right: var(--sp-6);
+  font-size: 34px; line-height: 1;
+  color: var(--accent); opacity: 0.2;
+  pointer-events: none;
+}
+
+/* ---- Personal Application Challenge ------------------------------------ */
+.application-card {
+  padding: var(--sp-5);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-lg);
+}
+.application-kicker {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-wordmark); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+
+/* ---- Discussion Question ----------------------------------------------- */
+.discussion-question {
+  font-family: var(--font-serif); font-size: var(--fs-quote);
+  font-weight: var(--fw-body); line-height: 1.55;
+  color: var(--ink-strong);
+}
+
+/* ---- Closing Prayer ---------------------------------------------------- */
+.prayer {
+  font-family: var(--font-serif); font-size: var(--fs-verse);
+  font-weight: var(--fw-body); line-height: var(--lh-verse);
+  color: var(--ink-strong);
+}
+
+/* ---- Today's World stat pair ------------------------------------------- */
+.stat-grid { display: flex; flex-wrap: wrap; gap: 1px; margin-bottom: var(--sp-3); background: var(--line); }
+.stat { flex: 1 1 150px; padding: var(--sp-5); background: var(--raise); }
+.stat-figure {
+  margin-bottom: var(--sp-2);
+  font-family: var(--font-serif); font-size: var(--fs-display);
+  font-weight: var(--fw-strong); line-height: 1;
+  color: var(--accent-bright);
+}
+.stat-caption { font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-soft); }
+.source-line { font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-mute); }
+
+/* ========================================================== verse blocks == */
+.verse-block {
+  margin-bottom: var(--sp-5);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line); border-radius: var(--r-md);
+  overflow: hidden;
+}
+.verse-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  padding: 0 var(--sp-2) 0 var(--sp-4);
+  background: var(--accent-soft);
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+.verse-ref {
+  font-size: var(--fs-label); font-weight: var(--fw-label);
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.verse-open {
+  flex-shrink: 0; height: var(--tap-min); padding: 0 var(--sp-3);
+  display: inline-flex; align-items: center;
+  font-size: var(--fs-label); font-weight: var(--fw-strong);
+  white-space: nowrap; text-decoration: none;
+  border-radius: var(--r-sm);
+}
+.verse-open:hover { background: var(--accent-soft); text-decoration: underline; }
+.verse-text {
+  padding: var(--sp-5);
+  font-family: var(--font-serif); font-size: var(--fs-verse);
+  font-weight: var(--fw-body); line-height: 1.62;
+  color: var(--ink-strong);
+}
+.verse-number {
+  margin-right: 0.3em;
+  font-family: var(--font-ui); font-size: 0.5em; font-weight: var(--fw-label);
+  line-height: 0; vertical-align: super;
+  color: var(--accent-bright);
+}
+.verse-commentary {
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--card);
+  border-top: var(--bw-hair) solid var(--line);
+  font-size: var(--fs-aside); line-height: var(--lh-aside);
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* ---- Words of Jesus.  Colour is supplementary: the quotation marks in the
+   copy carry the meaning, so red-off and print remain unambiguous.        */
+.words-of-jesus { color: var(--woj); font-weight: var(--fw-woj); }
+
+/* ---- inline verse reference (opens the popover) ------------------------- */
+.vlink {
+  padding: 0; background: none; border: none;
+  font: inherit; color: var(--accent-bright);
+  border-bottom: 1px dotted currentColor;
+  cursor: pointer;
+}
+.vlink:hover { border-bottom-style: solid; }
+.vlink[aria-expanded="true"] { background: var(--accent-soft); border-radius: 3px; }
+
+/* ---- anchored inline popover ------------------------------------------- */
+.verse-pop {
+  position: absolute; z-index: 50;
+  width: min(420px, calc(100vw - var(--sp-8)));
+  padding: var(--sp-4);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--accent); border-radius: var(--r-md);
+  box-shadow: var(--shadow-pop);
+  animation: pop-in var(--dur-fast) var(--ease);
+}
+@keyframes pop-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.verse-pop-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+.verse-pop-text {
+  font-family: var(--font-serif); font-size: var(--fs-verse-pop);
+  line-height: 1.55; color: var(--ink-strong);
+}
+.verse-pop-close {
+  width: 36px; height: 36px; margin: -8px -8px -8px 0;
+  background: none; border: none; border-radius: var(--r-sm);
+  color: var(--ink-mute); font-size: var(--fs-body); cursor: pointer;
+}
+.verse-pop-close:hover { background: var(--accent-soft); color: var(--ink-strong); }
+.verse-pop-fallback {
+  display: inline-flex; align-items: center; height: 36px; margin-top: var(--sp-1);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-strong);
+  letter-spacing: 0.6px;
+}
+
+/* ============================================================= day nav === */
+.day-nav {
+  max-width: var(--col-read); margin-inline: auto;
+  display: flex; gap: var(--sp-3);
+  padding: var(--sp-5) var(--gutter);
+  background: var(--bg);
+  border-top: var(--bw-hair) solid var(--line);
+}
+.day-nav-item {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: var(--sp-3) var(--sp-4);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-md);
+  text-decoration: none;
+}
+.day-nav-item:hover { border-color: var(--accent); background: var(--accent-soft); }
+.day-nav-item.is-pending {
+  border-style: dashed; border-color: var(--line2);
+  text-align: right; cursor: default; pointer-events: none;
+}
+.day-nav-kicker {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.day-nav-title {
+  font-size: var(--fs-meta); font-weight: var(--fw-strong);
+  line-height: var(--lh-tight); color: var(--ink);
+}
+.is-pending .day-nav-title, .is-pending .day-nav-kicker { color: var(--ink-mute); }
+
+/* =============================================================== footer === */
+.site-footer {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-5) var(--gutter) var(--sp-9);
+  background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  text-align: center;
+}
+/* "All studies" is the primary way back and sits above the mark, below the
+   day navigation.  Soft-filled rather than solid: it must not outshout the
+   prayer it follows. */
+.footer-home {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--tap-min); margin-bottom: var(--sp-1); padding: 0 var(--sp-5);
+  background: var(--accent-soft);
+  border: var(--bw-hair) solid var(--accent); border-radius: var(--r-pill);
+  font-size: var(--fs-meta); font-weight: var(--fw-strong);
+  color: var(--accent-bright); text-decoration: none;
+  white-space: nowrap; flex-shrink: 0;
+}
+.footer-home:hover { background: var(--accent); color: var(--card); }
+.footer-mark {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-strong);
+  letter-spacing: var(--ls-wordmark); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+/* Secondary run.  Links take the same accent green as every other link on the
+   site; only the size steps down. */
+.footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-meta); line-height: var(--lh-ui);
+  color: var(--ink-mute);
+}
+.footer-links a { color: var(--accent-bright); text-decoration: underline; text-underline-offset: 3px; }
+/* P6a — no character cap: the 44ch limit is what forced "(public domain)"
+   onto a second line. */
+.footer-line { font-size: 13px; line-height: var(--lh-ui); color: var(--ink-mute); }
+
+/* ============================================================== archive === */
+.archive-header {
+  background: var(--card);
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+.archive-header-inner {
+  position: relative;
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-8) var(--gutter) var(--sp-6);
+}
+.archive-title {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-h1); font-weight: var(--fw-strong);
+  line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
+  color: var(--ink-strong);
+}
+.archive-lede { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-soft); text-wrap: pretty; }
+
+/* P1 — the home page leads with the site's identity, not with a directory
+   label. "All studies" becomes a heading over the list instead. */
+.home-eyebrow {
+  display: block; margin-bottom: var(--sp-3);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-wordmark); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.home-tagline {
+  margin-top: var(--sp-3);
+  font-family: var(--font-serif); font-size: var(--fs-h3);
+  line-height: var(--lh-verse); color: var(--ink-soft);
+}
+.list-heading {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-7) var(--gutter) 0;
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3);
+}
+.list-heading h2 {
+  font-size: var(--fs-h3); font-weight: var(--fw-strong);
+  letter-spacing: var(--ls-h3); color: var(--ink-strong);
+}
+.list-heading .eyebrow { white-space: nowrap; }
+
+/* ---- search ------------------------------------------------------------ */
+.search {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-5) var(--gutter) 0;
+}
+.search-field { position: relative; display: flex; align-items: center; }
+.search-input {
+  width: 100%; min-height: var(--tap-min);
+  padding: var(--sp-3) 44px var(--sp-3) var(--sp-4);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-md);
+  font-family: var(--font-ui); font-size: var(--fs-ui); color: var(--ink);
+}
+.search-input::placeholder { color: var(--ink-mute); }
+.search-input:hover { border-color: var(--accent); }
+.search-input:focus-visible { border-color: var(--accent); }
+.search-clear {
+  position: absolute; right: var(--sp-1);
+  width: var(--tap-min); height: var(--tap-min);
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; border-radius: var(--r-sm);
+  color: var(--ink-mute); font-size: var(--fs-h3); cursor: pointer;
+}
+.search-clear:hover { background: var(--accent-soft); color: var(--ink-strong); }
+.search-clear[hidden] { display: none; }
+.search-status {
+  padding: var(--sp-3) 0 0;
+  font-size: var(--fs-meta); color: var(--ink-mute);
+}
+/* Scope disclosure, deliberately adjacent to the control rather than in a
+   help page: a reader who searches body text and gets nothing needs to know
+   why at the moment it happens. */
+.search-scope {
+  padding: var(--sp-3) 0 0;
+  font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-soft);
+}
+.search-scope strong { color: var(--ink-strong); font-weight: var(--fw-strong); }
+
+/* ---- featured study ---------------------------------------------------- */
+.featured {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-5) var(--gutter) 0;
+}
+.featured[hidden] { display: none; }
+.featured-link {
+  display: flex; align-items: center; gap: var(--sp-4);
+  padding: var(--sp-5);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--accent); border-radius: var(--r-lg);
+  text-decoration: none;
+}
+.featured-link:hover { background: var(--accent-soft); }
+
+/* ---- grouped list ------------------------------------------------------ */
+.studies-list { list-style: none; margin: 0; padding: 0; }
+
+/* P0 — the archive list obeys the same spine as every other band, and sits on
+   the same --card surface the study body uses, so a wide screen shows one
+   centred sheet rather than rows running to the viewport edge. */
+#studies-container {
+  max-width: var(--col-read); margin-inline: auto;
+  background: var(--card);
+  border-inline: var(--bw-hair) solid var(--line);
+}
+#studies-container:empty { border: none; }
+.group-head {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-6) var(--gutter) var(--sp-3);
+}
+.group-label {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.group-line { flex: 1; height: 1px; background: var(--line); }
+.group-count { font-size: var(--fs-eyebrow); font-weight: var(--fw-strong); color: var(--ink-mute); }
+
+.study-card {
+  display: flex; align-items: center; gap: var(--sp-4);
+  min-height: 72px;
+  padding: var(--sp-4) var(--gutter);
+  border-top: var(--bw-hair) solid var(--line);
+  background: var(--card);
+  text-decoration: none;
+}
+.study-card:hover { background: var(--accent-soft); }
+.study-card:active { background: var(--panel); }
+.date-badge {
+  flex-shrink: 0; width: 52px; padding: var(--sp-2) 0;
+  text-align: center;
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-sm);
+}
+.badge-month {
+  display: block;
+  font-size: 9px; font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.badge-day { display: block; font-size: 20px; font-weight: var(--fw-label); line-height: 1.1; color: var(--ink-soft); }
+.study-card:hover .date-badge { border-color: var(--accent); }
+.card-title {
+  display: block;
+  font-size: var(--fs-body); font-weight: var(--fw-strong);
+  line-height: var(--lh-tight); color: var(--ink-strong);
+}
+.card-meta {
+  display: block; margin-top: var(--sp-1);
+  font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-mute);
+}
+.group-label { display: block; }
+.card-arrow { flex-shrink: 0; color: var(--ink-mute); font-size: var(--fs-h3); }
+.study-card:hover .card-arrow { color: var(--accent-bright); }
+mark.hit { background: var(--accent-soft); color: var(--ink-strong); font-weight: var(--fw-strong); }
+
+/* P5 — body-text match snippet. Only rendered when a study matched on its
+   prose rather than its title, so it always answers "why is this here?" */
+.card-snippet {
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--fs-meta); line-height: var(--lh-ui);
+  color: var(--ink-soft);
+  padding-left: var(--sp-3);
+  border-left: var(--bw-hair) solid var(--line2);
+  text-wrap: pretty;
+}
+.study-card:hover .card-snippet { border-left-color: var(--accent); }
+
+/* ---- archive states ---------------------------------------------------- */
+.state {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-9) var(--gutter);
+  text-align: center;
+}
+.state-mark {
+  margin-bottom: var(--sp-4);
+  font-size: 34px; line-height: 1;
+  color: var(--accent); opacity: 0.35;
+}
+.state-title {
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-h3); font-weight: var(--fw-strong);
+  color: var(--ink-strong);
+}
+.state-text { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-soft); }
+.state-action {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--tap-min); margin-top: var(--sp-5); padding: 0 var(--sp-5);
+  background: var(--accent-soft);
+  border: var(--bw-hair) solid var(--accent); border-radius: var(--r-md);
+  font-size: var(--fs-ui); font-weight: var(--fw-strong);
+  color: var(--accent-bright); text-decoration: none; cursor: pointer;
+  white-space: nowrap;
+}
+.state-action:hover { background: var(--accent); color: var(--card); }
+.state-action[aria-busy="true"] { opacity: 0.6; pointer-events: none; }
+
+.skeleton-card {
+  display: flex; align-items: center; gap: var(--sp-4);
+  padding: var(--sp-4) var(--gutter);
+  border-top: var(--bw-hair) solid var(--line);
+}
+.sk { background: var(--line); border-radius: var(--r-sm); animation: sk-pulse 1.4s var(--ease) infinite; }
+.sk-badge { flex-shrink: 0; width: 52px; height: 46px; }
+.sk-line { height: 14px; }
+.sk-line.w70 { width: 70%; }
+.sk-line.w45 { width: 45%; margin-top: var(--sp-2); }
+@keyframes sk-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+/* ---------------------------------------------------- desktop >= 1080px --- */
+@media (min-width: 1080px) {
+  :root { --fs-h1: var(--fs-h1-lg); }
+
+  /* P3 — the section bar stays a sticky top bar at every width. The desktop
+     left rail is removed: it was the only navigation on the site that moved
+     by viewport, and its grid pushed the footer off-centre. */
+  .study-header-inner, .archive-header-inner, .prose-header-inner { padding-inline: var(--gutter-lg); }
+  .section { padding-inline: var(--sp-8); }
+  .study-cross { width: 104px; height: 158px; right: var(--sp-6); }
+  .study-meta-row, .study-title, .study-sub { padding-right: 126px; }
+  .verse-pop { width: 420px; }
+}
+
+/* ------------------------------------------------------- reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .sk { animation: none; opacity: 0.7; }
+  .verse-pop { animation: none; }
+  .icon-btn:active, .chip:active { transform: none; }
+}
+
+/* ==================================================================== print */
+@media print {
+  :root {
+    --bg: #ffffff; --card: #ffffff; --raise: #ffffff; --panel: #ffffff;
+    --line: #cccccc; --line2: #999999;
+    --ink: #000000; --ink-strong: #000000; --ink-soft: #222222; --ink-mute: #444444;
+    --accent: #000000; --accent-bright: #000000; --accent-soft: #ffffff;
+    --shadow-pop: none;
+  }
+  @page { margin: 18mm 16mm; }
+
+  /* reader chrome and interactive-only affordances are removed */
+  .appbar, .jumpbar, .menu, .verse-pop, .day-nav, .skip-link,
+  .search, .featured, .card-arrow, .state-action, .section-christ::after,
+  .progress-track { display: none !important; }
+
+  body { font-size: 11pt; line-height: 1.5; }
+  .study-body, .wrap { max-width: none; }
+  .section {
+    padding: 0 0 10pt; border-bottom: none;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .section-label { color: #000; }
+  .study-title { font-size: 20pt; }
+  .verse-block, .application-card { border: 0.5pt solid #999; break-inside: avoid; }
+  .verse-text { font-size: 12pt; }
+  .study-cross { display: none; }
+
+  /* Words of Jesus: red does not print reliably, so carry the distinction
+     with weight + italic; the quotation marks in the copy remain.          */
+  .words-of-jesus { color: #000 !important; font-weight: 600; font-style: italic; }
+
+  /* inline references become printed citations */
+  .vlink { border-bottom: none; color: #000; }
+  .vlink::after { content: ' (' attr(data-ref) ')'; font-size: 0.85em; color: #333; }
+}
+
+/* ============================================================================
+   Trust-surface component additions, incorporated into study-v5_1_0.css.
+
+   New components:
+     .prose-page / .prose-header      long-form trust pages
+     .qa                              question-and-answer rows
+     .disclosure                      collapsible detail (source disclosure)
+     .notif-card                      notification priming card
+     .notice                          state messages (ok / warn / info)
+     .control-row                     reader controls
+     .datatable                       plain-language disclosure tables
+     .form-*                          correction form
+   ==========================================================================*/
+
+/* ------------------------------------------------------------ prose pages -- */
+.prose-header { background: var(--card); border-bottom: var(--bw-hair) solid var(--line); }
+.prose-header-inner {
+  max-width: var(--col-read); margin-inline: auto;
+  padding: var(--sp-8) var(--gutter) var(--sp-6);
+}
+.prose-title {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-h1); font-weight: var(--fw-strong);
+  line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
+  color: var(--ink-strong); text-wrap: balance;
+}
+.prose-lede { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-soft); text-wrap: pretty; }
+.prose-body {
+  max-width: var(--col-read); margin-inline: auto;
+  background: var(--card); border-inline: var(--bw-hair) solid var(--line);
+}
+.prose-body .section p + ul,
+.prose-body .section ul + p { margin-top: var(--sp-4); }
+.prose-body .section ul { list-style: none; margin: var(--sp-4) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.prose-body .section ul li { position: relative; padding-left: var(--sp-5); text-wrap: pretty; }
+.prose-body .section ul li::before {
+  content: '\2629'; position: absolute; left: 0; top: 0;
+  color: var(--accent); font-size: 0.9em;
+}
+
+/* --------------------------------------------------------------------- q&a -- */
+.qa { display: flex; flex-direction: column; gap: var(--sp-6); }
+.qa-item h3 { margin-bottom: var(--sp-2); }
+.qa-item p { text-wrap: pretty; }
+
+/* -------------------------------------------------------------- disclosure -- */
+.disclosure {
+  margin-top: var(--sp-4);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line); border-radius: var(--r-md);
+}
+.disclosure + .disclosure { margin-top: var(--sp-3); }
+.disclosure-summary {
+  display: flex; align-items: center; gap: var(--sp-3);
+  min-height: var(--tap-min);
+  padding: var(--sp-3) var(--sp-4);
+  cursor: pointer;
+  font-size: var(--fs-meta); font-weight: var(--fw-strong);
+  color: var(--accent-bright);
+  list-style: none;
+  border-radius: var(--r-md);
+}
+.disclosure-summary::-webkit-details-marker { display: none; }
+.disclosure-summary::after {
+  content: '\203A'; margin-left: auto;
+  font-size: var(--fs-h3); line-height: 1; color: var(--ink-mute);
+  transform: rotate(90deg);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.disclosure[open] > .disclosure-summary::after { transform: rotate(270deg); }
+.disclosure-summary:hover { background: var(--accent-soft); }
+.disclosure-summary:focus-visible { outline: var(--bw-focus) solid var(--accent-bright); outline-offset: 2px; }
+.disclosure-label {
+  flex-shrink: 0;
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.disclosure-body {
+  padding: 0 var(--sp-4) var(--sp-4);
+  border-top: var(--bw-hair) solid var(--line);
+  padding-top: var(--sp-4);
+  font-size: var(--fs-aside); line-height: var(--lh-aside); color: var(--ink-soft);
+}
+.disclosure-body p + p { margin-top: var(--sp-3); }
+.disclosure-body dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); }
+.disclosure-body dt {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute); white-space: nowrap;
+}
+.disclosure-body dd { margin: 0; font-size: var(--fs-meta); color: var(--ink); }
+
+/* source disclosure sits directly under the section's prose */
+.source-disclosure { margin-top: var(--sp-4); }
+.source-disclosure .disclosure-summary { color: var(--ink-soft); }
+/* P10 — the publisher is visible while collapsed, so a factual claim is never
+   unattributed even with the citation closed. That is the collapsed state's
+   only job; "Source for this section" does not do it. */
+.source-disclosure .disclosure-publisher {
+  color: var(--accent-bright); font-weight: var(--fw-strong);
+}
+.source-disclosure .disclosure-summary strong { color: var(--accent-bright); font-weight: var(--fw-strong); }
+.no-source {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-mute);
+  font-style: italic;
+}
+
+/* --------------------------------------------------- notification priming -- */
+.notif-card {
+  margin-top: var(--sp-5);
+  padding: var(--sp-5);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--accent); border-radius: var(--r-lg);
+}
+.notif-card-kicker {
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-wordmark); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.notif-card h3 { margin-bottom: var(--sp-3); }
+.notif-card p { font-size: var(--fs-meta); line-height: var(--lh-aside); color: var(--ink-soft); }
+.notif-facts { margin: var(--sp-4) 0 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.notif-facts li {
+  position: relative; padding-left: var(--sp-5);
+  font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink);
+  list-style: none;
+}
+.notif-facts li::before {
+  content: '\2713'; position: absolute; left: 0; top: 0;
+  color: var(--accent); font-weight: var(--fw-label);
+}
+.notif-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--tap-min); padding: 0 var(--sp-5);
+  border-radius: var(--r-md); border: var(--bw-hair) solid transparent;
+  font-family: var(--font-ui); font-size: var(--fs-ui); font-weight: var(--fw-strong);
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--card); }
+.btn-primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
+.btn-quiet { background: transparent; border-color: var(--line2); color: var(--ink-soft); }
+.btn-quiet:hover { border-color: var(--accent); color: var(--ink-strong); }
+.btn:active { transform: scale(0.98); }
+.btn[aria-busy="true"], .btn[disabled], .btn[aria-disabled="true"] {
+  opacity: 0.5; pointer-events: none;
+}
+
+/* ----------------------------------------------------------------- notices -- */
+.notice {
+  display: flex; align-items: flex-start; gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: var(--bw-hair) solid var(--line2);
+  background: var(--raise);
+  font-size: var(--fs-meta); line-height: var(--lh-aside); color: var(--ink-soft);
+}
+.notice-mark {
+  flex-shrink: 0; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: var(--fs-label); font-weight: var(--fw-label);
+}
+.notice strong { display: block; color: var(--ink-strong); font-weight: var(--fw-strong); }
+.notice--ok { border-color: var(--accent); background: var(--accent-soft); }
+.notice--ok .notice-mark { background: var(--accent); color: var(--card); }
+.notice--warn { border-left-width: var(--bw-mark); border-left-color: var(--woj); }
+.notice--warn .notice-mark { background: var(--woj); color: var(--card); }
+.notice--info .notice-mark { background: var(--line2); color: var(--ink-strong); }
+
+/* ---------------------------------------------------------- reader controls -- */
+.control-row {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+.control-row:last-child { border-bottom: none; }
+.control-copy { flex: 1; min-width: 0; }
+.control-name { font-size: var(--fs-ui); font-weight: var(--fw-strong); color: var(--ink-strong); }
+.control-help { margin-top: var(--sp-1); font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-mute); }
+.control-action { flex-shrink: 0; display: flex; align-items: center; min-height: var(--tap-min); }
+.control-switch {
+  display: flex; align-items: center; min-height: var(--tap-min);
+  padding: 0; background: none; border: none; cursor: pointer;
+}
+
+/* -------------------------------------------------------------- datatables -- */
+.datatable { width: 100%; border-collapse: collapse; margin-top: var(--sp-4); font-size: var(--fs-meta); }
+.datatable caption {
+  text-align: left; margin-bottom: var(--sp-3);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--ink-mute);
+}
+.datatable th, .datatable td {
+  text-align: left; vertical-align: top;
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) 0;
+  border-bottom: var(--bw-hair) solid var(--line);
+  line-height: var(--lh-ui);
+}
+.datatable th { color: var(--ink-strong); font-weight: var(--fw-strong); white-space: nowrap; }
+.datatable td { color: var(--ink-soft); }
+.datatable tr:last-child th, .datatable tr:last-child td { border-bottom: none; }
+
+/* -------------------------------------------------------------------- form -- */
+.form-field { display: flex; flex-direction: column; gap: var(--sp-2); margin-top: var(--sp-4); }
+.form-label { font-size: var(--fs-ui); font-weight: var(--fw-strong); color: var(--ink-strong); }
+.form-hint { font-size: var(--fs-meta); line-height: var(--lh-ui); color: var(--ink-mute); }
+.form-input, .form-textarea, .form-select {
+  width: 100%; min-height: var(--tap-min);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--raise);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-md);
+  font-family: var(--font-ui); font-size: var(--fs-ui); color: var(--ink);
+}
+.form-textarea { min-height: 132px; line-height: var(--lh-body); resize: vertical; }
+.form-input:hover, .form-textarea:hover, .form-select:hover { border-color: var(--accent); }
+.form-input:focus-visible, .form-textarea:focus-visible, .form-select:focus-visible { border-color: var(--accent); }
+.form-input[aria-invalid="true"], .form-textarea[aria-invalid="true"] {
+  border-color: var(--woj); border-left-width: var(--bw-mark);
+}
+.form-error {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-meta); font-weight: var(--fw-strong); color: var(--woj);
+}
+.form-error::before { content: '\26A0'; }
+.form-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+.form-note {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-meta); line-height: var(--lh-aside); color: var(--ink-mute);
+}
+
+/* --------------------------------------------------------- desktop >=1080 --- */
+@media (min-width: 1080px) {
+  .prose-body { max-width: var(--col-read); margin-inline: auto; border-inline: var(--bw-hair) solid var(--line); }
+  .prose-header-inner { padding-inline: var(--gutter-lg); }
+  .prose-body .section { padding-inline: var(--sp-8); }
+}
+
+/* -------------------------------------------------------- reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .disclosure-summary::after { transition: none; }
+  .btn:active { transform: none; }
+}
+
+/* ==================================================================== print */
+@media print {
+  .notif-card, .notif-actions, .form-actions, .control-action { display: none !important; }
+  /* disclosures print open, so a printed page never hides a citation */
+  .disclosure { border: 0.5pt solid #999; break-inside: avoid; }
+  .disclosure-body { display: block !important; padding-top: 8pt; }
+  .disclosure-summary::after { display: none; }
+  .datatable th, .datatable td { border-bottom: 0.5pt solid #ccc; }
+  .notice { border: 0.5pt solid #999; }
+}
+
+/* Phase 2/3 implementation adaptations layered after the approved handoff. */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.archive-page .progress-track { display: none; }
+.menu-row[type="button"] { width: 100%; text-align: left; }
+
+.notif-banner {
+  position: fixed;
+  inset: auto var(--sp-4) var(--sp-4);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: 620px;
+  margin-inline: auto;
+  padding: var(--sp-4) var(--gutter);
+  background: var(--panel);
+  border: var(--bw-hair) solid var(--line2);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-pop);
+}
+.notif-banner.hidden { display: none; }
+.notif-banner-text { flex: 1; color: var(--ink-soft); }
+.notif-btn-yes,
+.notif-btn-no {
+  min-height: var(--tap-min);
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-strong);
+  cursor: pointer;
+}
+.notif-btn-yes {
+  background: var(--accent);
+  color: var(--card);
+  border: var(--bw-hair) solid var(--accent);
+}
+.notif-btn-no {
+  background: transparent;
+  color: var(--ink-soft);
+  border: var(--bw-hair) solid var(--line2);
+}
+
+#share-status:not(:empty) {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+.notice:empty { display: none; }
+
+/* Interactive controls retain a full touch target at every viewport width. */
+.chip,
+.seg-btn,
+.verse-pop-close {
+  min-height: var(--tap-min);
+}
+.verse-pop-close {
+  min-width: var(--tap-min);
+}
+
+/* Preserve the authored Sabbath road map and Friday week-review structures. */
+.road-map-list,
+.week-review-list {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.road-map-list li,
+.week-review-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  text-wrap: pretty;
+}
+.bullet-icon {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+.day-label {
+  font-weight: var(--fw-strong);
+  color: var(--ink-strong);
+}
+body.study-page--sabbath .road-map-list { display: flex; }
+body.study-page--sabbath .road-map-list li { display: flex; }
+body.study-page--sabbath .road-map-list .day-label { font-weight: var(--fw-strong); }
+body.study-page--friday .week-review-list { display: flex; }
+body.study-page--friday .week-review-list li { display: flex; }
+body.study-page--friday .week-review-list .day-label { font-weight: var(--fw-strong); }
+.tldr-hook {
+  padding: var(--sp-4);
+  background: var(--accent-soft);
+  border-left: var(--bw-mark) solid var(--accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-weight: var(--fw-strong);
+  color: var(--ink-strong);
+}
+
+/* P11 — below 480px the reserved 96px gutter squeezes three-line titles badly.
+   The cross shrinks and the gutter shrinks with it. */
+@media (max-width: 480px) {
+  .study-cross { width: 66px; height: 100px; right: var(--sp-3); opacity: 0.7225; }
+  .study-meta-row, .study-title, .study-sub { padding-right: 74px; }
+}
+
+@media (max-width: 560px) {
+  .notif-banner { align-items: stretch; flex-wrap: wrap; }
+  .notif-banner-text { flex-basis: 100%; }
+  .notif-btn-yes, .notif-btn-no { flex: 1; }
+  .control-row { flex-direction: column; align-items: stretch; }
+  .control-action { justify-content: flex-start; }
+}
+
+@media print {
+  .notif-banner, #share-status { display: none !important; }
+}
+
+/* Phase 2/3 implementation adaptations layered after the approved handoff. */
+
+/* Drew's 2026-09-01 review: use a 720px outer reading surface. Desktop
+   gutters leave roughly 656px for prose, while phones still contract to the
+   viewport. */
+:root { --col-read: 720px; }
+
+/* Keep the app bar itself full width without decorative divider rules. The
+   reading-progress fill remains functional, but its empty track is invisible. */
+.appbar { border-bottom: none; }
+.appbar::after { content: none; }
+.progress-track { background: transparent; }
+
+/* Every page banner uses the same centered outer surface instead of painting
+   edge to edge across wide screens. */
+.study-header,
+.prose-header {
+  width: min(100%, var(--col-read));
+  margin-inline: auto;
+  border-inline: var(--bw-hair) solid var(--line);
+}
+
+/* The sticky section band remains part of the centered study surface even
+   though the app-bar background above it spans the viewport. */
+.study-shell {
+  width: min(100%, var(--col-read));
+  margin-inline: auto;
+}
+.jumpbar { border-inline: var(--bw-hair) solid var(--line); }
+
+/* Long provenance hashes must wrap on narrow trust pages. */
+.prose-body code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Friday clarification reflections begin with a real visual break after the
+   introductory paragraph. The same hierarchy rule also protects any section
+   that introduces a later subheading with prose. */
+.section p + h3 { margin-top: var(--sp-5); }
+
+/* (duplicate .visually-hidden removed 2026-09-03 — identical copy remains above) */
+
+.archive-page .progress-track { display: none; }
+.menu-row[type="button"] { width: 100%; text-align: left; }
+
+.notif-banner {
+  position: fixed;
+  inset: auto var(--sp-4) var(--sp-4);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: 620px;
+  margin-inline: auto;
+  padding: var(--sp-4) var(--gutter);
+  background: var(--panel);
+  border: var(--bw-hair) solid var(--line2);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-pop);
+}
+.notif-banner.hidden { display: none; }
+.notif-banner-text { flex: 1; color: var(--ink-soft); }
+.notif-btn-yes,
+.notif-btn-no {
+  min-height: var(--tap-min);
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-strong);
+  cursor: pointer;
+}
+.notif-btn-yes {
+  background: var(--accent);
+  color: var(--card);
+  border: var(--bw-hair) solid var(--accent);
+}
+.notif-btn-no {
+  background: transparent;
+  color: var(--ink-soft);
+  border: var(--bw-hair) solid var(--line2);
+}
+
+#share-status:not(:empty) {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+.notice:empty { display: none; }
+
+/* Interactive controls retain a full touch target at every viewport width. */
+.chip,
+.seg-btn,
+.verse-pop-close {
+  min-height: var(--tap-min);
+}
+.verse-pop-close {
+  min-width: var(--tap-min);
+}
+
+/* Preserve the authored Sabbath road map and Friday week-review structures. */
+.road-map-list,
+.week-review-list {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.road-map-list li,
+.week-review-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  text-wrap: pretty;
+}
+.bullet-icon {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+.day-label {
+  font-weight: var(--fw-strong);
+  color: var(--ink-strong);
+}
+body.study-page--sabbath .road-map-list { display: flex; }
+body.study-page--sabbath .road-map-list li { display: flex; }
+body.study-page--sabbath .road-map-list .day-label { font-weight: var(--fw-strong); }
+body.study-page--friday .week-review-list { display: flex; }
+body.study-page--friday .week-review-list li { display: flex; }
+body.study-page--friday .week-review-list .day-label { font-weight: var(--fw-strong); }
+.tldr-hook {
+  padding: var(--sp-4);
+  background: var(--accent-soft);
+  border-left: var(--bw-mark) solid var(--accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-weight: var(--fw-strong);
+  color: var(--ink-strong);
+}
+
+@media (max-width: 560px) {
+  .notif-banner { align-items: stretch; flex-wrap: wrap; }
+  .notif-banner-text { flex-basis: 100%; }
+  .notif-btn-yes, .notif-btn-no { flex: 1; }
+}
+
+@media print {
+  .notif-banner, #share-status { display: none !important; }
+}
+
+
+/* ============================================================================
+   v5.0.1 review corrections retained in the v5.1.0 baseline (2026-09-02).
+   ==========================================================================*/
+
+/* R1 — prose never runs flush into a verse block. */
+.section p + .verse-block,
+.section h3 + .verse-block,
+.section ul + .verse-block { margin-top: var(--sp-5); }
+
+/* R2 — ONE cross size site-wide: 72x110, clears the 149px home banner.
+   Supersedes the 104x158 desktop and 66x100 phone overrides. */
+.study-cross { width: 72px; height: 110px; right: var(--sp-5); }
+@media (min-width: 1080px) { .study-cross { width: 72px; height: 110px; right: var(--gutter-lg); } }
+/* One reservation, applied on studies AND the home banner. */
+.study-meta-row, .study-title, .study-sub,
+.archive-title, .home-tagline { padding-right: 92px; }
+@media (min-width: 1080px) {
+  .study-meta-row, .study-title, .study-sub,
+  .archive-title, .home-tagline { padding-right: 104px; }
+}
+
+/* Drew 2026-09-02: phone keeps the original 66x100 cross. */
+@media (max-width: 480px)  {
+  .study-cross { width: 66px; height: 100px; right: var(--sp-3); opacity: 0.85; }
+  .study-meta-row, .study-title, .study-sub,
+  .archive-title, .home-tagline { padding-right: 74px; }
+}
+/* Home banner is shorter than a study header — centre the cross in it. */
+.archive-header { overflow: hidden; }
+.archive-header-inner .study-cross { top: 50%; transform: translateY(-50%); }
+
+/* R3 — the decorative Christ mark can no longer land on the last line. */
+.section-christ { padding-bottom: var(--sp-10); }
+
+/* R4 — footer source line breaks where we choose. */
+.footer-line .fl-a, .footer-line .fl-b, .footer-line .fl-c { display: inline; }
+.footer-line .fl-a::after { content: '\00b7'; margin: 0 0.4em; color: var(--ink-mute); }
+.footer-line .fl-c::before { content: ' '; }
+/* Phone: three deliberate lines, each unbreakable, so the parenthetical is
+   never split by the viewport. */
+@media (max-width: 560px) {
+  .footer-line .fl-a, .footer-line .fl-b, .footer-line .fl-c {
+    display: block; white-space: nowrap;
+  }
+  .footer-line .fl-a::after { content: none; }
+  .footer-line .fl-c::before { content: none; }
+}
+
+/* R5 — study subtitle stacks instead of breaking mid-phrase. */
+.study-sub { display: flex; flex-wrap: wrap; gap: 0 var(--sp-2); }@media (max-width: 560px) {
+  .study-sub { flex-direction: column; gap: 2px; }}
+
+/* R6 — the whole sticky band is the section toggle, and it states the count. */
+button.jumpbar-row {
+  width: min(100%, var(--col-read));
+  background: none; border: none; cursor: pointer;
+  font: inherit; text-align: left;
+}
+button.jumpbar-row:hover .jumpbar-toggle { text-decoration: underline; text-underline-offset: 3px; }
+button.jumpbar-row:hover .jumpbar-current { color: var(--ink-soft); }
+.jumpbar-toggle { pointer-events: none; }
+button.jumpbar-row[aria-expanded="true"] .jumpbar-current { color: var(--accent-bright); }
+
+/* R7 — the quarter heading stays on screen while its studies scroll past,
+   so the card rows no longer need to repeat it. */
+.group-head {
+  position: sticky; top: var(--appbar-h); z-index: 20;
+  background: var(--bar); backdrop-filter: blur(10px);
+  padding-block: var(--sp-3);
+  border-bottom: var(--bw-hair) solid var(--line);
+}
+
+/* R8 — section h3 no longer competes with the eyebrow label above it. */
+.section h3 { font-size: 20px; }
+.section-label + h3 { margin-top: calc(var(--sp-1) * -1); }
+
+/* R9 — references in running prose are quiet; the verse block stays focal. */
+.section p > a:not(.verse-open):not(.chip),
+.prose-body .section li > a {
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+.section p > a:not(.verse-open):not(.chip):hover { border-bottom-style: solid; }
+
+/* R10 — trust pages get a real heading per section plus a scan row. */
+.prose-body .section-label {
+  font-size: var(--fs-h3); font-weight: var(--fw-strong);
+  letter-spacing: var(--ls-h3); text-transform: none;
+  color: var(--ink-strong);
+  margin-bottom: var(--sp-4);
+}
+.prose-body .section-label::before { height: 20px; }
+.on-this-page {
+  width: min(100%, var(--col-read)); margin-inline: auto;
+  padding: var(--sp-4) var(--gutter);
+  background: var(--card);
+  border-inline: var(--bw-hair) solid var(--line);
+  border-bottom: var(--bw-hair) solid var(--line);
+  display: flex; flex-direction: column; gap: var(--sp-3);
+}
+.otp-label {
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.otp-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.otp-chips .chip { text-decoration: none; display: inline-flex; align-items: center; }
+@media (min-width: 1080px) { .on-this-page { padding-inline: var(--sp-8); } }
+
+/* R11 — desktop reader menu is a dropdown, not a page-shifting block. */
+@media (min-width: 1080px) {
+  .appbar { position: sticky; }
+  .appbar-row { position: relative; }
+  .menu {
+    position: absolute; left: auto; right: calc(50% - var(--col-read) / 2 + 8px); top: var(--appbar-h);
+    width: 340px; max-width: calc(100vw - var(--sp-8));
+    background: var(--panel);
+    border: var(--bw-hair) solid var(--line2); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-pop);
+    padding: var(--sp-2);
+    z-index: 60;
+  }
+}
+
+/* R13 — Friday week review needs air. */
+.week-review-list, .week-list, .road-map-list { gap: var(--sp-4); }
+
+/* R14 — day navigation now renders; keep it inside the reading surface. */
+.day-nav { width: min(100%, var(--col-read)); }
+/* Drew 2026-09-02: reverted. Stacking made each day card a full-width bar
+   holding half a line of text. Side by side is 173px per card and 124px tall
+   against 183px stacked; both titles wrap to two lines, which is the accepted
+   trade for reclaiming the width. */
+@media (max-width: 480px) { .day-nav { flex-direction: row; } .day-nav-item.is-pending { text-align: right; } }
+
+
+/* R15 — sticky quarter heading carries a back-to-top control. */
+.group-head { gap: var(--sp-3); }
+.group-top {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: var(--sp-1);
+  min-height: 32px; padding: 0 var(--sp-3);
+  background: none; border: var(--bw-hair) solid var(--line2); border-radius: var(--r-pill);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--ink-mute); cursor: pointer; text-decoration: none;
+  white-space: nowrap; line-height: 1;
+}
+.group-top:hover { border-color: var(--accent); color: var(--accent-bright); }
+@media (max-width: 480px) { .group-count { display: none; } }
+
+/* R16 — the verse-header action is one quiet control, not a second link. */
+.verse-open {
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-pill);
+  /* 34px here was below the project's 44px standard (--tap-min). It is a
+     standalone control, not an inline prose link, so the exemption that
+     covers .vlink does not apply. */
+  min-height: var(--tap-min); margin-block: var(--sp-2);
+  color: var(--ink-soft); text-decoration: none;
+}
+.verse-open:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-bright); text-decoration: none; }
+
+
+/* R17 — the notification prompt sits in the page flow above the footer, so it
+   never covers the prayer or the day navigation. */
+.notif-banner {
+  position: static; inset: auto;
+  width: min(100%, var(--col-read)); max-width: none;
+  margin: 0 auto; box-shadow: none;
+  border-radius: 0;
+  border-inline: var(--bw-hair) solid var(--line2);
+  border-block: var(--bw-hair) solid var(--line2);
+}
+@media (min-width: 1080px) {
+  body.study-page--daily .notif-banner,
+  body.study-page--sabbath .notif-banner,
+  body.study-page--friday .notif-banner { padding-inline: var(--sp-8); }
+}
+
+/* R18 — day navigation reads by weekday; the final card aligns right. */
+.day-nav-item:last-child { text-align: right; }
+
+/* R19 — phone: the number alone, so the Top control fits. */
+@media (max-width: 480px) {
+  .group-count { display: inline; }
+  .group-count .count-word { display: none; }
+}
+
+
+/* R20 — the banner invitation breaks after the comma at every width. */
+.archive-title .tag-a, .archive-title .tag-b,
+.home-tagline .tag-a, .home-tagline .tag-b { display: block; }
+
+/* R22 — the app bar is now the only place the site is named, so the
+   wordmark reads as an identity rather than a label. Codex: fold the
+   tracking into --ls-wordmark rather than overriding it here. */
+.wordmark-text { font-size: 13px; letter-spacing: var(--ls-wordmark); font-weight: var(--fw-label); }
+
+/* R23 — the banner H1 must fit its clause on one line at 390px. The comma
+   break is only honoured if "Drawing closer to God," fits the content box:
+   390 - 42 gutters - 74 cross reservation = 260px, and the clause needs
+   364px at 34px. 23px brings it to ~247px, leaving room for the fallback
+   font that renders before Nunito loads. */
+@media (max-width: 480px) {
+  .archive-title { font-size: 23px; line-height: 1.24; }
+}
+@media (min-width: 481px) and (max-width: 700px) {
+  .archive-title { font-size: 30px; line-height: 1.24; }
+}
+
+
+/* R21 — the search prompt must fit the field it sits in. */
+.search-input::placeholder { text-overflow: ellipsis; }
+@media (max-width: 480px) {
+  .search-input { font-size: var(--fs-meta); }
+}
+
+
+/* R24 — card meta lays out its three facts instead of wrapping a 271px
+   sentence inside a 205px box (which orphaned "of 7" on 89 of 158 cards).
+   Line 1 is the lesson title, ellipsised; line 2 the short facts, which
+   fit at any lesson length. Applies to the featured card too. */
+.card-meta-2 { display: flex; flex-direction: column; gap: 2px; }
+.card-meta-2 .cm-lesson-title {
+  display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* The two meta lines need differentiating: as first built they both
+   inherited --ink-mute and read as one undifferentiated grey block. */
+.card-meta-2 .cm-lesson-title { color: var(--ink-soft); }
+.card-meta-2 .cm-facts { display: flex; gap: 0; color: var(--ink-mute); }
+.card-meta-2 .cm-facts span + span::before { content: '\00b7'; margin: 0 0.45em; }
+
+
+/* R29 — accent type was brighter than the accent fill (#5fc79b vs #3d9970),
+   so a small label out-shouted the primary action beneath it. Dark theme
+   gets a type value sitting between the two (6.8:1 on --card, against 7.9:1
+   before and the 4.77:1 floor the system already accepts for muted text).
+   Paper and Light are deliberately excluded: there --accent-bright is the
+   DEEPER of the pair, so the hierarchy is already correct and a mid-green
+   would destroy their contrast. */
+:root { --accent-type: #46b987; }
+[data-theme="paper"], [data-theme="light"] { --accent-type: var(--accent-bright); }
+.feat-c .feat-eyebrow .eb-a,
+.group-label,
+.wordmark-mark { color: var(--accent-type); }
+
+
+/* ==========================================================================
+   R30 — HOME PAGE baseline inherited from v5.0.1. The archive banner is gone; the newest
+   study card is the page's opening element and carries its h1. Cross uses
+   var(--cross-src), which is only safe INSIDE this stylesheet (relative
+   url() resolves against the stylesheet folder, not the document).
+   NOTE for Codex: .archive-header / .archive-title / .home-tagline rules
+   earlier in this file are now unused by index.html. Left in place rather
+   than deleted, since they were not re-tested after removal.
+   ========================================================================*/
+.featured-link.feat-c{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:stretch;gap:0;
+  padding:var(--sp-6) var(--sp-5);
+  background:var(--card);border-color:var(--line);
+}
+.feat-c .feat-eyebrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .9em}
+.feat-c .feat-eyebrow .eb-a{color:var(--accent-type)}
+.feat-c .feat-eyebrow .eb-b{color:var(--ink-mute);letter-spacing:.06em}
+.feat-c .feat-eyebrow{
+  font-size:var(--fs-eyebrow);font-weight:var(--fw-label);
+  letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--accent-type);
+}
+h1.feat-title{margin:0}
+.feat-c .feat-title{
+  display:block;margin:var(--sp-3) 0 0;position:relative;
+  font-size:27px;line-height:1.16;letter-spacing:-0.015em;color:var(--ink-strong);
+}
+.feat-c .feat-passage{
+  display:block;margin-top:var(--sp-2);position:relative;
+  font-family:var(--font-serif);font-size:19px;color:var(--ink-soft);
+}
+.feat-c .feat-cta{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  margin-top:var(--sp-5);min-height:var(--tap-min);padding:0 var(--sp-5);
+  align-self:flex-start;border-radius:var(--r-pill);
+  background:var(--accent);color:var(--card);
+  font-size:var(--fs-ui);font-weight:var(--fw-strong);
+}
+/* A real cross at full opacity, sized and placed like the study header's. */
+.featured-link.feat-c::after{
+  content:'';position:absolute;right:var(--sp-3);top:50%;transform:translateY(-50%);
+  width:66px;height:100px;
+  background:var(--cross-src) center / contain no-repeat;
+  opacity:0.85;pointer-events:none;
+}
+/* Only the title crosses the cross's vertical band (y 98–198 in a 296px
+   card). Reserving on the eyebrow and passage broke the eyebrow after
+   "Tuesday," for no reason. */
+.feat-c .feat-title{padding-right:74px}
+@media (min-width:700px){
+  .feat-c .feat-title{font-size:34px}
+  .featured-link.feat-c::after{width:72px;height:110px;right:var(--sp-5)}
+  .feat-c .feat-title{padding-right:92px}
+}
+/* No banner above it, so the card carries the top edge of the page.
+   The wrapper's own 20px inset has to go too, or the card just looks
+   like a square-cornered block floating in a gutter. */
+.featured{margin-top:0;padding:0}
+.featured-link.feat-c{border-radius:0;border-inline:none;border-top:none;border-bottom-color:var(--line)}
+@media (min-width:700px){
+  .featured{padding:var(--sp-5) var(--gutter) 0}
+  .featured-link.feat-c{border-radius:var(--r-lg);border:var(--bw-hair) solid var(--line2)}
+}
+
+/* R27 — the archive sheet's side borders were showing above the first
+   quarter heading with nothing joining them, reading as an unfinished box.
+   Closing the top completes the sheet the side borders already imply. */
+#studies-container{border-top:var(--bw-hair) solid var(--line)}
+/* .list-heading has padding-bottom:0, so the new top edge landed on the h2's
+   descenders and read as an underline instead of the sheet's edge. */
+.list-heading{padding-bottom:var(--sp-4)}
+
+/* R25 — the quarter title is a TITLE, not a label. All-caps removed word
+   shape, 0.14em tracking widened it enough to wrap, and the wrap broke it
+   mid-phrase ("CHRISTIAN / LIFE AND WITNESS"). */
+.group-label{
+  font-size:14px;font-weight:var(--fw-strong);
+  letter-spacing:.005em;text-transform:none;
+  color:var(--accent-type);
+  text-wrap:pretty;
+}
+/* R28 — the connecting hairline is a flex filler; on phone there is nothing
+   to fill, so it renders as a ~20px stub beside the title. Drop it below
+   700px and push the pill right with margin instead. */
+@media (max-width: 700px) {
+  .group-line { display: none; }
+  .group-head .group-top { margin-left: auto; }
+}
+
+/* R26 — Top stays in the sticky heading. With the count removed there is
+   room for it without crowding the title. */
+.group-head .group-top{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:var(--sp-1);
+  min-height:var(--tap-min);padding:0 var(--sp-3);
+  background:none;border:var(--bw-hair) solid var(--line2);border-radius:var(--r-pill);
+  font-size:var(--fs-eyebrow);font-weight:var(--fw-label);
+  letter-spacing:var(--ls-eyebrow);text-transform:uppercase;
+  color:var(--ink-mute);cursor:pointer;white-space:nowrap;line-height:1;
+}
+.group-head .group-top:hover{border-color:var(--accent);color:var(--accent-bright)}/* R31 — the study header stated the same three facts as the home card but in a
+   different order and with no hierarchy (Lesson 10 / lesson title / Day 4 of 7,
+   three lines, one weight). It now mirrors the card: the lesson title is a name
+   and sits with the study title; the coordinates are a footnote beneath. Two
+   lines instead of three, in a header already tight from a long title.
+   Supersedes the R5 .sub-part rules, whose markup no longer exists. */
+.study-sub { display: flex; flex-direction: column; gap: 2px; flex-wrap: nowrap; }
+.study-sub .sub-title { color: var(--ink-soft); }
+.study-sub .sub-facts { display: flex; gap: 0; color: var(--ink-mute); }
+.study-sub .sub-facts span + span::before { content: '\00b7'; margin: 0 0.45em; }
+@media (min-width: 700px) {
+  /* Room for one line at width, same reading order. */
+  .study-sub { flex-direction: row; align-items: baseline; gap: 0 0.45em; }
+  .study-sub .sub-title::after { content: '\00b7'; margin-left: 0.45em; color: var(--ink-mute); }
+}
+
+
+/* R32 — BUTTON SHAPE RULE, stated so it stops drifting.
+     Pill (--r-pill)  = a standalone control you tap to act.
+                        .feat-cta, .footer-home, .group-top, .chip,
+                        .verse-open, .notif-btn-*, .state-action
+     Rect (--r-md/lg) = a surface that holds content, or a full-width row.
+                        .search-input, .day-nav-item, cards, .menu-row
+     Rect (--r-sm)    = EXCEPTION, chrome and icon-only controls, which are
+                        furniture rather than page actions: .icon-btn,
+                        .wordmark, .skip-link, .menu-row, .search-clear,
+                        .verse-pop-close, .date-badge. A 44px circle for the
+                        hamburger would read as an avatar, so these keep 8px
+                        deliberately — the rule is about page-level actions.
+   Two violations existed. .notif-btn-yes was the only filled-accent action
+   that was not a pill, sitting ~200px from .feat-cta on the home page —
+   same role, same colour, different geometry, close enough to read as a
+   mistake rather than a distinction. .state-action had the same problem
+   without the proximity. */
+.notif-btn-yes, .notif-btn-no, .state-action { border-radius: var(--r-pill); }
+
+
+/* R33 — .btn / .btn-primary / .btn-quiet on the Privacy page are the SAME two
+   buttons as .notif-btn-yes / .notif-btn-no, implemented a second time:
+   filled accent + outlined, both at --tap-min. R32 only reshaped the notif
+   pair, so "Turn on notifications" stayed a 10px rect while the identical
+   "Yes, notify me" became a pill. Same rule for both.
+   Codex: these two sets should be ONE component. Keep .btn as the survivor
+   and retire .notif-btn-*, rather than maintaining both. */
+.btn { border-radius: var(--r-pill); }
+
+
+/* R34 — one left edge down the whole home page.
+   .featured, .search and .list-heading are 720px boxes with --gutter side
+   padding, so their visible edges land at 680px. #studies-container is a
+   720px box with NO side padding, so the archive sheet's border sits at the
+   full 720 — a gutter wider than the card above it, which is why the page
+   looked like it widened as you scrolled. The card's own --sp-5 padding then
+   pushed its text 40px in against the rows' 20px, giving three edges.
+   Fix: card and search become full-width 720 boxes like the sheet, so every
+   box edge is at 720 and every piece of text is 20px inside it. .list-heading
+   keeps its gutter, because its text should align with the row text, not with
+   the sheet border. */
+@media (min-width: 700px) {
+  .featured { padding-inline: 0; }
+  .search { padding-inline: 0; }
+}
+
+
+/* R35 — the ☰ glyph ended 4px inside the content right edge. .appbar-row has
+   asymmetric padding (20px left / 12px right) because the icon button is a
+   44px tap target with its 18px glyph centred, so the glyph sat at 968 while
+   the card text and the "↑ Top" pill directly beneath both end at 972.
+   Trimming the right padding by 4px lands the glyph on the same edge without
+   shrinking the tap target. */
+.appbar-row { padding-right: 8px; }
+
+
+/* R36 — the footer mark becomes the site's tagline, which had no home after
+   the R30 banner removal. Nunito sentence case at 15px, not the 11px
+   uppercase the mark used: as another uppercase micro-label it reads as
+   furniture rather than as the site speaking. Deliberately NOT Cormorant —
+   the serif means scripture here, and the source line directly beneath names
+   the Berean Standard Bible, so a serif line there could be misread as a
+   quotation. No terminal period, per Drew.
+   "Shared with love" is preserved in the source line rather than dropped: on
+   a site with this much trust apparatus it tells a reader the studies are
+   given freely. Drew's ordering — "Independently written, shared with love" —
+   keeps the provenance claim first, where it sets up the BSB line that
+   follows; the sentiment lands second as a closing note. */
+.footer-tagline {
+  font-size: 15px; line-height: var(--lh-ui);
+  color: var(--ink-soft); letter-spacing: 0; text-transform: none;
+}
+
+
+/* R37 — footer link separators removed. .footer-links is already a flex row
+   with gap, so the dots were a second separator doing the same job — and
+   because they were standalone elements they could not wrap correctly: when
+   "Corrections" moved to a second line the dot before it stayed stranded at
+   the end of the first. Attaching the dot to the following link instead only
+   moves the problem (a line then opens with "· Corrections"). The gap is
+   widened to carry the separation on its own. */
+.footer-links { gap: var(--sp-2) var(--sp-5); }
+
+
+/* R38 — archive rows drop the boxed date badge (variant D).
+   The badge was the heaviest element in each row: a raised fill plus border
+   made it an object competing with the title, and the column of frames pulled
+   the eye down the left gutter rather than across the titles a reader is
+   choosing between. It also took ~20% of the row width, which is what forced
+   the longer titles to wrap.
+   The date is not lost — it now leads the coordinates line it already had, as
+   real text rather than an aria-hidden decoration. Measured at 390px over 40
+   rows: 0 titles wrap (was 5) and the average row is 103px, three pixels
+   SHORTER than the badge version, because the 52px box was propping the row
+   open. Row structure now mirrors the featured card: title, lesson, facts.
+   The chevron goes too — the whole row is already a link, and a 6px glyph was
+   claiming width to say so. */
+.study-card { flex-direction: column; align-items: flex-start; gap: 0; }
+.card-body { display: block; width: 100%; min-width: 0; }
+.card-meta-2 .cm-date { color: var(--ink-mute); }
+
+
+/* R39 — the app bar mark is the real brand cross, not the ☩ font glyph.
+   ☩ is U+2629 CROSS OF JERUSALEM from the system font, which is what read as
+   an "iron cross"; the site's actual mark is the SVG. Same asset as the study
+   header, so the identity is consistent everywhere it appears. */
+.wordmark-mark {
+  display: inline-block; width: 14px; height: 21px;
+  background: var(--cross-src) center / contain no-repeat;
+  font-size: 0; color: transparent;
+}
+
+/* R40 — the cross is an OBJECT on dark and a WATERMARK on paper and light.
+   Not arbitrary: on dark it is the cream asset on near-black, so it reads as
+   a crisp mark. On the light themes it is the deep-green asset on cream,
+   which previously needed reduced opacity because it out-weighed
+   the title. A watermark solves that properly rather than by dimming.
+   CONSEQUENCE, deliberate: the width reservation is a layout property, so
+   these themes wrap differently from dark — a study title can be three lines
+   in Dark and two in Paper. Theme becomes a layout switch, not only a colour
+   switch. If that is unwanted, delete the padding-right overrides below and
+   keep only the size/opacity changes; the light themes then look calmer but
+   gain no extra line. */
+[data-theme="paper"] .study-cross,
+[data-theme="light"] .study-cross,
+[data-theme="paper"] .featured-link.feat-c::after,
+[data-theme="light"] .featured-link.feat-c::after {
+  width: 112px; height: 170px; right: var(--sp-4);
+  top: 50%; transform: translateY(-50%);
+  opacity: 0.16;
+}
+[data-theme="paper"] .study-meta-row, [data-theme="paper"] .study-title,
+[data-theme="paper"] .study-sub, [data-theme="paper"] .feat-c .feat-title,
+[data-theme="light"] .study-meta-row, [data-theme="light"] .study-title,
+[data-theme="light"] .study-sub, [data-theme="light"] .feat-c .feat-title {
+  padding-right: 0;
+}
+/* The mark must sit behind the text. The study header already raises its own
+   text; the card's cross is an ::after, so as the last child of a positioned
+   parent at equal z-index it would paint OVER the headline. The card has an
+   opaque background, so a negative z-index would hide the mark entirely. */
+.feat-c .feat-eyebrow, .feat-c .feat-passage, .feat-c .feat-cta {
+  position: relative; z-index: 1;
+}
+@media (min-width: 700px) {
+  [data-theme="paper"] .study-cross,
+  [data-theme="light"] .study-cross,
+  [data-theme="paper"] .featured-link.feat-c::after,
+  [data-theme="light"] .featured-link.feat-c::after {
+    width: 132px; height: 200px; right: var(--sp-6);
+  }
+}
+
+
+/* R41 — print must not inherit a theme's cross reservation. @media print
+   already hides .study-cross, but the padding-right that reserved space for
+   it was left in place, so a page printed in Dark wasted ~104px of measure
+   while the same page in Paper did not. Harmless before R40; now it makes
+   printed output depend on the reader's theme. */
+@media print {
+  .study-meta-row, .study-title, .study-sub,
+  .feat-c .feat-title, .archive-title { padding-right: 0 !important; }
+}
+
+
+/* ============================================================================
+   R42 — CROSS AS A CORNER MARK, ALL THREE THEMES. Supersedes the geometry in
+   R2 (dark object, 72x110 desktop / 66x100 phone with a 74-104px width
+   reservation) and in R40 (paper/light watermark, 112x170 and 132x200 centred
+   right). Codex: those earlier blocks are left in place for provenance but
+   every geometry declaration in them is now dead — do not "restore" them.
+
+   Why this shape of solution:
+   · The old 110px size was derived to clear the 149px home banner, which no
+     longer exists. In today's 161-263px containers it filled only 36-52%.
+   · Growing it was ruled out by SHORT titles, not long ones: 10 of the 158
+     studies have titles under 10 characters, and those headers collapse to
+     161px, where a 165px cross overflowed and 140px left 11px of clearance.
+   · A corner mark inset from the bottom-right sidesteps container height
+     entirely, and dropping the width reservation lets the longest title fit
+     one line at 900px where it previously took two.
+
+   The mark is FULL COLOUR at this size — no fade, no watermark. A faded
+   variant (cross-accent-*.svg, arms at fill-opacity with the diamond left at
+   1) was built and then dropped once measurement showed the mark never meets
+   title text. Those two assets are unused; delete them.
+   ==========================================================================*/
+[data-theme="dark"] .study-cross,
+[data-theme="paper"] .study-cross,
+[data-theme="light"] .study-cross,
+[data-theme="dark"] .featured-link.feat-c::after,
+[data-theme="paper"] .featured-link.feat-c::after,
+[data-theme="light"] .featured-link.feat-c::after {
+  top: auto; left: auto;
+  right: var(--sp-4); bottom: var(--sp-4);
+  transform: none;
+  width: 44px; height: 68px;
+  /* FULL COLOUR. var(--cross-src) already switches per theme: the dark
+     asset is cream-dominant, the light asset near-black — cream on dark,
+     black on paper and light, with the green diamond native to both.
+     Safe because the mark never actually meets title text. Measured with a
+     Range over every wrapped line of the longest title (41 chars): the worst
+     line ends 47px clear at 390px, 20px at 760px, 20px at 900px and 202px at
+     1280px. My earlier fear of a 49px overlap came from measuring the
+     UNWRAPPED string on a canvas — the browser wraps at a word boundary well
+     before the column edge, so the text never fills the measure.
+     20px is the tightest margin; if a future title contains one very long
+     unbreakable word, re-check this before assuming it still holds. */
+  opacity: 1;
+  background: var(--cross-src) center / contain no-repeat;
+}
+@media (min-width: 700px) {
+  [data-theme="dark"] .study-cross,
+  [data-theme="paper"] .study-cross,
+  [data-theme="light"] .study-cross,
+  [data-theme="dark"] .featured-link.feat-c::after,
+  [data-theme="paper"] .featured-link.feat-c::after,
+  [data-theme="light"] .featured-link.feat-c::after {
+    right: var(--sp-6); bottom: var(--sp-5);
+    width: 49px; height: 75px;
+  }
+}
+
+/* No width is reserved for the mark in any theme or at any width. This also
+   makes theme switching purely visual again — the R40 note about themes
+   wrapping differently no longer applies, since none of them reserve. */
+[data-theme="dark"] .study-meta-row, [data-theme="dark"] .study-title, [data-theme="dark"] .study-sub,
+[data-theme="paper"] .study-meta-row, [data-theme="paper"] .study-title, [data-theme="paper"] .study-sub,
+[data-theme="light"] .study-meta-row, [data-theme="light"] .study-title, [data-theme="light"] .study-sub,
+[data-theme="dark"] .feat-c .feat-title,
+[data-theme="paper"] .feat-c .feat-title,
+[data-theme="light"] .feat-c .feat-title { padding-right: 0; }
+.feat-c .feat-eyebrow, .feat-c .feat-passage { padding-right: 0; }
+
+
+/* R43 — LIGHT-THEME CROSS ARMS SOFTENED, and one asset note.
+   The near-black arms (#16151a) measured 15.83:1 on the paper card while the
+   title text is 16.42:1 — the mark was as heavy as the headline. Worse, the
+   green diamond sits at 5.30:1, three times lighter in contrast than the arms
+   around it, so it was swallowed; on dark the relationship is inverted (cream
+   arms, darker diamond) which is why the green reads there and not here.
+   Softening the arms to #7a7464 (4.06:1, a WARM grey drawn from the cream
+   palette — a neutral grey reads cold on #f4efe3) drops them below the
+   diamond, so the green becomes the strongest element in the mark by default
+   and the mark recedes from the title. The diamond is untouched.
+   NOTE: this points only the header/card mark at the softened asset. The
+   app-bar wordmark stays on var(--cross-src) at full strength, because at
+   14x21px softened arms wash out entirely — a deliberate divergence, not an
+   oversight. */
+[data-theme="paper"] .study-cross,
+[data-theme="light"] .study-cross,
+[data-theme="paper"] .featured-link.feat-c::after,
+[data-theme="light"] .featured-link.feat-c::after {
+  background-image: url('cross-v8-light-soft-7eca7c13.svg');
+}
+
+/* R44 — ACCENT GREEN ON THE LIGHT THEMES.
+   --accent-bright was #005c39 / #0b5c42: 18% and 20% lightness against dark
+   theme's accent text at 50%. At that lightness the eye reads "very dark,
+   slightly green" rather than green. It was in fact OVER-contrasted at
+   7.07:1 and 7.54:1, higher than dark's 6.71:1, but bought by going nearly
+   black.
+   The tension here is the reverse of dark: on cream, lighter means LESS
+   contrast, so looking greener necessarily spends it. These values are the
+   lightest that still clear the 4.77:1 floor the design system uses for
+   muted text — measured on the CARD, which is the tighter surface; on verse
+   blocks (a lighter background) both sit ~0.3 higher.
+   Rejected: #0a8558 / #13906a at 4.06 and 3.78 — clearly greener, but below
+   both the 4.77 floor and the 4.5 AA minimum, and verse numbers are
+   superscript and appear twenty times per page.
+   One declaration each, because --accent-type resolves to --accent-bright on
+   these themes (R29), so section labels, verse numbers, verse refs, in-prose
+   .vlink references, the jump-bar toggle and day navigation all follow. */
+[data-theme="paper"] { --accent-bright: #00784e; }  /* 4.82:1 card, 5.13 verse */
+[data-theme="light"] { --accent-bright: #0f7d5a; }  /* ~4.8:1 card, ~5.0 verse */
+
+
+/* ============================================================================
+   R45 — SECTION LIST AS A SINGLE COLUMN OF ROWS, phone and desktop.
+   Replaces the wrapping pill/chip layout inside the jump panel.
+
+   Why not pills: pills imply unordered peers — a set you pick among in any
+   order. A study's sections are an ordered sequence read downward, and ten
+   labels of 8-27 characters can never wrap tidily as variable-width pills.
+   That mismatch, not the spacing, was what made every pill arrangement look
+   wrong.
+   Why rows: the reader menu is the same interaction — a navigation panel
+   opened from the sticky bar — and is already built as full-width .menu-row
+   rows, which R32 classifies as rows rather than controls. This borrows that
+   vocabulary instead of inventing a third, and full-width rows cannot wrap
+   raggedly. Numbers were tried and dropped: the vertical order already
+   carries the sequence.
+   Cost, accepted knowingly: ten 44px rows is ~458px of panel against ~150px
+   for wrapped pills, so on a 390x844 phone it fills over half the screen.
+   A two-column variant (315px) was rejected because 155px per label wrapped
+   4 of 10 entries in a list whose whole job is to be scanned.
+
+   No JS change. reader-controls.js already writes aria-current on the active
+   section, which now gets a real dot marker instead of a filled pill that was
+   easy to miss. NOTE the companion fix in that file: the panel must collapse
+   BEFORE the scroll target is measured, or the jump lands short by the whole
+   panel height — 458px here, which is why that bug had to be fixed first.
+   ==========================================================================*/
+.jumplist {
+  display: block;
+  padding: 2px var(--gutter) var(--sp-4);
+}
+.jumplist .chip {
+  width: 100%; min-height: var(--tap-min);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-3);
+  background: none; border: none; border-radius: var(--r-sm);
+  border-bottom: var(--bw-hair) solid var(--line);
+  font-size: var(--fs-ui); font-weight: var(--fw-strong);
+  color: var(--ink); text-align: left; white-space: normal;
+}
+.jumplist .chip:last-child { border-bottom: none; }
+.jumplist .chip:hover { background: var(--accent-soft); color: var(--ink-strong); }
+/* A quiet dot marks the section you are in; the label takes the accent too. */
+.jumplist .chip::after {
+  content: ''; flex-shrink: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: transparent;
+}
+.jumplist .chip[aria-current="true"] { color: var(--accent-bright); }
+.jumplist .chip[aria-current="true"]::after { background: var(--accent); }
+@media (min-width: 1080px) {
+  .jumpbar-row, .jumplist { padding-inline: var(--sp-8); }
+}
+
+
+/* ============================================================================
+   R46 — TRUST-PAGE "ON THIS PAGE" INDEX: two-column text list, no boxes.
+   Replaces the bordered .otp-chips pills added in R10.
+
+   Why not the R45 row treatment used for study sections: this block has NO
+   toggle. Unlike the study jump panel, it is on screen every visit, between
+   the lede and the prose. About carries eight entries, so as 44px rows that
+   is ~384px of navigation before the reader reaches a single sentence.
+   The rule to keep: ROWS for on-demand panels, TEXT for an always-visible
+   index.
+
+   Why the boxes go: the raggedness Drew objected to was the borders, not the
+   wrap. Eight bordered boxes of unequal width can never align, because the
+   eye reads the box edges. Plain text in columns has consistent left edges,
+   which is what makes a list scannable.
+
+   Two columns at EVERY width, including phone. The one-column phone fallback
+   in the first draft was the whole problem: it made the block 335px, worse
+   than the 263px pills it replaced.
+
+   HEIGHT, measured at 44px tap targets (an earlier note in this block claimed
+   a 33px saving — that was measured at 30px targets and was wrong):
+     About (8 entries)   258px phone / 243px desktop   vs pills 263 / 159
+     Privacy (5)         199px phone
+     Scripture src (5)   207px phone
+     Corrections (4)     170px phone
+   So on phone it is a wash (5px shorter), and on DESKTOP it is 84px TALLER,
+   because the pills only needed two rows there. Height is therefore NOT the
+   argument for this change — scannability is. Consistent left edges and no
+   box-edge raggedness are what Drew asked for; the extra desktop height is
+   the accepted cost, on a page where the block sits above prose that scrolls
+   anyway.
+   Three of eight labels wrap to two lines on phone at 158px per column. That
+   is accepted: a rejected variant forced one line each with an ellipsis and
+   reached 186px, but truncated 3 of 8 labels — an index that hides what it
+   indexes. Do NOT reintroduce nowrap/ellipsis here.
+   column-count (not grid) is deliberate: it reads DOWN then across, so the
+   page order is preserved. A grid would read across then down and scramble it.
+   ==========================================================================*/
+.on-this-page {
+  display: block;
+  padding: var(--sp-4) var(--gutter) var(--sp-5);
+}
+.otp-label { display: block; margin-bottom: var(--sp-3); }
+.otp-chips {
+  display: block;
+  column-count: 2;
+  column-gap: var(--sp-5);
+}
+.otp-chips .chip {
+  /* Tap target stays at the project minimum. An earlier draft of R46 set
+     min-height: 0, which overrode the global ".chip { min-height:
+     var(--tap-min) }" rule and shrank every single-line entry to 30px —
+     8 navigation links per page, 14px smaller than they were as pills, and
+     inconsistent with R45, which keeps 44px for the study section rows.
+     flex + align-items keeps the text optically centred in the taller box. */
+  display: flex; align-items: center;
+  min-height: var(--tap-min); padding: 0 0 var(--sp-2) 0;
+  border: none; background: none; border-radius: 0;
+  text-align: left; white-space: normal;
+  font-size: var(--fs-ui); font-weight: var(--fw-strong); line-height: 1.45;
+  color: var(--accent-bright); text-decoration: none;
+  break-inside: avoid;
+}
+.otp-chips .chip:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 1080px) { .on-this-page { padding-inline: var(--sp-8); } }
+
+/* ========================================================================== 
+   v5.1.0 coordinated refinements
+   ========================================================================== */
+@media (min-width: 700px) {
+  .day-nav { padding-inline: 0; }
+}
+
+.search-tier + .search-tier { border-top: var(--bw-hair) solid var(--line2); }
+.search-tier-title {
+  padding: var(--sp-5) var(--gutter) var(--sp-2);
+  font-size: var(--fs-eyebrow); font-weight: var(--fw-label);
+  letter-spacing: var(--ls-eyebrow); text-transform: uppercase;
+  color: var(--accent-bright);
+}
+.input-compact {
+  min-height: var(--tap-min); padding: 0 var(--sp-3);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-sm);
+  background: var(--raise); color: var(--ink-strong);
+  font: inherit; color-scheme: dark;
+}
+[data-theme="paper"] .input-compact,
+[data-theme="light"] .input-compact { color-scheme: light; }
+.control-action:has(.input-compact) { flex-wrap: wrap; justify-content: flex-end; gap: var(--sp-2); }
+
+/* ============================================================================
+   R47 — PRIVACY NOTIFICATION CARD AS ONE STATEFUL CONTROL.
+   The status leads the card, and the available controls follow the browser's
+   actual permission and registration state. Blocked and unsupported browsers
+   never receive a button that cannot work. Reminder time stays in this card
+   and becomes interactive only after registration succeeds.
+   ==========================================================================*/
+.notif-card [hidden] { display: none !important; }
+.notif-card .notif-state {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 var(--sp-5); padding: 12px 14px;
+  border-left: 3px solid var(--line2); border-radius: 0 8px 8px 0;
+  background: var(--card); color: var(--ink-strong);
+  font-size: 16px; font-weight: var(--fw-strong); line-height: var(--lh-ui);
+}
+.notif-card .notif-state--on {
+  border-left-color: var(--accent); background: var(--accent-soft);
+}
+.notif-card .notif-state--attention { border-left-color: var(--ink-soft); }
+.notif-state-mark {
+  flex: 0 0 21px; width: 21px; height: 21px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent-soft);
+  color: var(--accent-bright); font-size: var(--fs-label); line-height: 1;
+}
+.notif-state--attention .notif-state-mark {
+  background: var(--card); border: var(--bw-hair) solid var(--line2);
+  color: var(--ink-strong);
+}
+.notif-card .notif-time-row {
+  margin-top: var(--sp-5); padding: var(--sp-4);
+  border: var(--bw-hair) solid var(--line2); border-radius: var(--r-sm);
+  background: var(--card);
+}
+.notif-time-row.is-muted .control-name,
+.notif-time-row.is-muted .control-help { color: var(--ink-mute); }
+.notif-time-row.is-muted .input-compact {
+  background: var(--raise); color: var(--ink-mute); cursor: not-allowed;
+}
+.notif-steps {
+  counter-reset: notif-step;
+  display: flex; flex-direction: column; gap: 10px;
+  margin: var(--sp-4) 0 0; padding: 16px 18px;
+  border: var(--bw-hair) solid var(--line2); border-radius: 8px;
+  background: var(--card); list-style: none;
+}
+.notif-steps li {
+  counter-increment: notif-step;
+  display: grid; grid-template-columns: 21px minmax(0, 1fr); gap: 10px;
+  align-items: start; color: var(--ink-strong);
+  font-size: 16px; line-height: var(--lh-ui);
+}
+.notif-steps li::before {
+  content: counter(notif-step);
+  width: 21px; height: 21px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-soft); color: var(--accent-bright);
+  font-size: var(--fs-label); font-weight: var(--fw-strong); line-height: 1;
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About our approach — Daily Bible Study</title>
+<title>About our approach | Daily Bible Study</title>
 <meta name="description" content="How these studies are written, reviewed, sourced, published, and shared.">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,20 +19,15 @@
   } catch (error) {}
   document.documentElement.setAttribute('data-theme', theme);
   document.documentElement.setAttribute('data-red', red);
-})();</script><link rel="icon" type="image/png" href="./assets/favicon-729135cb.png">
+})();</script><link rel="icon" type="image/png" href="./assets/favicon-7591f3a3.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="./assets/apple-touch-icon-729135cb.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon-8ef286cd.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap">
-<link rel="stylesheet" href="./assets/study-v5_0.css">
+<link rel="stylesheet" href="./assets/study-v5_1_0.css">
 <script>
-/* Service-worker registration. v5.0 shipped this on index.html and every
-   study page but NOT on the four trust pages, so a reader landing on About
-   got no offline caching and no install prompt. Present on all eight now.
-   In this review sandbox the script 404s and the .catch logs a benign
-   message; no worker is installed, because the /bible-study/ scope does not
-   match the preview path. */
+/* Register the stable worker path for offline support and installability. */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/bible-study/sw.js')
@@ -57,7 +52,7 @@ if ('serviceWorker' in navigator) {
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <button type="button" class="menu-row" data-toggle="notify" role="switch" aria-checked="false">
-      <span>Morning notification</span>
+      <span>Daily reminder</span>
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <div class="menu-row" role="group" aria-label="Theme">
@@ -104,7 +99,7 @@ if ('serviceWorker' in navigator) {
 
       </section><section class="section" id="privacy" aria-labelledby="privacy-label"><h2 id="privacy-label" class="section-label">Privacy and reader controls</h2>
       <p>No account is required to read these studies. The site uses GoatCounter for aggregate visit counts. GoatCounter states that its standard service does not store IP addresses, full user-agent strings, tracker IDs, cookies, or browser storage. Its <a href="https://www.goatcounter.com/help/privacy" rel="noopener">privacy explanation</a> describes the details.</p>
-      <p>Notifications are optional. If a reader chooses them, the browser and Firebase create a device registration identifier so a message can reach that browser. The current site also stores the resulting notification token, a timestamp, and a shortened browser user-agent value in Firestore. A cookie remembers the reader's yes-or-no choice. Theme and red-letter choices stay in that browser's local storage.</p>
+      <p>Notifications are optional. If a reader chooses them, the browser and Firebase create a device registration identifier so a message can reach that browser. The current site also stores the resulting notification token, timestamps, a shortened browser user-agent value, the selected reminder time, and the browser’s time zone in Firestore. The default reminder time is 7:30 a.m. in the browser’s own time zone, and delivery is approximate. Three small cookies remember the reader's choice, registration state, and any setup error. Theme, red-letter, and reminder-time choices stay in that browser's local storage.</p>
       <p>Readers can turn notifications off on the Privacy and reader controls page or withdraw permission in browser settings. The sender removes registrations that Firebase reports as invalid.</p>
 
       </section><section class="section" id="support-principles" aria-labelledby="support-principles-label"><h2 id="support-principles-label" class="section-label">Support principles</h2>
@@ -127,7 +122,7 @@ if ('serviceWorker' in navigator) {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="./assets/notifications.js" defer></script>
-<script src="./assets/reader-controls.js" defer></script>
+<script src="./assets/notifications-ea704e45.js" defer></script>
+<script src="./assets/reader-controls-c8d1b1b6.js" defer></script>
 </body>
 </html>

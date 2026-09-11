@@ -1,0 +1,19 @@
+{
+  "contractVersion": "5.1.0",
+  "generated": "2026-09-09",
+  "assets": {
+    "assets/study-v5_1_0.css": "4873614d5624f3552f3360fd1e62dae351dc323e896f91df0374f49b2c4a0395",
+    "assets/reader-controls-c8d1b1b6.js": "c8d1b1b68ef374c96af3ae0ca1244c5de55894df33e016dc1293e56e6cb58559",
+    "assets/archive-search-6fcac06e.js": "6fcac06e84c1818f4e89d8be61f6544a068c104038a45368b0921a73a7ac9cae",
+    "assets/full-text-search-8eef895a.js": "8eef895a7f6de47c168c42e84f65350529db69fe4e1bdaad1776531271c046d7",
+    "assets/verse-popover-a4ca0f9c.js": "a4ca0f9ce63952b83999cc8ac18c8d19fe4cb20468ab45e089f3c389548c9cd4",
+    "assets/privacy-controls-248e6144.js": "248e61444c77a0c6866971fb9ed2949877d50d43d31e922a55f30258a117d577",
+    "assets/notifications-ea704e45.js": "ea704e45032ab9f152cdb83c539871f6dbbaef2ac35dec9c35884d99827f7ba3",
+    "assets/cross-v8-dark-97a6d5a5.svg": "97a6d5a5e3ae514e8fc47253e1298bad1a5858ef9e3ca792880b9879100b467e",
+    "assets/cross-v8-light-65779cc7.svg": "65779cc7ff35fbfb78e9e2b53e4c8039a0b8d25bab9d6d87a808a3f26f57d526",
+    "assets/cross-v8-light-soft-7eca7c13.svg": "7eca7c138488f7831b894ee4d836571646925ae1e1142332024c37bdcdd78116",
+    "assets/favicon-7591f3a3.png": "7591f3a33138870f7f96e620bda2f4e05270fbeaf1aff361c49c681a8788e9d4",
+    "assets/apple-touch-icon-8ef286cd.png": "8ef286cdf9ad80cc3adac8d89e58ed42ab8e65451a2b278054a1cb978d479099",
+    "assets/og-card-2ff253a6.png": "2ff253a6360afda0cf0101f92d51f48a217827a872995294520d311df8f8d091"
+  }
+}

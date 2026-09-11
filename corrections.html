@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Corrections — Daily Bible Study</title>
+<title>Corrections | Daily Bible Study</title>
 <meta name="description" content="Tell us about an error in a study so it can be fixed.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,19 +21,14 @@
   } catch (error) {}
   document.documentElement.setAttribute('data-theme', theme);
   document.documentElement.setAttribute('data-red', red);
-})();</script><link rel="icon" type="image/png" href="./assets/favicon-729135cb.png">
+})();</script><link rel="icon" type="image/png" href="./assets/favicon-7591f3a3.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="./assets/apple-touch-icon-729135cb.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon-8ef286cd.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap">
-<link rel="stylesheet" href="./assets/study-v5_0.css">
+<link rel="stylesheet" href="./assets/study-v5_1_0.css">
 <script>
-/* Service-worker registration. v5.0 shipped this on index.html and every
-   study page but NOT on the four trust pages, so a reader landing on About
-   got no offline caching and no install prompt. Present on all eight now.
-   In this review sandbox the script 404s and the .catch logs a benign
-   message; no worker is installed, because the /bible-study/ scope does not
-   match the preview path. */
+/* Register the stable worker path for offline support and installability. */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/bible-study/sw.js')
@@ -61,7 +56,7 @@ if ('serviceWorker' in navigator) {
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <button type="button" class="menu-row" data-toggle="notify" role="switch" aria-checked="false">
-      <span>Morning notification</span>
+      <span>Daily reminder</span>
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <div class="menu-row" role="group" aria-label="Theme">
@@ -102,13 +97,13 @@ if ('serviceWorker' in navigator) {
       <li>A link that goes somewhere unexpected</li>
       <li>Something on the page that is unreadable or unusable for you</li>
     </ul>
-    <p>Disagreement about interpretation is welcome too, but it is a conversation rather than a correction — and it will not change the page.</p>
+    <p>Disagreement about interpretation is welcome too, but it is a conversation rather than a correction. It will not change the page.</p>
   </section>
   <section class="section" id="availability" aria-labelledby="availability-label">
     <h2 class="section-label" id="availability-label">Online reporting</h2>
     <div class="notice notice--info">
       <span class="notice-mark" aria-hidden="true">i</span>
-      <span><strong>Online correction reports are not available yet.</strong> A submission form will be added after a delivery destination and handling process are ready.</span>
+      <span><strong>Online correction reports are not available yet.</strong></span>
     </div>
     <p>When reporting becomes available, the most useful details will be the study date or title, the section, what appears to be wrong, and any source that supports the correction.</p>
   </section>
@@ -140,7 +135,7 @@ if ('serviceWorker' in navigator) {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="./assets/notifications.js" defer></script>
-<script src="./assets/reader-controls.js" defer></script>
+<script src="./assets/notifications-ea704e45.js" defer></script>
+<script src="./assets/reader-controls-c8d1b1b6.js" defer></script>
 </body>
 </html>

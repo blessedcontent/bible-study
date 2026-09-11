@@ -2,14 +2,18 @@ name: Send Daily Study Notification
 
 on:
   schedule:
-    # GitHub applies this schedule in Central time, including daylight saving.
-    # Minute 53 avoids the heavier start-of-hour scheduling window.
-    - cron: '53 7 * * *'
+    # Frequent checks recover from delayed or skipped starts. The sender uses
+    # each registration's time zone and once-per-local-day Firestore marker.
+    - cron: '7,37 * * * *'
       timezone: 'America/Chicago'
   workflow_dispatch: # Allow manual trigger for testing
 
 permissions:
   contents: read
+
+concurrency:
+  group: daily-study-notifications
+  cancel-in-progress: false
 
 jobs:
   send-notification:

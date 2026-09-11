@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scripture sources — Daily Bible Study</title>
+<title>Scripture sources | Daily Bible Study</title>
 <meta name="description" content="Where the site’s Berean Standard Bible text comes from and how it is verified.">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,20 +19,15 @@
   } catch (error) {}
   document.documentElement.setAttribute('data-theme', theme);
   document.documentElement.setAttribute('data-red', red);
-})();</script><link rel="icon" type="image/png" href="./assets/favicon-729135cb.png">
+})();</script><link rel="icon" type="image/png" href="./assets/favicon-7591f3a3.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="./assets/apple-touch-icon-729135cb.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon-8ef286cd.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap">
-<link rel="stylesheet" href="./assets/study-v5_0.css">
+<link rel="stylesheet" href="./assets/study-v5_1_0.css">
 <script>
-/* Service-worker registration. v5.0 shipped this on index.html and every
-   study page but NOT on the four trust pages, so a reader landing on About
-   got no offline caching and no install prompt. Present on all eight now.
-   In this review sandbox the script 404s and the .catch logs a benign
-   message; no worker is installed, because the /bible-study/ scope does not
-   match the preview path. */
+/* Register the stable worker path for offline support and installability. */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/bible-study/sw.js')
@@ -57,7 +52,7 @@ if ('serviceWorker' in navigator) {
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <button type="button" class="menu-row" data-toggle="notify" role="switch" aria-checked="false">
-      <span>Morning notification</span>
+      <span>Daily reminder</span>
       <span class="switch" aria-hidden="true"><span class="switch-knob"></span></span>
     </button>
     <div class="menu-row" role="group" aria-label="Theme">
@@ -110,7 +105,7 @@ if ('serviceWorker' in navigator) {
       <p>If a future study intentionally quotes a different translation, that exception will be identified beside the quotation itself as well as in the page's source information.</p>
 
       </section><section class="section" id="bible-app-links" aria-labelledby="bible-app-links-label"><h2 class="section-label" id="bible-app-links-label">Bible app links</h2>
-      <p>Each displayed Scripture block offers an “Open in Bible App” link. These links open the Berean Standard Bible on YouVersion, where it is version 3034. The quotation printed on the study page remains the locally retained text regardless of a reader's Bible-app preferences.</p>
+      <p>Each displayed Scripture block offers an “Open ↗” link. These links open the Berean Standard Bible on YouVersion, where it is version 3034. The quotation printed on the study page remains the locally retained text regardless of a reader's Bible-app preferences.</p>
 
       </section><section class="section" id="rights-and-reuse" aria-labelledby="rights-and-reuse-label"><h2 class="section-label" id="rights-and-reuse-label">Rights and reuse</h2>
       <p>The Berean Bible terms state that the text was dedicated to the public domain effective April 30, 2023, and that all uses are freely permitted. Attribution is appreciated but not required, so the credit this project gives is voluntary.</p>
@@ -130,7 +125,7 @@ if ('serviceWorker' in navigator) {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="./assets/notifications.js" defer></script>
-<script src="./assets/reader-controls.js" defer></script>
+<script src="./assets/notifications-ea704e45.js" defer></script>
+<script src="./assets/reader-controls-c8d1b1b6.js" defer></script>
 </body>
 </html>
