@@ -21,7 +21,7 @@ Usage:
 non-zero on drift.  Run it in the publish step after promotion.
 """
 
-import argparse, json, os, re, sys, tempfile, hashlib
+import argparse, html, json, os, re, sys, tempfile, hashlib
 from datetime import date
 from pathlib import Path
 
@@ -41,16 +41,14 @@ STAGED_MARKERS  = (
     'name="publication-state" content="staged"',
 )
 
-ENTITY = {"&amp;": "&", "&middot;": "\u00b7", "&rsquo;": "\u2019",
-          "&lsquo;": "\u2018", "&nbsp;": " ", "&quot;": '"', "&#39;": "'"}
-
-
 def unescape(s):
+    """Convert HTML metadata to the archive's plain-text JSON contract."""
     if s is None:
         return None
-    for k, v in ENTITY.items():
-        s = s.replace(k, v)
-    return s.strip()
+    # Decode one layer, just as a browser reads an HTML attribute. This covers
+    # all named/decimal/hex entities, including html.escape()'s &#x27; apostrophe,
+    # without reinterpreting deliberately literal entity text such as &amp;lt;.
+    return html.unescape(s).replace("\u00a0", " ").strip()
 
 
 def page_type(text, d):

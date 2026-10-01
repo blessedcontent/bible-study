@@ -45,6 +45,11 @@ jobs:
           node tools/test_notification_banner_v5_1_0.js
           node tools/test_privacy_notification_states_v5_1_0.js
 
+      - name: Validate study index metadata
+        run: |
+          python3 -m unittest discover -s tools -p 'test_generate_studies_json.py' -v
+          python3 tools/generate_studies_json.py --root . --out studies.json --check
+
       - name: Validate v5.1.0 release package
         run: python3 tools/validate_release_v5_1_0.py
 
