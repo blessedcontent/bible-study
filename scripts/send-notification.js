@@ -7,18 +7,7 @@
  * due, and records success before a later run can retry the same local day.
  */
 
-const admin = require('firebase-admin');
-const fs = require('fs');
-const path = require('path');
-const { decodeHtmlEntities } = require('./decode-html-entities');
-
-// Initialize Firebase Admin from environment variable
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-const db = admin.firestore();
+const { centralDates, liveStudy } = require('./live-study');
 const siteOrigin = (process.env.DBS_SITE_ORIGIN || 'https://blessedcontent.github.io').replace(/\/$/, '');
 const siteBasePath = '/' + (process.env.DBS_SITE_BASE_PATH || 'bible-study').replace(/^\/+|\/+$/g, '');
 
@@ -43,30 +32,37 @@ function scheduledMinutes(value) {
   return Number(match[1]) * 60 + Number(match[2]);
 }
 
-function studyForDate(dateStr, weekday, cache) {
-  if (cache[dateStr]) return cache[dateStr];
-  const dayOfWeek = weekday === 'Saturday' ? 'Sabbath' : weekday;
-  const studyFile = path.join(process.cwd(), `${dateStr}.html`);
-  let studyTitle = `${dayOfWeek}'s Bible Study`;
-  const studyExists = fs.existsSync(studyFile);
-  if (studyExists) {
-    const html = fs.readFileSync(studyFile, 'utf8');
-    const titleMatch = html.match(/<meta\s+name="study-title"\s+content="([^"]+)"/);
-    if (titleMatch) studyTitle = decodeHtmlEntities(titleMatch[1]);
-  }
-  cache[dateStr] = { exists: studyExists, title: studyTitle };
+function studyForDate(dateStr, cache, options) {
+  if (!cache[dateStr]) cache[dateStr] = liveStudy(dateStr, options);
   return cache[dateStr];
 }
 
-async function main() {
-  const now = new Date();
+async function main(options = {}) {
+  const now = options.now || new Date();
+  const checkOptions = {
+    root: options.root || process.cwd(), fetchImpl: options.fetchImpl || globalThis.fetch,
+    baseUrl: `${siteOrigin}${siteBasePath}/`
+  };
+  if (options.dryRun) {
+    const date = centralDates(now).today;
+    const study = await studyForDate(date, {}, checkOptions);
+    console.log(`DRY RUN live check ${study.url}: ${study.reason}`);
+    console.log('DRY RUN: no Firebase initialization, registration reads, sends or Firestore writes.');
+    return { successCount: 0, failCount: 0, notDueCount: 0, missingStudyCount: 0, live: study };
+  }
+  const admin = options.admin || require('firebase-admin');
+  if (!options.admin) {
+    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+  }
+  const db = admin.firestore();
 
   // Get all FCM tokens from Firestore
   const tokensSnapshot = await db.collection('fcm_tokens').get();
 
   if (tokensSnapshot.empty) {
     console.log('No subscribers found. Skipping notification.');
-    process.exit(0);
+    return { successCount: 0, failCount: 0, notDueCount: 0, missingStudyCount: 0 };
   }
 
   const registrations = [];
@@ -90,9 +86,9 @@ async function main() {
       notDueCount++;
       continue;
     }
-    const study = studyForDate(dateStr, parts.weekday, studies);
-    if (!study.exists) {
-      console.log(`Study ${dateStr} is unavailable for due registration ${registration.id}.`);
+    const study = await studyForDate(dateStr, studies, checkOptions);
+    if (!study.live) {
+      console.log(`Skipping registration ${registration.id}: ${study.url} is not live (${study.reason}). No marker written; retry next run.`);
       missingStudyCount++;
       continue;
     }
@@ -132,10 +128,16 @@ async function main() {
     }
   }
   console.log(`Done: ${successCount} sent, ${failCount} failed, ${notDueCount} not due, ${missingStudyCount} missing study.`);
-  if (failCount || missingStudyCount) process.exitCode = 1;
+  return { successCount, failCount, notDueCount, missingStudyCount };
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err);
-  process.exit(1);
-});
+module.exports = { main, studyForDate, dateParts, validTimeZone, scheduledMinutes };
+
+if (require.main === module) {
+  main({ dryRun: process.argv.includes('--dry-run') }).then(result => {
+    if (result.failCount || result.missingStudyCount) process.exitCode = 1;
+  }).catch(err => {
+    console.error('Fatal error:', err);
+    process.exitCode = 1;
+  });
+}

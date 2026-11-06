@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import re
 from datetime import date, timedelta
 from pathlib import Path
@@ -44,9 +45,10 @@ def item(root: Path, value: date, direction: str) -> str:
     )
 
 
-def update(root: Path, path: Path) -> None:
+def update(root: Path, path: Path) -> bool:
     value = date.fromisoformat(path.stem)
     text = path.read_text(encoding="utf-8")
+    original = text
     text = STAGED_META.sub("", text)
     text = text.replace(' data-staged="true"', "")
     text = STAGED_BANNER.sub("", text)
@@ -60,16 +62,21 @@ def update(root: Path, path: Path) -> None:
         text = DAY_NAV.sub(nav, text, count=1)
     else:
         text = text.replace('</div>\n<footer class="site-footer">', '</div>\n' + nav + '\n<footer class="site-footer">', 1)
+    if text == original:
+        return False
     path.write_text(text, encoding="utf-8", newline="\n")
+    return True
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--changed-out", type=Path, help="JSON list of intentionally changed navigation paths")
     args = parser.parse_args()
     pages = sorted(path for path in args.root.iterdir() if STUDY.fullmatch(path.name))
-    for path in pages:
-        update(args.root, path)
+    changed = [path.name for path in pages if update(args.root, path)]
+    if args.changed_out:
+        args.changed_out.write_text(json.dumps(changed) + "\n", encoding="utf-8")
     print(f"Refreshed navigation and publication state for {len(pages)} studies")
     return 0
 
