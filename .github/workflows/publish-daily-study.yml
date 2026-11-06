@@ -3,33 +3,53 @@ name: Publish Daily Bible Study
 on:
   push:
     branches: [main]
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/**'
+      - 'tools/**'
   schedule:
-    # Frequent checks recover from delayed starts. The promotion step computes
-    # Central time and becomes a no-op once the target date exists.
+    # Preserve the half-hour checks at :07 and :37 Central.
     - cron: '7,37 * * * *'
       timezone: 'America/Chicago'
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Simulate promotion, build, live checks and runway without publishing'
+        type: boolean
+        default: true
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
 
 concurrency:
-  group: pages
+  group: ${{ github.event_name == 'pull_request' && format('pages-review-{0}', github.event.number) || 'pages' }}
   cancel-in-progress: false
 
+env:
+  RELEASE_DRY_RUN: ${{ github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+  PYTHONDONTWRITEBYTECODE: '1'
+
 jobs:
-  publish:
+  prepare:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
+    outputs:
+      deploy: ${{ steps.release.outputs.deploy }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          # Queued releases must see the latest committed promotion.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || github.ref_name }}
 
-      - name: Validate reader JavaScript
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate reader JavaScript and release behavior
         run: |
           node --check assets/notifications-ea704e45.js
           node --check assets/reader-controls-c8d1b1b6.js
@@ -40,90 +60,54 @@ jobs:
           node --check sw.js
           node --check firebase-messaging-sw.js
           node --check scripts/send-notification.js
-          node --test scripts/decode-html-entities.test.js
+          node --test scripts/*.test.js
           node tools/test_full_text_search_v5_1_0.js
           node tools/test_notification_banner_v5_1_0.js
           node tools/test_privacy_notification_states_v5_1_0.js
+          python3 -m unittest discover -s tools -p 'test_*.py' -v
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
 
       - name: Validate study index metadata
         run: |
-          python3 -m unittest discover -s tools -p 'test_generate_studies_json.py' -v
           python3 tools/generate_studies_json.py --root . --out studies.json --check
+          python3 tools/generate_search_index.py --root . --out search-index.json --check
 
       - name: Validate v5.1.0 release package
         run: python3 tools/validate_release_v5_1_0.py
 
-      - name: Promote the due study from staging
-        id: promotion
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          CENTRAL_HOUR=$(TZ=America/Chicago date +%H)
-          if [ "$CENTRAL_HOUR" -ge 15 ]; then
-            TARGET=$(TZ=America/Chicago date -d "+1 day" +%Y-%m-%d)
-          else
-            TARGET=$(TZ=America/Chicago date +%Y-%m-%d)
-          fi
-          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
-          if [ -f "${TARGET}.html" ]; then
-            echo "promoted=false" >> "$GITHUB_OUTPUT"
-            echo "${TARGET}.html already published"
-          elif [ -f "staging/${TARGET}.html" ]; then
-            cp "staging/${TARGET}.html" "${TARGET}.html"
-            rm "staging/${TARGET}.html"
-            echo "promoted=true" >> "$GITHUB_OUTPUT"
-            echo "Publishing ${TARGET}.html"
-          else
-            echo "::error::Due study staging/${TARGET}.html is missing"
-            exit 1
-          fi
+      - name: Prepare release and check live lessons
+        id: release
+        run: python3 scripts/release.py prepare --event "$GITHUB_EVENT_NAME"
 
-      - name: Refresh navigation and search data
-        if: steps.promotion.outputs.promoted == 'true'
-        run: |
-          python3 tools/refresh-site-data.py --root .
-          python3 tools/generate_studies_json.py --root . --out studies.json
-          python3 tools/generate_search_index.py --root . --out search-index.json
-          python3 tools/generate_studies_json.py --root . --out studies.json --check
-          python3 tools/generate_search_index.py --root . --out search-index.json --check
+      - name: Commit and push intentional release files
+        if: env.RELEASE_DRY_RUN != 'true' && steps.release.outputs.promoted == 'true' && github.ref == 'refs/heads/main'
+        env:
+          RELEASE_TARGET: ${{ steps.release.outputs.target }}
+          RELEASE_PATHS_FILE: ${{ steps.release.outputs.paths_file }}
+        run: python3 scripts/release.py commit --target "$RELEASE_TARGET" --paths-file "$RELEASE_PATHS_FILE"
 
-      - name: Regenerate sitemap.xml
-        if: steps.promotion.outputs.promoted == 'true'
-        run: |
-          python3 tools/generate_sitemap.py --root . --out sitemap.xml
-          python3 tools/generate_sitemap.py --root . --out sitemap.xml --check
-
-      - name: Commit and push
-        if: steps.promotion.outputs.promoted == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet && echo "Nothing to commit" && exit 0
-          git commit -m "Publish ${{ steps.promotion.outputs.target }} daily study"
-          git push
-
-      - name: Check staging runway
-        if: github.event_name != 'push'
-        run: |
-          COUNT=$(find staging -maxdepth 1 -type f -name '20??-??-??.html' | wc -l)
-          echo "Staging runway: ${COUNT} day(s)"
-          if [ "$COUNT" -lt 3 ]; then
-            echo "::warning::Staging runway is below three completed days (${COUNT})."
-          fi
-
-      - name: Configure Pages
-        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
+      - name: Upload reader-only Pages artifact
+        if: steps.release.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site/
           name: github-pages-${{ github.run_attempt }}
 
+  deploy:
+    needs: prepare
+    if: needs.prepare.outputs.deploy == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
-        if: github.event_name == 'push' || steps.promotion.outputs.promoted == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
         with:

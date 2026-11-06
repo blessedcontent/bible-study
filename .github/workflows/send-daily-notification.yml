@@ -2,11 +2,15 @@ name: Send Daily Study Notification
 
 on:
   schedule:
-    # Frequent checks recover from delayed or skipped starts. The sender uses
-    # each registration's time zone and once-per-local-day Firestore marker.
+    # Preserve the half-hour checks at :07 and :37 Central.
     - cron: '7,37 * * * *'
       timezone: 'America/Chicago'
-  workflow_dispatch: # Allow manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Check the live lesson without reading registrations or sending notifications'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -15,25 +19,42 @@ concurrency:
   group: daily-study-notifications
   cancel-in-progress: false
 
+env:
+  RELEASE_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+
 jobs:
   send-notification:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Test notification title decoding
-        run: node --test scripts/decode-html-entities.test.js
+      - name: Test notification behavior
+        run: node --test scripts/*.test.js
+
+      - name: Require dry-run on review branches
+        if: github.ref != 'refs/heads/main' && env.RELEASE_DRY_RUN != 'true'
+        run: |
+          echo '::error::Use dry_run=true on a review branch.'
+          exit 1
+
+      - name: Dry-run live check
+        if: env.RELEASE_DRY_RUN == 'true'
+        run: node scripts/send-notification.js --dry-run
 
       - name: Install dependencies
+        if: env.RELEASE_DRY_RUN != 'true' && github.ref == 'refs/heads/main'
         run: npm install firebase-admin@12 google-auth-library@9
 
-      - name: Send push notification
+      - name: Send push notification only for live lessons
+        if: env.RELEASE_DRY_RUN != 'true' && github.ref == 'refs/heads/main'
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: node scripts/send-notification.js
