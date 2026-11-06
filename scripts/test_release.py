@@ -17,13 +17,18 @@ from urllib.error import HTTPError
 from urllib.request import urlopen
 
 from release import (PUBLIC_FILES, PUBLIC_DIRECTORIES, build_site, commit_release,
-                     deploy_needed, prepare, prepare_working, promotion, runway)
+                     deploy_needed, prepare, prepare_working, promotion, report_runway, runway)
 
 SOURCE = Path(__file__).resolve().parents[1]
 
 
 class ReleaseTests(unittest.TestCase):
     def setUp(self):
+        # Fixture warnings must not become misleading production CI annotations.
+        self.output = io.StringIO()
+        capture = contextlib.redirect_stdout(self.output)
+        capture.__enter__()
+        self.addCleanup(capture.__exit__, None, None, None)
         self.temporary = tempfile.TemporaryDirectory(prefix='release-test-')
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name) / 'source'
@@ -44,6 +49,14 @@ class ReleaseTests(unittest.TestCase):
         self.staged('2026-11-07', '2026-11-09', '2026-11-10')
         self.assertEqual(runway(self.root, '2026-11-06'), {
             'start': '2026-11-07', 'consecutive_days': 1, 'first_missing': '2026-11-08'})
+
+    def test_runway_warning_threshold_and_first_missing_date(self):
+        for count in (2, 3):
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                report_runway({'start': '2026-11-07', 'consecutive_days': count, 'first_missing': '2026-11-10'})
+            self.assertIn('first missing date: 2026-11-10', output.getvalue())
+            self.assertEqual('::warning::' in output.getvalue(), count < 3)
 
     def test_runway_reports_zero_and_ignores_obsolete_staging(self):
         self.staged('2026-11-05', '2026-11-08')
