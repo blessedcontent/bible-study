@@ -17,7 +17,7 @@ STUDY = re.compile(r'^\d{4}-\d{2}-\d{2}\.html$')
 PUBLIC_FILES = (
     'index.html', 'about.html', 'corrections.html', 'privacy.html',
     'scripture-sources.html', 'manifest.json', 'sw.js', 'firebase-messaging-sw.js',
-    'robots.txt', 'sitemap.xml', 'studies.json', 'search-index.json', '.nojekyll',
+    'studies.json', 'search-index.json', '.nojekyll',
 )
 PUBLIC_DIRECTORIES = ('assets', 'icons')
 EXCLUDED_PARTS = {'.git', '.github', '__pycache__', 'staging', 'tools', 'scripts'}
@@ -115,6 +115,17 @@ def build_site(root, destination):
         output = destination / relative
         output.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, output)
+        if relative.suffix.lower() == '.html':
+            html = output.read_text(encoding='utf-8')
+            head = re.search(r'<head(?:\s[^>]*)?>', html, flags=re.IGNORECASE)
+            if head is None:
+                raise ValueError(f'Missing <head> in deployed HTML: {relative}')
+            if re.search(r'<meta\b[^>]*\bname\s*=\s*[\x27\x22]robots[\x27\x22]', html, flags=re.IGNORECASE):
+                raise ValueError(f'Existing robots metadata in deployed HTML: {relative}')
+            html = (html[:head.end()]
+                    + '\n<meta name="robots" content="noindex, follow">'
+                    + html[head.end():])
+            output.write_text(html, encoding='utf-8')
     print(f'Built reader-only site: {len(approved)} files; excluded staging, tools, scripts and repository metadata.')
     return len(approved)
 
