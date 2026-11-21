@@ -44,7 +44,7 @@ class ReleaseTests(unittest.TestCase):
 
     def staged(self, *dates):
         for value in dates:
-            (self.root / 'staging' / f'{value}.html').write_text('staged lesson')
+            (self.root / 'staging' / f'{value}.html').write_text('<html><head><title>Staged</title></head><body>Study</body></html>')
 
     def test_runway_stops_at_first_gap(self):
         self.staged('2026-11-07', '2026-11-09', '2026-11-10')
@@ -118,7 +118,7 @@ class ReleaseTests(unittest.TestCase):
         self.staged('2026-11-07', '2026-11-08', '2026-11-10')
         before = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         def fake_refresh(root, paths_file):
-            (root / '2026-11-06.html').write_text('updated adjacent navigation')
+            (root / '2026-11-06.html').write_text('<html><head><title>Updated navigation</title></head><body>Reader</body></html>')
             return ['2026-11-06.html', '2026-11-07.html']
         with patch('release.context', return_value={'today': '2026-11-06', 'target': '2026-11-07'}), patch('release.refresh', side_effect=fake_refresh):
             result = prepare(self.root, 'workflow_dispatch', True, probe=lambda root, target: {
