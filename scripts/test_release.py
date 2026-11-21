@@ -34,11 +34,12 @@ class ReleaseTests(unittest.TestCase):
         self.root = Path(self.temporary.name) / 'source'
         self.root.mkdir()
         for name in PUBLIC_FILES:
-            (self.root / name).write_text('reader file', encoding='utf-8')
+            content = '<!doctype html><html><head><title>Test</title></head><body>Reader</body></html>' if name.endswith('.html') else 'reader file'
+            (self.root / name).write_text(content, encoding='utf-8')
         for name in PUBLIC_DIRECTORIES:
             (self.root / name).mkdir()
             (self.root / name / 'reader.txt').write_text('reader asset')
-        (self.root / '2026-11-06.html').write_text('<head><meta name="study-title" content="Test"></head>')
+        (self.root / '2026-11-06.html').write_text('<html><head><meta name="study-title" content="Test"></head><body>Test</body></html>')
         (self.root / 'staging').mkdir()
 
     def staged(self, *dates):
@@ -138,15 +139,42 @@ class ReleaseTests(unittest.TestCase):
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text('excluded')
+        for name in ('robots.txt', 'sitemap.xml'):
+            (self.root / name).write_text('do not deploy', encoding='utf-8')
         output = Path(self.temporary.name) / 'site'
         build_site(self.root, output)
+        for name in ('robots.txt', 'sitemap.xml'):
+            self.assertFalse((output / name).exists(), name)
         expected = set(PUBLIC_FILES) | {'2026-11-06.html', 'assets/reader.txt', 'icons/reader.txt'}
         actual = {p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()}
         self.assertEqual(actual, expected)
         for name in expected:
-            self.assertEqual((output / name).read_bytes(), (self.root / name).read_bytes())
+            original = (self.root / name).read_bytes()
+            deployed = (output / name).read_bytes()
+            if name.endswith('.html'):
+                self.assertIn(b'<meta name="robots" content="noindex, follow">', deployed)
+                self.assertEqual(deployed.count(b'name="robots"'), 1)
+                self.assertIn(original.split(b'<head>')[1].split(b'</head>')[0], deployed)
+                self.assertEqual((self.root / name).read_bytes(), original)
+            else:
+                self.assertEqual(deployed, original)
         with self.assertRaises(ValueError):
             build_site(self.root, output)  # Never retain a stale artifact's extra files.
+
+    def test_html_without_head_fails_build(self):
+        (self.root / 'index.html').write_text('<html><body>Missing head</body></html>')
+        with self.assertRaisesRegex(ValueError, 'Missing <head>'):
+            build_site(self.root, Path(self.temporary.name) / 'site')
+
+    def test_existing_robots_meta_fails_build_without_source_mutation(self):
+        source = self.root / '2026-11-06.html'
+        original = source.read_bytes()
+        source.write_text(source.read_text().replace('<head>', '<head><meta name="robots" content="index">'))
+        before = source.read_bytes()
+        with self.assertRaisesRegex(ValueError, 'Existing robots metadata'):
+            build_site(self.root, Path(self.temporary.name) / 'site')
+        self.assertEqual(source.read_bytes(), before)
+        self.assertNotEqual(before, original)
 
     def test_missing_required_public_file_fails_build(self):
         (self.root / 'sw.js').unlink()
@@ -174,7 +202,9 @@ class ReleaseTests(unittest.TestCase):
         for relative in ('index.html', '2026-11-06.html', 'sw.js', 'firebase-messaging-sw.js', 'assets/reader.txt', 'icons/reader.txt'):
             with urlopen(base + relative) as response:
                 self.assertEqual(response.status, 200)
-        for relative in ('staging/2026-11-07.html', 'tools/generate_sitemap.py', 'scripts/send-notification.js', 'README.md'):
+                if relative.endswith('.html'):
+                    self.assertIn(b'<meta name="robots" content="noindex, follow">', response.read())
+        for relative in ('staging/2026-11-07.html', 'tools/generate_sitemap.py', 'scripts/send-notification.js', 'README.md', 'robots.txt', 'sitemap.xml'):
             with self.assertRaises(HTTPError) as failure:
                 urlopen(base + relative)
             self.assertEqual(failure.exception.code, 404)
